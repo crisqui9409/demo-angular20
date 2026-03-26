@@ -1,0 +1,70 @@
+:root {
+  //Principales
+  --class-black: #2b2b2b;
+  --class-primary: #0b7dbb;
+  --class-secondary: #5dbaeb;
+  --class-third: #001635;
+  --class-gray-dark: #b3b3b3;
+  --class-white: #ffffff;
+  --class-gray-light: #f4f4f4;
+
+  //Color de la Interfaz
+  //Fondos
+  --class-bg-blue-light: #f0faff;
+  --class-bg-gray-light: #f4f4f4;
+  --class-bg-gray-200: #f0f0f0;
+
+  --class-fourth: #314b70;
+  --class-green: #009340;
+  --class-fourth-opacity: #314b7080;
+
+  //Alertas/input
+  --class-red: #e62f27;
+
+  //Colores Bancos Grupo Aval
+  --class-green-b: #009a48;
+  --class-blue-light-bocc: #008acc;
+  --class-blue-bdb: #14327d;
+  --class-red-avv: #e1081e;
+  --class-orange: #fc7121;
+  --class-blue-dark-bocc: #002449;
+  --class-yelllow-bdb: #ffc10b;
+  --class-blue-avv: #0048db;
+
+  //Graphic
+  --class-yellow-100: #fed061;
+  --class-pink-100: #f6af8c;
+  --class-purple-100: #8e9ed1;
+  --class-blue-light-100: #88c1dc;
+
+  --boxshadow-dp1: 0px 4px 4px 0px rgb(179, 179, 179, 0.8);
+  --boxshadow-dp2: 0px 6px 8px 0px rgb(179, 179, 179, 0.8);
+  --boxshadow-dp3: 0px 8px 10px 2px rgb(179, 179, 179, 0.8);
+  --boxshadow-dp4: 0px 8px 10px 2px rgb(179, 179, 179, 0.4);
+  --boxshadow-dp5: 0px 14px 12px 2px rgb(179, 179, 179, 0.2);
+  --boxshadow-dp6: 0px -4px 8px 4px rgb(179, 179, 179, 0.4);
+  --boxshadow-dp7: 0px 4px 8px 4px rgb(179, 179, 179, 0.4);
+  --boxshadow-dp8: 0px 4px 4px 0px rgb(179, 179, 179, 0.4);
+
+  //payment concept
+  --blue-primary: #4882b1;
+  --blue-secondary: #5dbaeb;
+  --blue-four: #59b0e0;
+  --blue-selected: #b5dff7;
+  --blue-pagination: #0067ab;
+  --blue-checkbox: #238eff;
+  --background-primary: #ffffff;
+  --background-gradient: linear-gradient(to bottom, #5dbaeb, #4882b1);
+  --background-popup: rgba(0, 0, 0, 0.4);
+  --color-dropdown: #ffffff;
+  --border-dropdown: #aaa;
+  --border-pagination: #d8dadb;
+  --border-table: #c1c5c7;
+  --text-primary: #2b2b2b; //$BLACK
+  --text-secondary: #b3b3b3; //$GREY
+  --text-select: #868383;
+  --border-top-left-select: #c3c5c7;
+  --border-bottom-right-select: #eef0f1;
+  --boxshadow-input: 5px 5px 14px rgb(0 0 0 / 40%);
+  --class-sky-blue: #ebf8ff;
+}
