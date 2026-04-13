@@ -1,8 +1,20 @@
-// BOC DESIGN SYSTEM - COLOR ARCHITECTURE
-// Implementation: Private Layer (SCSS) mapped to Public Layer (CSS Semantic Tokens)
+// ──────────────────────────────────────────────────────────────────────────────
+// BOC DESIGN SYSTEM - PROFESSIONAL COLOR ARCHITECTURE
+// ──────────────────────────────────────────────────────────────────────────────
+//
+//  Este archivo utiliza un patrón de "Capa Privada" (SCSS) y "Capa Pública" (CSS).
+//  
+//  REGLA PARA DESARROLLADORES:
+//  • NUNCA usar las variables con "$" fuera de este archivo.
+//  • SIEMPRE usar las variables con "--bocc-" en tus componentes.
+//  • Las variables están organizadas por CATEGORÍA (text, surface, border, status).
+//
+// ──────────────────────────────────────────────────────────────────────────────
 
-// 1. PRIVATE PALETTE (Internal use only)
-
+// ==============================================================================
+// 1. PALETA PRIVADA (Private Palette)
+// Solo accesible en este archivo para construir los tokens.
+// ==============================================================================
 
 // Brand - Blue
 $pal-blue-900: #0056CB;
@@ -16,7 +28,7 @@ $pal-navy-700: #003585;
 $pal-navy-400: #6D84BF;
 $pal-navy-200: #E6E9F4;
 
-// Brand - Ocher (Secondary/Accent)
+// Brand - Ocher
 $pal-ocher-900: #7E5A23;
 $pal-ocher-700: #DCA85E;
 $pal-ocher-400: #E6C089;
@@ -58,90 +70,77 @@ $pal-info-400: #43A5FF;
 $pal-info-100: #E3F2FF;
 
 
-// 2. PUBLIC TOKENS (Semantic Layer)
+// ==============================================================================
+// 2. TOKENS PÚBLICOS (Public Tokens)
+// Disponibles globalmente bajo el prefijo --bocc-
+// ==============================================================================
+
 :root {
   
-  // 2.1 Text & Icons
-  --bocc-text-primary:          #{$pal-navy-900};   // Titles and main body text
-  --bocc-text-secondary:        #{$pal-carbon-700}; // Support text / Hints
-  --bocc-text-support:          #{$pal-navy-400};   // Bluish secondary text
-  --bocc-text-muted:            #{$pal-carbon-600}; // Soft text / Footers
-  --bocc-text-bold:             #{$pal-carbon-900}; // Dark titles / Emphasis
-  --bocc-text-placeholder:      #{$pal-carbon-400}; // Form placeholders
-  --bocc-text-disabled:         #{$pal-carbon-400}; // Disabled typography
-  --bocc-text-on-brand:         #{$pal-carbon-500}; // Contrast white on color
-  --bocc-text-link:             #{$pal-blue-700};   // Interactive links
+  // ── 2.1  TEXTO & ICONOS (Contexto: color) ──────────────────────────────────
+  --bocc-text-primary:          #{$pal-navy-900};   // Títulos y cuerpo principal
+  --bocc-text-secondary:        #{$pal-carbon-700}; // Texto de apoyo / Hints
+  --bocc-text-placeholder:      #{$pal-carbon-400}; // Placeholders
+  --bocc-text-disabled:         #{$pal-carbon-400}; // Texto deshabilitado
+  --bocc-text-on-brand:         #{$pal-carbon-500}; // Blanco sobre color
+  --bocc-text-link:             #{$pal-blue-700};   // Links / Acciones
   --bocc-text-link-hover:       #{$pal-blue-900};
   --bocc-text-inverse:          #{$pal-carbon-500};
 
-  // 2.2 Surfaces (Backgrounds)
-  --bocc-surface-main:          #{$pal-carbon-500}; // Solid white / Cards / Modals
-  --bocc-surface-canvas:        #{$pal-carbon-100}; // Page canvas background
-  --bocc-surface-subtle:        #{$pal-navy-200};   // Bluish sectional background
-  --bocc-surface-input:         #{$pal-carbon-500}; // Input field background
-  --bocc-surface-input-hover:   #{$pal-carbon-100}; // Input hover state background
-  --bocc-surface-disabled:      #{$pal-carbon-200}; // Disabled area background
-  --bocc-surface-active:        #{$pal-blue-200};   // Selection / Active highlight
+  // ── 2.2  SUPERFICIES (Contexto: background-color) ──────────────────────────
+  --bocc-surface-main:          #{$pal-carbon-500}; // Blanco / Cards / Modales
+  --bocc-surface-canvas:        #{$pal-carbon-100}; // Fondo de página / Canvas
+  --bocc-surface-input:         #{$pal-carbon-500}; // Fondo de inputs
+  --bocc-surface-input-hover:   #{$pal-carbon-100}; // Hover de inputs
+  --bocc-surface-disabled:      #{$pal-carbon-200}; // Fondo deshabilitado
+  --bocc-surface-active:        #{$pal-blue-200};   // Selección / Highlight
 
-  // 2.3 Borders & Dividers
-  --bocc-border-default:        #{$pal-carbon-300}; // Standard border
-  --bocc-border-hover:          #{$pal-carbon-400}; // Neutral hover border
-  --bocc-border-active:         #{$pal-blue-700};   // Active / Focus border
-  --bocc-border-active-soft:    #{$pal-blue-400};   // Subtle focus border
-  --bocc-border-disabled:       #{$pal-carbon-200}; // Disabled state border
-  --bocc-border-subtle:         #{$pal-carbon-100}; // Dividers / Guideline strokes
+  // ── 2.3  BORDES & DIVISORES (Contexto: border-color) ───────────────────────
+  --bocc-border-default:        #{$pal-carbon-300}; // Borde estándar
+  --bocc-border-hover:          #{$pal-carbon-400}; // Borde hover neutro
+  --bocc-border-active:         #{$pal-blue-700};   // Borde focus / activo
+  --bocc-border-disabled:       #{$pal-carbon-200}; // Borde deshabilitado
+  --bocc-border-subtle:         #{$pal-carbon-100}; // Divisores / Líneas guía
 
-  // 2.4 Status & Feedback
-  // Success
+  // ── 2.4  ESTADOS & FEEDBACK (Contexto: mixto) ──────────────────────────────
+  // Éxito
   --bocc-status-success:        #{$pal-success-700};
-  --bocc-status-success-strong: #{$pal-success-900};
-  --bocc-status-success-soft:   #{$pal-success-400};
   --bocc-status-success-bg:     #{$pal-success-100};
   // Error
   --bocc-status-error:          #{$pal-error-700};
-  --bocc-status-error-strong:   #{$pal-error-900};
-  --bocc-status-error-soft:     #{$pal-error-400};
   --bocc-status-error-bg:       #{$pal-error-100};
-  // Warning
+  // Advertencia
   --bocc-status-warning:        #{$pal-warning-700};
-  --bocc-status-warning-strong: #{$pal-warning-900};
-  --bocc-status-warning-soft:   #{$pal-warning-400};
   --bocc-status-warning-bg:     #{$pal-warning-100};
   // Info
   --bocc-status-info:           #{$pal-info-700};
-  --bocc-status-info-strong:    #{$pal-info-900};
-  --bocc-status-info-soft:      #{$pal-info-400};
   --bocc-status-info-bg:        #{$pal-info-100};
 
-  // 2.5 Identity & Accents
+  // ── 2.5  IDENTIDAD & ACCIONES (Contexto: CTA) ──────────────────────────────
   --bocc-brand-primary:         #{$pal-blue-700};
   --bocc-brand-primary-hover:   #{$pal-blue-900};
-  --bocc-brand-primary-light:   #{$pal-blue-400};
   --bocc-brand-secondary:       #{$pal-navy-700};
   --bocc-brand-secondary-hover: #{$pal-navy-900};
-  
-  // Ocher Accent (Premium / Special)
-  --bocc-status-accent:         #{$pal-ocher-700};
-  --bocc-status-accent-strong:  #{$pal-ocher-900};
-  --bocc-status-accent-soft:    #{$pal-ocher-400};
-  --bocc-status-accent-bg:      #{$pal-ocher-200};
 
-  // 2.6 Effects & Visualization
+  // ── 2.6  EFECTOS & VISUALIZACIÓN ───────────────────────────────────────────
+  // Overlays
   --bocc-overlay-dark:          rgba(85, 97, 111, 0.8);
   --bocc-overlay-blue:          rgba(0, 53, 133, 0.8);
+  // Sombras
   --bocc-shadow-sm:             0px 2px 6px rgba(0, 0, 0, 0.08);
   --bocc-shadow-md:             0px 4px 12px rgba(0, 0, 0, 0.12);
-  // Chart Palettes
-  --bocc-chart-1:               var(--bocc-brand-primary);
-  --bocc-chart-2:               var(--bocc-status-success);
-  --bocc-chart-3:               var(--bocc-status-warning);
-  --bocc-chart-4:               var(--bocc-status-error);
-  --bocc-chart-5:               var(--bocc-status-info);
+  // Gráficas (Charts)
+  --bocc-chart-1:               #{$pal-blue-700};
+  --bocc-chart-2:               #{$pal-success-700};
+  --bocc-chart-3:               #{$pal-warning-700};
+  --bocc-chart-4:               #{$pal-error-700};
+  --bocc-chart-5:               #{$pal-info-700};
 
 
-
-  // 3. LEGACY MAPPING
-
+  // ==============================================================================
+  // 3. MAPEO DE LEGADO (Legacy Compatibility)
+  // Mantiene el funcionamiento de componentes antiguos.
+  // ==============================================================================
   --class-error:                var(--bocc-status-error);
   --class-success:              var(--bocc-status-success);
   --class-warning:              var(--bocc-status-warning);
@@ -150,8 +149,9 @@ $pal-info-100: #E3F2FF;
   --class-black:                #{$pal-carbon-800};
   --class-gray-light:           #{$pal-carbon-200};
   --class-gray-dark:            #{$pal-carbon-700};
-  --class-primary:              #0b7dbb; 
-  --class-secondary:            #5dbaeb;
+  --class-primary:              #0b7dbb; // Legado específico
+  --class-secondary:            #5dbaeb; // Legado específico
 
+  // Gradientes
   --bocc-gradient-primary:      linear-gradient(180deg, #{$pal-blue-700} 0%, #{$pal-blue-900} 100%);
 }
