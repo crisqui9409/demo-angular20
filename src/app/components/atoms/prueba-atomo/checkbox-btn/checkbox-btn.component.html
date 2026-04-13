@@ -1,0 +1,19 @@
+<div class="checkbox-btn" [class.error]="error()" [class.indeterminate]="indeterminate()">
+  <label [for]="name()" class="checkbox-container" [class.disabled]="disabled()">
+    <input
+      #inputEl
+      type="checkbox"
+      [id]="name()"
+      [name]="name()"
+      [value]="value()"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      (change)="onChange($event)"
+    />
+    <span class="checkmark"></span>
+  </label>
+ 
+  @if (showSideText()) {
+    <p class="side-text" [class.disabled]="disabled()">{{ sideText() }}</p>
+  }
+</div>
