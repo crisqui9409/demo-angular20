@@ -22,7 +22,7 @@ import {
 } from '@angular/core';
 
 import { SelectCoordinatorService } from '../../../services/select-coordinator.service';
-import { DEFAULT_CONST } from '../../../utils/global-strings';
+import { DEFAULT_CONST, VAR_INPUT_FORM } from '../../../utils/global-strings';
 
 @Component({
   selector: 'bocc-input-select',
@@ -99,6 +99,7 @@ export class InputSelectComponent implements OnInit {
   // ── Unique coordinator ID ─────────────────────────────────────────────────
 
   private readonly id = `select-${Math.floor(Math.random() * 900_000 + 100_000)}${Date.now()}`;
+  icon_Error: string = VAR_INPUT_FORM.ICON_ERROR;
 
   // ── Constructor: reactive side-effects ────────────────────────────────────
 

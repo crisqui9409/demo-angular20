@@ -51,6 +51,6 @@ export const VAR_INPUT_FORM = {
     TOOLIP: 'assets/icons/tooltip.svg',
     SHOW: 'assets/icons/show.svg',
     HIDDEN: 'assets/icons/hidden.svg',
-    ICON_ERROR: 'assets/icons/error.svg',
+    ICON_ERROR: 'assets/icons/Warning.svg',
     ICON_SORT: 'assets/icons/ico-order.svg'
 };

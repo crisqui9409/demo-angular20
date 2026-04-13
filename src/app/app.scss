@@ -1,0 +1,125 @@
+
+
+:root {
+  --playground-bg: #F8FAFF;
+  --playground-header-bg: #FFFFFF;
+  --playground-card-bg: #FFFFFF;
+  --playground-text: #022047;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--playground-bg);
+  font-family: 'Poppins', sans-serif;
+  color: var(--playground-text);
+}
+
+.playground-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background: var(--playground-header-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+
+  .logo {
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--bocc-brand-primary);
+  }
+
+  .controls {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--bocc-border-default);
+      background: white;
+      color: var(--bocc-text-support);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: var(--bocc-border-hover);
+        background: #F0F4FF;
+      }
+
+      &.active {
+        background: var(--bocc-brand-primary);
+        border-color: var(--bocc-brand-primary);
+        color: white;
+      }
+    }
+  }
+}
+
+.playground-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.demo-section {
+  margin-bottom: 4rem;
+
+  h2 {
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--bocc-border-default);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    color: var(--bocc-text-bold);
+  }
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.demo-card {
+  background: var(--playground-card-bg);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(2, 32, 71, 0.03);
+  border: 1px solid rgba(223, 229, 249, 0.5);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--bocc-text-secondary);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+}
+
+// Media Queries for smaller screens
+@media (max-width: 768px) {
+  .playground-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}

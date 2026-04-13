@@ -1,4 +1,73 @@
-<div class="container">
-    <bocc-input-text></bocc-input-text>
-    <router-outlet></router-outlet>
-</div>
+<header class="playground-header">
+  <img src="assets/icons/logo_boc.svg" alt="BOC Logo" class="logo">
+  <h1>{{ title() }}</h1>
+  <div class="controls">
+    <button (click)="toggleError()" [class.active]="simulateError()">Simular Error</button>
+    <button (click)="toggleDisabled()" [class.active]="simulateDisabled()">Simular Deshabilitado</button>
+  </div>
+</header>
+
+<main class="playground-content">
+  <!-- ── Input Text Section ────────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>1. Input Text</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Default State</h3>
+        <bocc-input-text 
+          title="Nombre Completo" 
+          placeholder="Ej: Juan Pérez"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Este campo es obligatorio">
+        </bocc-input-text>
+      </div>
+
+      <div class="demo-card">
+        <h3>With Help Tooltip</h3>
+        <bocc-input-text 
+          title="Número de Documento" 
+          placeholder="Mínimo 8 caracteres"
+          helpText="Ingresa tu cédula de ciudadanía sin puntos ni comas."
+          [minLength]="8"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="El documento debe tener al menos 8 caracteres">
+        </bocc-input-text>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Input Select Section ──────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>2. Input Select</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Default State</h3>
+        <bocc-input-select 
+          titleName="Ciudad de residencia"
+          [optionsValues]="cities()"
+          placeholder="Selecciona una ciudad"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Debes seleccionar una ciudad"
+          (onSelectOption)="onOptionSelected($event)">
+        </bocc-input-select>
+      </div>
+
+      <div class="demo-card">
+        <h3>With Initial Value</h3>
+        <bocc-input-select 
+          titleName="Departamento"
+          [optionsValues]="['Antioquia', 'Cundinamarca', 'Valle del Cauca']"
+          [activeOption]="0"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Selección inválida">
+        </bocc-input-select>
+      </div>
+    </div>
+  </section>
+</main>
+
+<router-outlet></router-outlet>

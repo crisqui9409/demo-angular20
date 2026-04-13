@@ -106,7 +106,7 @@
   font-family : var(--select-font-family);
   font-size   : var(--select-label-size);
   font-weight : var(--select-label-weight);
-  color       : var(--bocc-border-active);               // #0081FF – label activo
+  color       : var(--bocc-brand-primary);               // #0081FF – Color de marca activo
   line-height : 1.2;
   margin-bottom: 1px;
   pointer-events: none;
@@ -166,7 +166,7 @@
   transform     : translateY(-50%);
   display       : flex;
   align-items   : center;
-  color         : var(--bocc-text-secondary);            // #555F83
+  color         : var(--bocc-text-support);              // #6D84BF – Texto azulado de soporte
   pointer-events: none;
   transition    : transform 200ms ease;
 }
@@ -266,6 +266,6 @@
   font-family: var(--select-font-family);
   font-size  : var(--select-helper-size);
   font-weight: 400;
-  color      : var(--bocc-status-error);                 // #E24C4C
+  color      : var(--bocc-text-secondary);          // #555F83 – Neutral gris support text
   line-height: 1.4;
 }

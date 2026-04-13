@@ -108,7 +108,7 @@
 @if (hasError() && errorMessage()) {
   <div class="bocc-select__error-row" role="alert" aria-live="polite">
     <img
-      src="assets/icons/error.svg"
+      [src]="icon_Error"
       alt=""
       aria-hidden="true"
       class="bocc-select__error-icon"
