@@ -1,0 +1,122 @@
+.bocc-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+  /* Bordes totalmente redondeados */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  gap: 8px;
+  /* Espacio de 8px entre todos los elementos */
+  user-select: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+  border-radius: var(--Border-Radius-4xl, 56px);
+  border: 1px solid var(--Color-Carbon-light-400, #ADBAE6);
+  background: var(--Color-Carbon-light-50, #FFF);
+
+  color: var(--color-carbon-light-700-p, #555F83);
+  cursor: default;
+
+  /* Tamaños */
+  &--xs {
+    font-size: 10px;
+    min-height: 24px;
+    max-height: 24px;
+    padding: var(--Spacing-4, 4px) var(--Spacing-8, 8px);
+
+    .bocc-chip-icon {
+      font-size: 12px;
+    }
+
+  }
+
+  &--s {
+    font-size: 12px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: var(--Spacing-4, 4px) var(--Spacing-8, 8px);
+
+    .bocc-chip-icon {
+      font-size: 16px;
+    }
+
+  }
+
+  &--m {
+    font-size: 14px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: var(--Spacing-4, 4px) var(--Spacing-8, 8px);
+
+    .bocc-chip-icon {
+      font-size: 24px;
+    }
+
+  }
+
+  /* Estados */
+  &:not(.is-disabled):hover {
+    border: 1px solid var(--color-brand-blue-700-p, #0081FF);
+    background: var(--Color-Carbon-light-50, #FFF);
+  }
+
+  &.is-selected {
+    border: 1px solid var(--color-brand-blue-700-p, #0081FF);
+    background: var(--Color-Brand-blue-200, #E2F1FF);
+
+    /* Bottom/Lighter/$bottom-2 */
+    box-shadow: 0 2px 2px 0 rgba(173, 186, 230, 0.40);
+
+    .bocc-chip-remove {
+      width: 6.842px;
+      height: 6.842px;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: var(--Color-Carbon-light-400, #ADBAE6);
+
+    border: 1px solid var(--Color-Carbon-light-400, #ADBAE6);
+    background: var(--Color-Carbon-light-200, #EFF2FC);
+
+    .bocc-chip-icon {
+      color: var(--Color-Carbon-light-400, #ADBAE6);
+    }
+  }
+
+  .bocc-chip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 4px 4px 0;
+    color: var(--color-brand-blue-700-p, #0081FF);
+  }
+
+  .bocc-chip-label {
+    white-space: nowrap;
+  }
+
+  .bocc-chip-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 4.58px;
+    cursor: pointer;
+    color: inherit;
+    transition: transform 0.2s;
+    font-size: 12px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      transform: scale(1.1);
+    }
+  }
+}

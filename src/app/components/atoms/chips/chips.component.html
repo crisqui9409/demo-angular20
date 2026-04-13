@@ -1,0 +1,16 @@
+<div [class]="'bocc-chip bocc-chip--' + size()" [class.is-removable]="removable()" [class.is-selected]="selected()"
+  [class.is-disabled]="disabled()">
+  @if (icon()) {
+  <i [class]="'bocc-chip-icon fa-solid fa-' + icon()"
+    [style.font-size]="size() === 'xs' ? '12px' : size() === 's' ? '14px' : '16px'" aria-hidden="true">
+  </i>
+  }
+
+  <span class="bocc-chip-label">{{ label() }}</span>
+
+  @if (removable()) {
+  <button type="button" class="bocc-chip-remove" (click)="onRemove($event)" [disabled]="disabled()" aria-label="Remove">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+  </button>
+  }
+</div>
