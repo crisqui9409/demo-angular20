@@ -1,0 +1,178 @@
+.bocc-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0.84px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--color-carbon-light-700-p, #555f83);
+
+    &:hover:not(:disabled):not(.is-active) {
+      background: var(--Color-Carbon-light-100, #f8f9fd);
+      color: var(--color-brand-blue-700-p, #0081ff);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    &.is-active {
+      color: #fff;
+      cursor: default;
+      border-radius: var(--Border-Radius-sm, 4px);
+      border: 1px solid var(--Text-color-link, #0081FF);
+      background: var(--Gradients-Basics-G-Blue-Bottom-900, linear-gradient(180deg, #0056CB 0%, #00246F 100%));
+    }
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 5px;
+    color: var(--Text-color-link, #0081FF);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0.84px;
+    min-width: auto;
+
+    i {
+      font-size: 12px;
+    }
+
+    &:hover:not(:disabled) {
+      background: var(--Color-Brand-blue-100, #f0faff);
+      border-radius: 4px;
+    }
+  }
+
+  &-dropdown {
+    position: relative;
+
+    &.is-open {
+      .bocc-pagination-ellipsis {
+        border-color: #0056cb;
+      }
+
+      .bocc-pagination-ellipsis-arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 32px;
+    min-width: 56px;
+    max-width: 64px;
+    min-height: 32px;
+    padding: 0 8px 0 12px;
+    background-color: #fff;
+    border-radius: var(--Border-Radius-sm, 4px);
+    border: 1px solid var(--Color-carbon-light-400, #ADBAE6);
+    background: var(--Color-carbon-light-50, #FFF);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: var(--Spacing-1, 8px);
+
+    &-text {
+      color: var(--Color-carbon-light-400, #ADBAE6);
+
+      /* Desktop/Body 2/medium */
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 21px;
+      /* 150% */
+      letter-spacing: 0.7px;
+    }
+
+    &-arrow {
+      width: 10px;
+      height: 6px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23555F83' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: transform 0.2s ease;
+      color: var(--color-carbon-light-700-p, #555F83);
+    }
+
+    &:hover {
+      border-color: #0056cb;
+    }
+  }
+
+  &-dropdown-menu {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 64px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid var(--Color-Carbon-light-200, #eff2fc);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    list-style: none;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--Color-Carbon-light-300, #d7def0);
+      border-radius: 10px;
+    }
+  }
+
+  &-dropdown-item {
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-carbon-light-700-p, #555f83);
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: var(--Color-Brand-blue-100, #f0faff);
+      color: var(--color-brand-blue-700-p, #0081ff);
+    }
+  }
+}

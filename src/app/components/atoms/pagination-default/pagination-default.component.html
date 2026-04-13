@@ -1,0 +1,43 @@
+<nav class="bocc-pagination" aria-label="Pagination">
+  <button type="button" class="bocc-pagination-btn bocc-pagination-nav" [disabled]="currentPage() === 1"
+    (click)="onPrevious()" aria-label="Previous page">
+    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    <span class="bocc-pagination-nav-text">Previa</span>
+  </button>
+
+  <ul class="bocc-pagination-list">
+    @for (item of pages(); track $index) {
+    <li class="bocc-pagination-item">
+      @if (item.type === 'ellipsis') {
+      <div class="bocc-pagination-dropdown" [class.is-open]="item.isEnd ? isEndDropdownOpen() : isStartDropdownOpen()">
+        <button type="button" class="bocc-pagination-ellipsis" (click)="toggleDropdown(item.isEnd, $event)"
+          aria-haspopup="true" [aria-expanded]="item.isEnd ? isEndDropdownOpen() : isStartDropdownOpen()">
+          <span class="bocc-pagination-ellipsis-text">...</span>
+          <span class="bocc-pagination-ellipsis-arrow"></span>
+        </button>
+        @if (item.isEnd ? isEndDropdownOpen() : isStartDropdownOpen()) {
+        <ul class="bocc-pagination-dropdown-menu">
+          @for (hidden of item.hiddenPages; track hidden) {
+          <li class="bocc-pagination-dropdown-item" (click)="onPageClick(hidden)">
+            {{ hidden }}
+          </li>
+          }
+        </ul>
+        }
+      </div>
+      } @else {
+      <button type="button" class="bocc-pagination-btn bocc-pagination-number"
+        [class.is-active]="item.value === currentPage()" (click)="onPageClick(item.value!)">
+        {{ item.value }}
+      </button>
+      }
+    </li>
+    }
+  </ul>
+
+  <button type="button" class="bocc-pagination-btn bocc-pagination-nav" [disabled]="currentPage() === totalPages()"
+    (click)="onNext()" aria-label="Next page">
+    <span class="bocc-pagination-nav-text">Siguiente</span>
+    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+  </button>
+</nav>
