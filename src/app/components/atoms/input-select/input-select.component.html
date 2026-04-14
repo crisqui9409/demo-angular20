@@ -1,0 +1,118 @@
+<!--
+  InputSelectComponent – Template
+  ──────────────────────────────────────────────────────────────────
+  Uses Angular 17+ control flow: @if / @for
+  Fully accessible: role="combobox" + role="listbox" + role="option"
+  ──────────────────────────────────────────────────────────────────
+-->
+
+<!-- ── Root wrapper ─────────────────────────────────────────────────────── -->
+<div
+  class="bocc-select"
+  [class.bocc-select--error]="hasError()"
+  [class.bocc-select--open]="showDropdown()"
+  [class.bocc-select--disabled]="isDisable()"
+  [class.bocc-select--active]="isActive()"
+>
+
+  <!-- ── Trigger (label + value + chevron) ─────────────────────────────── -->
+  <div
+    class="bocc-select__trigger"
+    role="combobox"
+    [attr.aria-expanded]="showDropdown()"
+    aria-haspopup="listbox"
+    [attr.aria-disabled]="isDisable()"
+    [attr.tabindex]="isDisable() ? -1 : 0"
+    (click)="handleDropdownVisibility()"
+    (keyup.enter)="handleDropdownVisibility()"
+    (keyup.space)="handleDropdownVisibility()"
+  >
+    <!-- Floating label: only shown when a value has been selected -->
+    @if (titleName() && isActive()) {
+      <span
+        class="bocc-select__label"
+        [class.bocc-select__label--disabled]="isDisable()"
+        aria-hidden="true"
+      >
+        {{ titleName() }}
+      </span>
+    }
+
+    <!-- Display value -->
+    <input
+      class="bocc-select__input"
+      [class.bocc-select__input--placeholder]="!isActive()"
+      [class.bocc-select__input--disabled]="isDisable()"
+      [value]="currentlyValueInput()"
+      [disabled]="isDisable()"
+      [attr.name]="name()"
+      readonly
+      aria-readonly="true"
+      tabindex="-1"
+    />
+
+    <!-- Chevron icon -->
+    <span class="bocc-select__chevron" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
+
+  <!-- ── Dropdown panel ─────────────────────────────────────────────────── -->
+  @if (showDropdown()) {
+    <div
+      class="bocc-select__dropdown"
+      [class.bocc-select__dropdown--scrollable]="isScrollable()"
+      role="listbox"
+    >
+      <ul class="bocc-select__list">
+
+        <!-- "Selecciona" placeholder option -->
+        @if (selectOption()) {
+          <li
+            class="bocc-select__option bocc-select__option--placeholder"
+            role="option"
+            tabindex="0"
+            aria-selected="false"
+            (click)="closeSelect()"
+            (keydown.enter)="closeSelect()"
+          >
+            Selecciona
+          </li>
+        }
+
+        <!-- Real options -->
+        @for (option of optionsValues(); track option; let i = $index) {
+          <li
+            class="bocc-select__option"
+            [class.bocc-select__option--selected]="option === currentlyValueInput()"
+            role="option"
+            tabindex="0"
+            [attr.aria-selected]="option === currentlyValueInput()"
+            (click)="setInputOption(option, i)"
+            (keydown.enter)="setInputOption(option, i)"
+          >
+            {{ option }}
+          </li>
+        }
+
+      </ul>
+    </div>
+  }
+
+</div>
+
+<!-- ── Error row ──────────────────────────────────────────────────────────── -->
+@if (hasError() && errorMessage()) {
+  <div class="bocc-select__error-row" role="alert" aria-live="polite">
+    <img
+      [src]="icon_Error"
+      alt=""
+      aria-hidden="true"
+      class="bocc-select__error-icon"
+    />
+    <span class="bocc-select__error-message">{{ errorMessage() }}</span>
+  </div>
+}

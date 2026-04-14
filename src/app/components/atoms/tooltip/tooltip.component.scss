@@ -1,0 +1,151 @@
+@use '../../../../style/variables/colors.scss';
+
+:host {
+  // ── Design Tokens ──────────────────────────────────────────────────────────
+  --tooltip-bg         : var(--bocc-text-primary);          // #022047 – Navy 900
+  --tooltip-text       : #DFE5F9;                           // $pal-carbon-300
+  --tooltip-radius     : 8px;
+  --tooltip-padding-v  : 12px;
+  --tooltip-padding-h  : 16px;
+  --tooltip-shadow     : 0px 4px 4px rgba(173, 186, 230, 0.4);
+  --tooltip-font-family: 'Poppins', sans-serif;
+  --tooltip-font-size  : 12px;
+  --tooltip-font-weight: 500;                               // Medium
+  --tooltip-line-height: 18px;
+  --tooltip-arrow-edge : 10px;                             // Half of 20px width
+  --tooltip-arrow-base : 8px;                              // Height
+
+  // ── Host Layout ────────────────────────────────────────────────────────────
+  display       : none;                                     // Hidden by default
+  position      : absolute;                                 // Relative to body
+  z-index       : 9999;                                     // Always on top
+  pointer-events: none;
+  width         : 240px;                                   // Fixed width as per Figma
+  filter        : drop-shadow(var(--tooltip-shadow));
+  
+  &.is-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.tooltip-bubble {
+  background   : var(--tooltip-bg);
+  color        : var(--tooltip-text);
+  border-radius: var(--tooltip-radius);
+  padding      : var(--tooltip-padding-v) var(--tooltip-padding-h);
+  font-family  : var(--tooltip-font-family);
+  font-size    : var(--tooltip-font-size);
+  font-weight  : var(--tooltip-font-weight);
+  line-height  : var(--tooltip-line-height);
+  text-align   : center;
+  word-wrap    : break-word;
+  width        : 100%;
+  box-sizing   : border-box;
+}
+
+.tooltip-arrow {
+  width       : 0;
+  height      : 0;
+  border-style: solid;
+  flex-shrink : 0;
+}
+
+// ── Orientations ─────────────────────────────────────────────────────────────
+
+// ── Orientations ─────────────────────────────────────────────────────────────
+
+// [↓ Bottom Variant] Anchor point is at trigger bottom center
+:host(.orientation-bottom) {
+  transform     : translateX(-50%);
+  flex-direction: column-reverse;
+  animation     : tooltipFadeInBottom 200ms ease-out forwards;
+
+  .tooltip-arrow {
+    border-width: 0 var(--tooltip-arrow-edge) var(--tooltip-arrow-base) var(--tooltip-arrow-edge);
+    border-color: transparent transparent var(--tooltip-bg) transparent;
+  }
+}
+
+// [↑ Top Variant] Anchor point is at trigger top center
+:host(.orientation-top) {
+  transform     : translate(-50%, -100%);
+  flex-direction: column;
+  animation     : tooltipFadeInTop 200ms ease-out forwards;
+
+  .tooltip-arrow {
+    border-width: var(--tooltip-arrow-base) var(--tooltip-arrow-edge) 0 var(--tooltip-arrow-edge);
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+  }
+}
+
+// [→ Right Variant] Anchor point is at trigger right center
+:host(.orientation-right) {
+  transform     : translateY(-50%);
+  flex-direction: row-reverse;
+  align-items   : center;
+  animation     : tooltipFadeInRight 200ms ease-out forwards;
+
+  .tooltip-arrow {
+    border-width: var(--tooltip-arrow-edge) var(--tooltip-arrow-base) var(--tooltip-arrow-edge) 0;
+    border-color: transparent var(--tooltip-bg) transparent transparent;
+  }
+}
+
+// [← Left Variant] Anchor point is at trigger left center
+:host(.orientation-left) {
+  transform     : translate(-100%, -50%);
+  flex-direction: row;
+  align-items   : center;
+  animation     : tooltipFadeInLeft 200ms ease-out forwards;
+
+  .tooltip-arrow {
+    border-width: var(--tooltip-arrow-edge) 0 var(--tooltip-arrow-edge) var(--tooltip-arrow-base);
+    border-color: transparent transparent transparent var(--tooltip-bg);
+  }
+}
+
+@keyframes tooltipFadeInBottom {
+  from { 
+    opacity: 0; 
+    transform: translate(-50%, 8px) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(-50%, 0) scale(1); 
+  }
+}
+
+@keyframes tooltipFadeInTop {
+  from { 
+    opacity: 0; 
+    transform: translate(-50%, calc(-100% - 8px)) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(-50%, -100%) scale(1); 
+  }
+}
+
+@keyframes tooltipFadeInRight {
+  from { 
+    opacity: 0; 
+    transform: translate(8px, -50%) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(0, -50%) scale(1); 
+  }
+}
+
+@keyframes tooltipFadeInLeft {
+  from { 
+    opacity: 0; 
+    transform: translate(calc(-100% - 8px), -50%) scale(0.98); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translate(-100%, -50%) scale(1); 
+  }
+}

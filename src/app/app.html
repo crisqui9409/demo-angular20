@@ -1,10 +1,114 @@
-<div class="container">
-    <div class="background">
-		<svg class="background__svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
-			aria-hidden="true" focusable="false">
-			<rect width="100" height="100" />
-			<path d="M0,25 Q50,5 100,25 L100,0 L0,0 Z" />
-		</svg>
-	</div>
-    <router-outlet></router-outlet>
-</div>
+<header class="playground-header">
+  <img src="assets/icons/logo_boc.svg" alt="BOC Logo" class="logo">
+  <h1>{{ title() }}</h1>
+  <div class="controls">
+    <button (click)="toggleError()" [class.active]="simulateError()">Simular Error</button>
+    <button (click)="toggleDisabled()" [class.active]="simulateDisabled()">Simular Deshabilitado</button>
+  </div>
+</header>
+
+<main class="playground-content">
+  <!-- ── Input Text Section ────────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>1. Input Text</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Default State</h3>
+        <bocc-input-text 
+          title="Nombre Completo" 
+          placeholder="Ej: Juan Pérez"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Este campo es obligatorio">
+        </bocc-input-text>
+      </div>
+
+      <div class="demo-card">
+        <h3>With Help Tooltip</h3>
+        <bocc-input-text 
+          title="Número de Documento" 
+          placeholder="Mínimo 8 caracteres"
+          helpText="Ingresa tu cédula de ciudadanía sin puntos ni comas."
+          [minLength]="8"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="El documento debe tener al menos 8 caracteres">
+        </bocc-input-text>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Input Select Section ──────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>2. Input Select</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Default State</h3>
+        <bocc-input-select 
+          titleName="Ciudad de residencia"
+          [optionsValues]="cities()"
+          placeholder="Selecciona una ciudad"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Debes seleccionar una ciudad"
+          (onSelectOption)="onOptionSelected($event)">
+        </bocc-input-select>
+      </div>
+
+      <div class="demo-card">
+        <h3>With Initial Value</h3>
+        <bocc-input-select 
+          titleName="Departamento"
+          [optionsValues]="['Antioquia', 'Cundinamarca', 'Valle del Cauca']"
+          [activeOption]="0"
+          [isDisable]="simulateDisabled()"
+          [hasError]="simulateError()"
+          errorMessage="Selección inválida">
+        </bocc-input-select>
+      </div>
+    </div>
+  </section>
+  <!-- ── Tooltip Laboratory Section ──────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>3. Tooltip Laboratory (Atoms & Directives)</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Trigger orientations</h3>
+        <div class="test-container centered">
+          <div class="tooltip-test-item" boccTooltip="Tooltip pointing Up" orientation="top">
+            <img src="assets/icons/Info.svg" alt="info">
+            <span>Hover Top</span>
+          </div>
+
+          <div class="tooltip-test-item" boccTooltip="IOD: Indicador de operación de descuento" orientation="bottom">
+            <img src="assets/icons/Info.svg" alt="info">
+            <span>Hover Bottom (Figma)</span>
+          </div>
+
+          <div class="tooltip-test-item" boccTooltip="Information to the right" orientation="right">
+            <img src="assets/icons/Info.svg" alt="info">
+            <span>Hover Right</span>
+          </div>
+
+          <div class="tooltip-test-item" boccTooltip="Information to the left" orientation="left">
+            <img src="assets/icons/Info.svg" alt="info">
+            <span>Hover Left</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Design System Validation</h3>
+        <p class="support-text">Verify typography (Poppins), colors (Navy 900), and shadow (Light Blue 40%).</p>
+        <div class="test-container centered">
+          <button class="bocc-btn-test" boccTooltip="Functional tooltip on a button element" orientation="top">
+            Hover Button Test
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<router-outlet></router-outlet>

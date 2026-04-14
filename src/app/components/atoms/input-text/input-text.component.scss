@@ -1,0 +1,270 @@
+/**
+ * input-text.component.scss
+ * ─────────────────────────────────────────────────────────────────
+ * Design tokens extracted from Figma node 13098:49006
+ * "14. Campos de texto – Comportamiento y estados"
+ * File: BOC (Dev) – fyaPhgC66xV52OAEiQIXSs
+ *
+ * Author  : Cristian Quintana / Contact & Business IT
+ * Version : 2.2 – 2026/04/13 (Angular 20 · tokens estandarizados)
+ * ─────────────────────────────────────────────────────────────────
+ */
+
+@use '../../../../style/variables/colors.scss';
+
+// ── Host – tokens de tipografía y espaciado ──────────────────────────────────
+
+:host {
+  // Typography
+  --input-font-family  : 'Poppins', sans-serif;
+  --input-label-size   : 12px;
+  --input-label-weight : 600;
+  --input-text-size    : 14px;
+  --input-text-weight  : 500;
+  --input-helper-size  : 11px;
+
+  // Sizing / spacing
+  --input-height       : 48px;
+  --input-pad-h        : 20px;
+  --input-pad-v        : 12px;
+  --input-gap          : 6px;
+  --input-error-gap    : 4px;
+  --input-radius       : 4px;
+  --input-border-width : 1.5px;
+  --tooltip-radius     : 6px;
+
+  display    : block;
+  font-family: var(--input-font-family);
+}
+
+// ── Host layout ──────────────────────────────────────────────────────────────
+
+.input-form {
+  display       : flex;
+  flex-direction: column;
+  gap           : var(--input-gap);
+  width         : 100%;
+}
+
+// ── Label row ────────────────────────────────────────────────────────────────
+
+.label-row {
+  display    : flex;
+  align-items: center;
+  gap        : 4px;
+  position   : relative;
+  max-width  : 100%;
+  overflow   : hidden;
+}
+
+.input-label {
+  font-family  : var(--input-font-family);
+  font-size    : var(--input-label-size);
+  font-weight  : var(--input-label-weight);
+  color        : var(--bocc-text-bold);             // #4E556C – Títulos / Énfasis
+  line-height  : 1.4;
+  white-space  : nowrap;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  cursor       : default;
+}
+
+// ── Tooltip trigger ──────────────────────────────────────────────────────────
+
+.tooltip-trigger {
+  display        : inline-flex;
+  align-items    : center;
+  justify-content: center;
+  background     : none;
+  border         : none;
+  padding        : 0;
+  cursor         : pointer;
+  flex-shrink    : 0;
+  position       : relative;
+
+  img {
+    display   : block;
+    opacity   : 0.65;
+    transition: opacity 150ms ease;
+  }
+
+  &:hover img,
+  &:focus-visible img {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline       : 2px solid var(--bocc-border-active);  // #0081FF – Borde focus/activo
+    outline-offset: 2px;
+    border-radius : 4px;
+  }
+}
+
+// ── Tooltip balloon ──────────────────────────────────────────────────────────
+
+.tooltip-balloon {
+  position      : absolute;
+  bottom        : calc(100% + 8px);
+  left          : 50%;
+  transform     : translateX(-50%);
+  z-index       : 100;
+
+  background    : var(--bocc-text-primary);          // #022047 – Fondo oscuro navy
+  color         : var(--bocc-text-on-brand);         // #FFFFFF – Texto contraste sobre color
+  border-radius : var(--tooltip-radius);
+  font-family   : var(--input-font-family);
+  font-size     : 11px;
+  font-weight   : 400;
+  line-height   : 1.4;
+  padding       : 8px 10px;
+  white-space   : nowrap;
+  max-width     : 240px;
+  box-shadow    : var(--bocc-shadow-md);             // Sombra elevada del sistema
+  pointer-events: none;
+
+  // Arrow apuntando hacia abajo al campo
+  &::after {
+    content         : '';
+    position        : absolute;
+    top             : 100%;
+    left            : 50%;
+    transform       : translateX(-50%);
+    border          : 5px solid transparent;
+    border-top-color: var(--bocc-text-primary);      // Mismo color que el balloon
+  }
+
+  animation: tooltipIn 120ms ease forwards;
+
+  @keyframes tooltipIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0);   }
+  }
+}
+
+.tooltip-balloon--two-lines {
+  white-space: normal;
+}
+
+// ── Input container ──────────────────────────────────────────────────────────
+
+.input-container {
+  display      : flex;
+  align-items  : center;
+  height       : var(--input-height);
+  border       : var(--input-border-width) solid var(--bocc-border-default);  // #DFE5F9
+  border-radius: var(--input-radius);
+  background   : var(--bocc-surface-input);                                   // #FFFFFF
+  padding      : var(--input-pad-v) var(--input-pad-h);
+  box-sizing   : border-box;
+  transition   : border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+
+  // Hover – neutraliza el borde con un tono más prominente
+  &:hover:not(.is-disabled):not(.is-error):not(.is-focused) {
+    border-color: var(--bocc-border-hover);          // #ADBAE6
+  }
+
+  // Focused – resalta con color de acción primario
+  &.is-focused {
+    border-color: var(--bocc-border-active);         // #0081FF
+    box-shadow  : 0 0 0 3px rgba(0, 129, 255, 0.15);
+    outline     : none;
+  }
+
+  // Error – estado de validación fallido
+  &.is-error {
+    border-color: var(--bocc-status-error);          // #E24C4C
+    box-shadow  : 0 0 0 3px rgba(226, 76, 76, 0.12);
+  }
+
+  // Success – estado de validación exitoso
+  &.is-success {
+    border-color: var(--bocc-status-success);        // #00CA82
+    box-shadow  : 0 0 0 3px rgba(0, 202, 130, 0.15);
+  }
+
+  // Warning – estado de advertencia
+  &.is-warning {
+    border-color: var(--bocc-status-warning);        // #FFAA31
+    box-shadow  : 0 0 0 3px rgba(255, 170, 49, 0.15);
+  }
+
+  // Disabled – campo deshabilitado
+  &.is-disabled {
+    background  : var(--bocc-surface-disabled);      // #EFF2FC
+    border-color: var(--bocc-border-disabled);       // #EFF2FC
+    cursor      : not-allowed;
+    opacity     : 0.8;
+  }
+
+  // Filled – el campo tiene valor escrito
+  &.is-filled .input-text {
+    color: var(--bocc-text-primary);                 // #022047
+  }
+}
+
+// ── Native <input> ────────────────────────────────────────────────────────────
+
+.input-text {
+  width      : 100%;
+  border     : none;
+  outline    : none;
+  background : transparent;
+  font-family: var(--input-font-family);
+  font-size  : var(--input-text-size);
+  font-weight: var(--input-text-weight);
+  color      : var(--bocc-text-primary);             // #022047
+  line-height: 1;
+  cursor     : text;
+
+  // Placeholder
+  &::placeholder {
+    color      : var(--bocc-text-placeholder);       // #ADBAE6
+    font-weight: 400;
+  }
+
+  // Disabled
+  &:disabled {
+    color : var(--bocc-text-disabled);               // #ADBAE6
+    cursor: not-allowed;
+  }
+
+  // Evita el fondo amarillo del autofill del browser
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow      : 0 0 0px 1000px var(--bocc-surface-input) inset;
+    -webkit-text-fill-color : var(--bocc-text-primary);
+    transition              : background-color 5000s ease-in-out 0s;
+  }
+
+  // Quita los spinners en inputs de tipo number
+  &[type='number'] {
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+// ── Error / feedback row ─────────────────────────────────────────────────────
+
+.error-row {
+  display    : flex;
+  align-items: center;
+  gap        : var(--input-error-gap);
+  margin-top : 2px;
+}
+
+.error-icon {
+  flex-shrink: 0;
+}
+
+.error-message {
+  font-family: var(--input-font-family);
+  font-size  : var(--input-helper-size);
+  font-weight: 400;
+  color      : var(--bocc-text-secondary);          // #555F83 – Neutral gris support text
+  line-height: 1.4;
+}

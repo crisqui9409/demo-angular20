@@ -1,0 +1,271 @@
+/**
+ * input-select.component.scss
+ * ─────────────────────────────────────────────────────────────────
+ * Design tokens from Figma "BOC (Dev)" – Section 11. Dropdown
+ * Uses the global --bocc-* token system from colors.scss
+ *
+ * Author  : Cristian Quintana / Contact & Business IT
+ * Version : 2.0 – 2026/04/13 (Angular 20 Standalone)
+ * ─────────────────────────────────────────────────────────────────
+ */
+
+@use '../../../../style/variables/colors.scss';
+
+// ── Host – tokens de tipografía y espaciado ──────────────────────────────────
+
+:host {
+  // Typography
+  --select-font-family  : 'Poppins', sans-serif;
+  --select-label-size   : 12px;
+  --select-label-weight : 600;
+  --select-text-size    : 14px;
+  --select-text-weight  : 400;
+  --select-helper-size  : 11px;
+
+  // Sizing / Spacing
+  --select-height       : 48px;
+  --select-pad-h        : 20px;
+  --select-pad-v        : 12px;
+  --select-radius       : 4px;
+  --select-border-width : 1.5px;
+  --select-option-h     : 40px;
+  --select-max-visible  : 4;        // # of options before scroll kicks in
+  --select-max-height   : calc(var(--select-option-h) * var(--select-max-visible));
+
+  display    : block;
+  font-family: var(--select-font-family);
+  position   : relative;
+}
+
+// ── Root container ────────────────────────────────────────────────────────────
+
+.bocc-select {
+  position: relative;
+  width    : 100%;
+
+  // ── State modifiers on the root affect child elements ──────────────────
+
+  &--open .bocc-select__chevron {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &--open .bocc-select__trigger {
+    border-color: var(--bocc-border-active);             // #0081FF
+    box-shadow  : 0 0 0 3px rgba(0, 129, 255, 0.15);
+  }
+
+  &--error .bocc-select__trigger {
+    border-color: var(--bocc-status-error);              // #E24C4C
+    box-shadow  : 0 0 0 3px rgba(226, 76, 76, 0.12);
+  }
+
+  &--disabled .bocc-select__trigger {
+    background  : var(--bocc-surface-disabled);          // #EFF2FC
+    border-color: var(--bocc-border-disabled);           // #EFF2FC
+    cursor      : not-allowed;
+    pointer-events: none;
+    opacity     : 0.8;
+  }
+}
+
+// ── Trigger ───────────────────────────────────────────────────────────────────
+
+.bocc-select__trigger {
+  display       : flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items   : flex-start;
+  position      : relative;
+  width         : 100%;
+  height        : var(--select-height);
+  padding       : var(--select-pad-v) 44px var(--select-pad-v) var(--select-pad-h);
+  box-sizing    : border-box;
+
+  border        : var(--select-border-width) solid var(--bocc-border-default);  // #DFE5F9
+  border-radius : var(--select-radius);
+  background    : var(--bocc-surface-input);                                    // #FFFFFF
+  cursor        : pointer;
+  outline       : none;
+
+  transition    : border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+
+  &:hover {
+    border-color: var(--bocc-border-hover);              // #ADBAE6
+  }
+
+  &:focus-visible {
+    border-color: var(--bocc-border-active);
+    box-shadow  : 0 0 0 3px rgba(0, 129, 255, 0.15);
+    outline     : none;
+  }
+}
+
+// ── Floating label ────────────────────────────────────────────────────────────
+
+.bocc-select__label {
+  font-family : var(--select-font-family);
+  font-size   : var(--select-label-size);
+  font-weight : var(--select-label-weight);
+  color       : var(--bocc-brand-primary);               // #0081FF – Color de marca activo
+  line-height : 1.2;
+  margin-bottom: 1px;
+  pointer-events: none;
+  user-select : none;
+  white-space : nowrap;
+
+  &--disabled {
+    color: var(--bocc-text-disabled);                    // #ADBAE6
+  }
+}
+
+// ── Input ─────────────────────────────────────────────────────────────────────
+
+.bocc-select__input {
+  width         : 100%;
+  border        : none;
+  outline       : none;
+  background    : transparent;
+  font-family   : var(--select-font-family);
+  font-size     : var(--select-text-size);
+  font-weight   : var(--select-text-weight);
+  color         : var(--bocc-text-primary);              // #022047
+  padding       : 0;
+  cursor        : pointer;
+  pointer-events: none;
+  user-select   : none;
+  white-space   : nowrap;
+  overflow      : hidden;
+  text-overflow : ellipsis;
+  line-height   : 1;
+
+  // Placeholder visual
+  &--placeholder {
+    color: var(--bocc-text-placeholder);                 // #ADBAE6
+  }
+
+  // Disabled state
+  &--disabled,
+  &:disabled {
+    color : var(--bocc-text-disabled);                   // #ADBAE6
+    cursor: not-allowed;
+  }
+
+  // Remove autofill yellow
+  &:-webkit-autofill {
+    -webkit-box-shadow      : 0 0 0px 1000px var(--bocc-surface-input) inset;
+    -webkit-text-fill-color : var(--bocc-text-primary);
+  }
+}
+
+// ── Chevron ───────────────────────────────────────────────────────────────────
+
+.bocc-select__chevron {
+  position      : absolute;
+  right         : 16px;
+  top           : 50%;
+  transform     : translateY(-50%);
+  display       : flex;
+  align-items   : center;
+  color         : var(--bocc-text-support);              // #6D84BF – Texto azulado de soporte
+  pointer-events: none;
+  transition    : transform 200ms ease;
+}
+
+// ── Dropdown panel ────────────────────────────────────────────────────────────
+
+.bocc-select__dropdown {
+  position     : absolute;
+  top          : calc(100% + 4px);
+  left         : 0;
+  right        : 0;
+  z-index      : 200;
+  background   : var(--bocc-surface-input);              // #FFFFFF
+  border       : var(--select-border-width) solid var(--bocc-border-active);
+  border-radius: var(--select-radius);
+  box-shadow   : var(--bocc-shadow-md);
+  overflow     : hidden;
+  animation    : boccDropdownIn 140ms ease;
+
+  // Scrollable variant: when options > 4
+  &--scrollable .bocc-select__list {
+    max-height: var(--select-max-height);
+    overflow-y: auto;
+
+    // Custom scrollbar
+    &::-webkit-scrollbar       { width: 4px; }
+    &::-webkit-scrollbar-track { background: var(--bocc-surface-canvas); }
+    &::-webkit-scrollbar-thumb { background: var(--bocc-border-hover); border-radius: 4px; }
+  }
+}
+
+@keyframes boccDropdownIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Option list ───────────────────────────────────────────────────────────────
+
+.bocc-select__list {
+  list-style: none;
+  margin    : 0;
+  padding   : 4px 0;
+}
+
+// ── Option item ───────────────────────────────────────────────────────────────
+
+.bocc-select__option {
+  display    : flex;
+  align-items: center;
+  height     : var(--select-option-h);
+  padding    : 0 var(--select-pad-h);
+  font-family: var(--select-font-family);
+  font-size  : var(--select-text-size);
+  font-weight: var(--select-text-weight);
+  color      : var(--bocc-text-primary);                 // #022047
+  cursor     : pointer;
+  outline    : none;
+  transition : background 120ms ease, color 120ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--bocc-surface-active);              // #E2F1FF
+    color     : var(--bocc-brand-primary);               // #0081FF
+  }
+
+  // Currently selected option
+  &--selected {
+    background : var(--bocc-surface-active);
+    color      : var(--bocc-brand-primary);
+    font-weight: 600;
+  }
+
+  // "Selecciona" placeholder item
+  &--placeholder {
+    color      : var(--bocc-text-placeholder);           // #ADBAE6
+    font-style : italic;
+    font-weight: 400;
+  }
+}
+
+// ── Error row ─────────────────────────────────────────────────────────────────
+
+.bocc-select__error-row {
+  display    : flex;
+  align-items: center;
+  gap        : 4px;
+  margin-top : 4px;
+}
+
+.bocc-select__error-icon {
+  flex-shrink: 0;
+  width      : 14px;
+  height     : 14px;
+}
+
+.bocc-select__error-message {
+  font-family: var(--select-font-family);
+  font-size  : var(--select-helper-size);
+  font-weight: 400;
+  color      : var(--bocc-text-secondary);          // #555F83 – Neutral gris support text
+  line-height: 1.4;
+}
