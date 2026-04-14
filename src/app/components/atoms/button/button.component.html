@@ -1,0 +1,10 @@
+<button type="button" [ngClass]="resolvedClass()" [disabled]="disabled()" (click)="onClick()"
+	(mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+	@if (showIcon()) {
+	<div class="btn-icon" [ngStyle]="{ 'background-image': 'url(' + resolvedIcon() + ')' }" aria-hidden="true"></div>
+	}
+
+	@if (label()) {
+	<span>{{ label() }}</span>
+	}
+</button>

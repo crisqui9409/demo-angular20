@@ -1,0 +1,126 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+button {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 44px;
+  white-space: nowrap;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  font-family: jakarta-bold, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    outline-color 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Primary buttons
+.btn-primary {
+  background-color: var(--class-secondary);
+  color: var(--class-third);
+  border: none;
+
+  path {
+    fill: var(--class-third);
+  }
+
+  &:hover {
+    border: none;
+    background-color: var(--class-third);
+    color: var(--class-white);
+
+    path {
+      fill: var(--class-white);
+    }
+  }
+
+  &:focus {
+    background-color: var(--class-secondary);
+    color: var(--class-third);
+    outline: var(--class-third) solid 1px;
+
+    path {
+      fill: var(--class-third);
+    }
+  }
+}
+
+// Secondary buttons
+.btn-secondary {
+  background-color: var(--class-white);
+  color: var(--class-third);
+  border: 1px solid var(--class-third);
+
+  path {
+    fill: var(--class-third);
+  }
+
+  &:hover {
+    background-color: var(--class-bg-gray-light);
+  }
+
+  &:focus {
+    border: none;
+    background-color: var(--class-white);
+    color: var(--class-secondary);
+    outline: var(--class-secondary) solid 1px;
+
+    path {
+      fill: var(--class-secondary);
+    }
+  }
+}
+
+.btn-icon {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// Disabled primary button
+.btn-inactive-primary {
+  background-color: var(--class-bg-gray-light);
+  color: var(--class-gray-dark);
+  border: none;
+
+  path {
+    fill: var(--class-gray-dark);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Disabled secondary button
+.btn-inactive {
+  background-color: var(--class-bg-gray-light);
+  color: var(--class-gray-dark);
+  border: none;
+
+  path {
+    fill: var(--class-gray-dark);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
