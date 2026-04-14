@@ -1,0 +1,81 @@
+// -----------------------------------------------------------------------------
+// MENU ITEM ATOM - SCSS
+// Dropdown/contextual menu item following BOC Design System specs.
+// -----------------------------------------------------------------------------
+
+// Tokens: Mapped to global Design System variables
+$text-color:      var(--bocc-text-secondary);
+$hover-bg:        var(--bocc-surface-active);
+$disabled-text:   var(--bocc-text-disabled);
+
+:host {
+  display: block;
+}
+
+// 1. Root Container (BEM Block)
+.menu-item {
+  // Layout & Alignment
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 2.8125rem; // 45px
+  padding: 0 1rem;       // 16px
+
+  // Visuals & Reset
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+
+  // Typography
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;  
+  font-weight: 600;
+  line-height: 1.3125rem; 
+  color: $text-color;
+  text-align: left;
+
+  // Transitions
+  transition: background-color 0.15s ease-in-out;
+
+  // Interactive States
+  &:hover:not(:disabled) {
+    background-color: $hover-bg;
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid var(--bocc-border-active);      
+    outline-offset: -0.125rem;
+  }
+
+  // 2. Disabled State (BEM Modifier)
+  &--disabled,
+  &:disabled {
+    color: $disabled-text;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// 3. Label (BEM Element) - Handles text truncation
+.menu-item__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 4. Chevron (BEM Element) - Trailing directional anchor
+.menu-item__chevron {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.5rem;  
+  color: $text-color;
+
+  svg {
+    width: 1rem; 
+    height: 1rem;
+  }
+}
