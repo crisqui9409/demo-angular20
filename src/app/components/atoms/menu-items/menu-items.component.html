@@ -1,0 +1,17 @@
+<ul class="bocc-menu-items" [class.is-collapsed]="!isExpanded()" role="menu">
+  @for (item of items(); track item.id) {
+  <li class="bocc-menu-item" [class.is-selected]="item.id === selectedId()" [class.is-disabled]="item.disabled"
+    (click)="onItemClick(item)" role="menuitem" [attr.aria-disabled]="item.disabled" [attr.title]="!isExpanded() ? item.label : null"
+    tabindex="0" (keydown.enter)="onItemClick(item)" (keydown.space)="onItemClick(item)">
+    
+    <div class="bocc-menu-item-content">
+      @if (item.icon) {
+      <i [class]="'bocc-menu-item-icon fa-solid fa-' + item.icon" aria-hidden="true"></i>
+      }
+      @if (isExpanded()) {
+        <span class="bocc-menu-item-label">{{ item.label }}</span>
+      }
+    </div>
+  </li>
+  }
+</ul>
