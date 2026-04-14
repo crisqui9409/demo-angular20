@@ -1,70 +1,157 @@
+// BOC DESIGN SYSTEM - COLOR ARCHITECTURE
+// Implementation: Private Layer (SCSS) mapped to Public Layer (CSS Semantic Tokens)
+
+// 1. PRIVATE PALETTE (Internal use only)
+
+
+// Brand - Blue
+$pal-blue-900: #0056CB;
+$pal-blue-700: #0081FF;
+$pal-blue-400: #56B0FF;
+$pal-blue-200: #E2F1FF;
+
+// Brand - Navy
+$pal-navy-900: #022047;
+$pal-navy-700: #003585;
+$pal-navy-400: #6D84BF;
+$pal-navy-200: #E6E9F4;
+
+// Brand - Ocher (Secondary/Accent)
+$pal-ocher-900: #7E5A23;
+$pal-ocher-700: #DCA85E;
+$pal-ocher-400: #E6C089;
+$pal-ocher-200: #F8F0E2;
+
+// Neutrals - Carbon
+$pal-carbon-900: #4E556C;
+$pal-carbon-800: #1B1C1E;
+$pal-carbon-700: #555F83;
+$pal-carbon-600: #3A4260;
+$pal-carbon-500: #FFFFFF;
+$pal-carbon-400: #ADBAE6;
+$pal-carbon-300: #DFE5F9;
+$pal-carbon-200: #EFF2FC;
+$pal-carbon-100: #F7F8FE;
+
+// Semantic - Success
+$pal-success-900: #117847;
+$pal-success-700: #00CA82;
+$pal-success-400: #86E0B7;
+$pal-success-100: #E2F8ED;
+
+// Semantic - Error
+$pal-error-900: #981B1F;
+$pal-error-700: #E24C4C;
+$pal-error-400: #DA6D6E;
+$pal-error-100: #FDEAED;
+
+// Semantic - Warning
+$pal-warning-900: #B75F0E;
+$pal-warning-700: #FFAA31;
+$pal-warning-400: #FFCD84;
+$pal-warning-100: #FFF3E1;
+
+// Semantic - Info
+$pal-info-900: #2E4783;
+$pal-info-700: #3187FF;
+$pal-info-400: #43A5FF;
+$pal-info-100: #E3F2FF;
+
+
+// 2. PUBLIC TOKENS (Semantic Layer)
 :root {
-  //Principales
-  --class-black: #2b2b2b;
-  --class-primary: #0b7dbb;
-  --class-secondary: #5dbaeb;
-  --class-third: #001635;
-  --class-gray-dark: #b3b3b3;
-  --class-white: #ffffff;
-  --class-gray-light: #f4f4f4;
+  
+  // 2.1 Text & Icons
+  --bocc-text-primary:          #{$pal-navy-900};   // Titles and main body text
+  --bocc-text-secondary:        #{$pal-carbon-700}; // Support text / Hints
+  --bocc-text-support:          #{$pal-navy-400};   // Bluish secondary text
+  --bocc-text-muted:            #{$pal-carbon-600}; // Soft text / Footers
+  --bocc-text-bold:             #{$pal-carbon-900}; // Dark titles / Emphasis
+  --bocc-text-placeholder:      #{$pal-carbon-400}; // Form placeholders
+  --bocc-text-disabled:         #{$pal-carbon-400}; // Disabled typography
+  --bocc-text-on-brand:         #{$pal-carbon-500}; // Contrast white on color
+  --bocc-text-link:             #{$pal-blue-700};   // Interactive links
+  --bocc-text-link-hover:       #{$pal-blue-900};
+  --bocc-text-inverse:          #{$pal-carbon-500};
 
-  //Color de la Interfaz
-  //Fondos
-  --class-bg-blue-light: #f0faff;
-  --class-bg-gray-light: #f4f4f4;
-  --class-bg-gray-200: #f0f0f0;
+  // 2.2 Surfaces (Backgrounds)
+  --bocc-surface-main:          #{$pal-carbon-500}; // Solid white / Cards / Modals
+  --bocc-surface-canvas:        #{$pal-carbon-100}; // Page canvas background
+  --bocc-surface-subtle:        #{$pal-navy-200};   // Bluish sectional background
+  --bocc-surface-input:         #{$pal-carbon-500}; // Input field background
+  --bocc-surface-input-hover:   #{$pal-carbon-100}; // Input hover state background
+  --bocc-surface-disabled:      #{$pal-carbon-200}; // Disabled area background
+  --bocc-surface-active:        #{$pal-blue-200};   // Selection / Active highlight
 
-  --class-fourth: #314b70;
-  --class-green: #009340;
-  --class-fourth-opacity: #314b7080;
+  // 2.3 Borders & Dividers
+  --bocc-border-default:        #{$pal-carbon-300}; // Standard border
+  --bocc-border-hover:          #{$pal-carbon-400}; // Neutral hover border
+  --bocc-border-active:         #{$pal-blue-700};   // Active / Focus border
+  --bocc-border-active-soft:    #{$pal-blue-400};   // Subtle focus border
+  --bocc-border-disabled:       #{$pal-carbon-200}; // Disabled state border
+  --bocc-border-subtle:         #{$pal-carbon-100}; // Dividers / Guideline strokes
 
-  //Alertas/input
-  --class-red: #e62f27;
+  // 2.4 Status & Feedback
+  // Success
+  --bocc-status-success:        #{$pal-success-700};
+  --bocc-status-success-strong: #{$pal-success-900};
+  --bocc-status-success-soft:   #{$pal-success-400};
+  --bocc-status-success-bg:     #{$pal-success-100};
+  // Error
+  --bocc-status-error:          #{$pal-error-700};
+  --bocc-status-error-strong:   #{$pal-error-900};
+  --bocc-status-error-soft:     #{$pal-error-400};
+  --bocc-status-error-bg:       #{$pal-error-100};
+  // Warning
+  --bocc-status-warning:        #{$pal-warning-700};
+  --bocc-status-warning-strong: #{$pal-warning-900};
+  --bocc-status-warning-soft:   #{$pal-warning-400};
+  --bocc-status-warning-bg:     #{$pal-warning-100};
+  // Info
+  --bocc-status-info:           #{$pal-info-700};
+  --bocc-status-info-strong:    #{$pal-info-900};
+  --bocc-status-info-soft:      #{$pal-info-400};
+  --bocc-status-info-bg:        #{$pal-info-100};
 
-  //Colores Bancos Grupo Aval
-  --class-green-b: #009a48;
-  --class-blue-light-bocc: #008acc;
-  --class-blue-bdb: #14327d;
-  --class-red-avv: #e1081e;
-  --class-orange: #fc7121;
-  --class-blue-dark-bocc: #002449;
-  --class-yelllow-bdb: #ffc10b;
-  --class-blue-avv: #0048db;
+  // 2.5 Identity & Accents
+  --bocc-brand-primary:         #{$pal-blue-700};
+  --bocc-brand-primary-hover:   #{$pal-blue-900};
+  --bocc-brand-primary-light:   #{$pal-blue-400};
+  --bocc-brand-secondary:       #{$pal-navy-700};
+  --bocc-brand-secondary-hover: #{$pal-navy-900};
+  
+  // Ocher Accent (Premium / Special)
+  --bocc-status-accent:         #{$pal-ocher-700};
+  --bocc-status-accent-strong:  #{$pal-ocher-900};
+  --bocc-status-accent-soft:    #{$pal-ocher-400};
+  --bocc-status-accent-bg:      #{$pal-ocher-200};
 
-  //Graphic
-  --class-yellow-100: #fed061;
-  --class-pink-100: #f6af8c;
-  --class-purple-100: #8e9ed1;
-  --class-blue-light-100: #88c1dc;
+  // 2.6 Effects & Visualization
+  --bocc-overlay-dark:          rgba(85, 97, 111, 0.8);
+  --bocc-overlay-blue:          rgba(0, 53, 133, 0.8);
+  --bocc-shadow-sm:             0px 2px 6px rgba(0, 0, 0, 0.08);
+  --bocc-shadow-md:             0px 4px 12px rgba(0, 0, 0, 0.12);
+  // Chart Palettes
+  --bocc-chart-1:               var(--bocc-brand-primary);
+  --bocc-chart-2:               var(--bocc-status-success);
+  --bocc-chart-3:               var(--bocc-status-warning);
+  --bocc-chart-4:               var(--bocc-status-error);
+  --bocc-chart-5:               var(--bocc-status-info);
 
-  --boxshadow-dp1: 0px 4px 4px 0px rgb(179, 179, 179, 0.8);
-  --boxshadow-dp2: 0px 6px 8px 0px rgb(179, 179, 179, 0.8);
-  --boxshadow-dp3: 0px 8px 10px 2px rgb(179, 179, 179, 0.8);
-  --boxshadow-dp4: 0px 8px 10px 2px rgb(179, 179, 179, 0.4);
-  --boxshadow-dp5: 0px 14px 12px 2px rgb(179, 179, 179, 0.2);
-  --boxshadow-dp6: 0px -4px 8px 4px rgb(179, 179, 179, 0.4);
-  --boxshadow-dp7: 0px 4px 8px 4px rgb(179, 179, 179, 0.4);
-  --boxshadow-dp8: 0px 4px 4px 0px rgb(179, 179, 179, 0.4);
 
-  //payment concept
-  --blue-primary: #4882b1;
-  --blue-secondary: #5dbaeb;
-  --blue-four: #59b0e0;
-  --blue-selected: #b5dff7;
-  --blue-pagination: #0067ab;
-  --blue-checkbox: #238eff;
-  --background-primary: #ffffff;
-  --background-gradient: linear-gradient(to bottom, #5dbaeb, #4882b1);
-  --background-popup: rgba(0, 0, 0, 0.4);
-  --color-dropdown: #ffffff;
-  --border-dropdown: #aaa;
-  --border-pagination: #d8dadb;
-  --border-table: #c1c5c7;
-  --text-primary: #2b2b2b; //$BLACK
-  --text-secondary: #b3b3b3; //$GREY
-  --text-select: #868383;
-  --border-top-left-select: #c3c5c7;
-  --border-bottom-right-select: #eef0f1;
-  --boxshadow-input: 5px 5px 14px rgb(0 0 0 / 40%);
-  --class-sky-blue: #ebf8ff;
+
+  // 3. LEGACY MAPPING
+
+  --class-error:                var(--bocc-status-error);
+  --class-success:              var(--bocc-status-success);
+  --class-warning:              var(--bocc-status-warning);
+  --class-info:                 var(--bocc-status-info);
+  --class-white:                #{$pal-carbon-500};
+  --class-black:                #{$pal-carbon-800};
+  --class-gray-light:           #{$pal-carbon-200};
+  --class-gray-dark:            #{$pal-carbon-700};
+  --class-primary:              #0b7dbb; 
+  --class-secondary:            #5dbaeb;
+
+  --bocc-gradient-primary:      linear-gradient(180deg, #{$pal-blue-700} 0%, #{$pal-blue-900} 100%);
 }
