@@ -1,0 +1,36 @@
+<!-- Main navigation container for hierarchical breadcrumbs -->
+<nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    @for (item of items(); track $index; let last = $last) {
+      <li class="breadcrumb-item" [class.active]="item.active" [attr.aria-current]="item.active ? 'page' : null">
+        <!-- Interactive Link Segment -->
+        @if (item.path && !item.active) {
+          <a [routerLink]="item.path" class="breadcrumb-link">
+            @if (item.icon) {
+              <span class="breadcrumb-icon" [innerHTML]="item.icon" aria-hidden="true"></span>
+            }
+            {{ item.label }}
+          </a>
+        }
+        <!-- Non-interactive / Active Segment -->
+        @else {
+          <span class="breadcrumb-text">
+            @if (item.icon) {
+              <span class="breadcrumb-icon" [innerHTML]="item.icon" aria-hidden="true"></span>
+            }
+            {{ item.label }}
+          </span>
+        }
+
+        <!-- Visual Separator -->
+        @if (!last) {
+          <span class="separator" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 10L10 6L6 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        }
+      </li>
+    }
+  </ol>
+</nav>
