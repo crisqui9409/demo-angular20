@@ -108,6 +108,82 @@
       </div>
     </div>
   </section>
+  <!-- ── Avatar Section ────────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2>4. Avatar Component</h2>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Dynamic User Simulation (Login/Logout)</h3>
+        <p class="support-text">Demonstrates how the avatar loads user data after a login.</p>
+        <div style="margin-bottom: 16px; display: flex; gap: 8px;">
+          <button (click)="simulateLogin()" style="padding: 8px 16px; background: #00ca82; color: white; border: none; border-radius: 4px; cursor: pointer;">Simular Login</button>
+          <button (click)="simulateLogout()" style="padding: 8px 16px; background: #555f83; color: white; border: none; border-radius: 4px; cursor: pointer;">Simular Logout</button>
+        </div>
+
+        <div style="padding: 20px; border: 1px dashed #adbada; border-radius: 8px; display: flex; align-items: center; gap: 16px;">
+          @if (currentUser()) {
+            <bocc-avatar 
+              size="32" 
+              imageMode="image" 
+              [imageUrl]="currentUser().photo" 
+              status="disponible" 
+              [titleText]="currentUser().name" 
+              [subtitleText]="currentUser().role">
+            </bocc-avatar>
+            <span style="font-size: 14px; color: #00ca82;">Actualmente logueado</span>
+          } @else {
+            <bocc-avatar 
+              size="32" 
+              imageMode="placeholder" 
+              status="none" 
+              titleText="Bienvenido, Invitado" 
+              [showSubtitle]="false">
+            </bocc-avatar>
+            <span style="font-size: 14px; color: #555f83;">Estado: Invitado</span>
+          }
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Menu Expanded Mode (Role + Name)</h3>
+        <p class="support-text">Note: Cargo (Role) appears above the Analyst Name.</p>
+        <div style="padding: 16px; background: #f8fafc; border-radius: 8px;">
+          <bocc-avatar 
+            size="32" 
+            imageMode="image" 
+            imageUrl="https://i.pravatar.cc/150?img=32" 
+            status="disponible" 
+            titleText="Andrew Fuller" 
+            subtitleText="Analista de Crédito">
+          </bocc-avatar>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Image Modes & Sizes</h3>
+        <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+          <!-- 32px Image -->
+          <bocc-avatar size="32" imageMode="image" imageUrl="https://i.pravatar.cc/150?img=11" status="disponible" titleText="Mila Kunis" subtitleText="UX Designer"></bocc-avatar>
+          
+          <!-- 24px Initials -->
+          <bocc-avatar size="24" imageMode="initials" initialsText="AF" status="ocupado" titleText="Andrew Fuller" subtitleText="Supervisor"></bocc-avatar>
+
+          <!-- 16px Placeholder -->
+          <bocc-avatar size="16" imageMode="placeholder" status="no-disponible" [showContent]="false"></bocc-avatar>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Statuses</h3>
+        <div style="display: flex; gap: 16px;">
+          <bocc-avatar size="32" imageMode="image" imageUrl="https://i.pravatar.cc/150?img=1" status="disponible" [showContent]="false"></bocc-avatar>
+          <bocc-avatar size="32" imageMode="image" imageUrl="https://i.pravatar.cc/150?img=2" status="ocupado" [showContent]="false"></bocc-avatar>
+          <bocc-avatar size="32" imageMode="image" imageUrl="https://i.pravatar.cc/150?img=3" status="no-disponible" [showContent]="false"></bocc-avatar>
+          <bocc-avatar size="32" imageMode="image" imageUrl="https://i.pravatar.cc/150?img=4" status="desconectado" [showContent]="false"></bocc-avatar>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 

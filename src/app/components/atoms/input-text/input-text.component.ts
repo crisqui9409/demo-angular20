@@ -7,12 +7,8 @@
  * File: BOC (Dev) – fyaPhgC66xV52OAEiQIXSs
  */
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
-  ViewChild,
   computed,
-  effect,
   input,
   model,
   output,
@@ -30,15 +26,14 @@ import { clearTextRegx } from '../../../helpers/text-manager';
   standalone: true,
   imports: [FormsModule],
 })
-export class InputTextComponent implements AfterViewInit {
+export class InputTextComponent {
 
   // ── Signal-based Inputs ──────────────────────────────────────────────────
 
   /** Title/label shown above the input. Figma: "Label" node */
   title = input<string>(DEFAULT_CONST.EMPTY);
 
-  /** Help text displayed inside the tooltip balloon */
-  helpText = input<string>(DEFAULT_CONST.EMPTY);
+
 
   /** Maximum character length accepted by the input */
   maxLength = input<number>(40);
@@ -119,15 +114,6 @@ export class InputTextComponent implements AfterViewInit {
   /** True while the native input has focus. Figma: State=Focused */
   isFocused = signal(false);
 
-  /** Controls the tooltip balloon visibility */
-  isTooltipVisible = signal(false);
-
-  /** True when the label text overflows its container (shows tooltip icon) */
-  isTitleOverflowing = signal(false);
-
-  /** True when the tooltip balloon needs to wrap over two lines */
-  isTwoLines = signal(false);
-
   /** Internal validation error (pattern mismatch or below minLength) */
   private readonly _validationError = signal(false);
 
@@ -142,62 +128,7 @@ export class InputTextComponent implements AfterViewInit {
 
   // ── Static asset paths ────────────────────────────────────────────────────
 
-  imageTooltip: string = VAR_INPUT_FORM.TOOLIP;
-  imageShow: string    = VAR_INPUT_FORM.SHOW;
-  imageHidden: string  = VAR_INPUT_FORM.HIDDEN;
-  icon_Error: string   = VAR_INPUT_FORM.ICON_ERROR;
-
-  // ── ViewChild references ──────────────────────────────────────────────────
-
-  @ViewChild('inputLabel', { static: true })
-  inputLabel!: ElementRef<HTMLLabelElement>;
-
-  @ViewChild('tooltipMessage', { static: false })
-  tooltipMessage!: ElementRef<HTMLDivElement>;
-
-  // ── Constructor + lifecycle ───────────────────────────────────────────────
-
-  constructor() {
-    /**
-     * Reactive replacement for ngOnChanges.
-     * Re-measures label overflow whenever `title` input changes.
-     */
-    effect(() => {
-      this.title(); // register dependency
-      queueMicrotask(() => this.checkTitleOverflow());
-    });
-  }
-
-  /** Measures label overflow once the view is initialised. */
-  ngAfterViewInit(): void {
-    this.checkTitleOverflow();
-  }
-
-  // ── Tooltip helpers ───────────────────────────────────────────────────────
-
-  /** Checks whether the tooltip balloon itself spans two rendered lines. */
-  checkTooltipLines(): void {
-    if (this.tooltipMessage) {
-      this.isTwoLines.set(this.tooltipMessage.nativeElement.offsetHeight > 1);
-    }
-  }
-
-  /**
-   * Measures the label element to decide whether the tooltip icon is needed.
-   * Sets isTitleOverflowing and, when very long (>600 px scroll), isTwoLines.
-   */
-  checkTitleOverflow(): void {
-    if (!this.inputLabel) return;
-    const el = this.inputLabel.nativeElement;
-    if (el.scrollWidth > 600) {
-      this.isTwoLines.set(true);
-    }
-    this.isTitleOverflowing.set(el.scrollWidth > el.clientWidth);
-  }
-
-  showTooltip(): void  { this.isTooltipVisible.set(true);  }
-  hideTooltip(): void  { this.isTooltipVisible.set(false); }
-  toggleTooltip(): void { this.isTooltipVisible.update(v => !v); }
+  icon_Error: string = VAR_INPUT_FORM.ICON_ERROR;
 
   // ── Input event handlers ──────────────────────────────────────────────────
 

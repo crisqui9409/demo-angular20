@@ -1,0 +1,160 @@
+:host {
+  /* Design Tokens mapped to CSS variables */
+  --bocc-avatar-gap: 8px;
+  
+  --bocc-avatar-title-color: #1b1c1e;
+  --bocc-avatar-title-font-size: 14px;
+  --bocc-avatar-title-font-weight: 500;
+  --bocc-avatar-title-line-height: 21px;
+  --bocc-avatar-title-letter-spacing: 0.7px;
+
+  --bocc-avatar-subtitle-color: #555f83;
+  --bocc-avatar-subtitle-font-size: 14px;
+  --bocc-avatar-subtitle-font-weight: 400;
+  --bocc-avatar-subtitle-line-height: 16px;
+  --bocc-avatar-subtitle-letter-spacing: 0.7px;
+
+  /* Status Colors */
+  --bocc-avatar-status-disponible: #00ca82;
+  --bocc-avatar-status-ocupado: #ffaa31;
+  --bocc-avatar-status-no-disponible: #e24c4c;
+  --bocc-avatar-status-desconectado: #adbada;
+  --bocc-avatar-status-border: #ffffff;
+  
+  /* Fallback/Initials Colors */
+  --bocc-avatar-bg-default: #e2f1ff;
+  --bocc-avatar-text-initials: #0081ff; /* Approximated based on typical initial styles */
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--bocc-avatar-gap);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Base structural styles */
+.bocc-avatars {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bocc-avatar-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bocc-avatar-bg-default);
+  
+  &.is-image { background-color: transparent; }
+  &.is-placeholder { border-radius: 0; }
+}
+
+.bocc-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bocc-avatar-initials {
+  color: var(--bocc-avatar-text-initials);
+  font-weight: 600;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.bocc-avatar-placeholder {
+  color: var(--bocc-avatar-text-initials);
+  width: 50%;
+  height: 50%;
+}
+
+.bocc-avatar-status {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  box-sizing: content-box;
+  /* Stroke weight from Figma */
+  border: 1px solid var(--bocc-avatar-status-border);
+}
+
+.bocc-avatar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.bocc-avatar-title {
+  color: var(--bocc-avatar-title-color);
+  font-size: var(--bocc-avatar-title-font-size);
+  font-weight: var(--bocc-avatar-title-font-weight);
+  line-height: var(--bocc-avatar-title-line-height);
+  letter-spacing: var(--bocc-avatar-title-letter-spacing);
+}
+
+.bocc-avatar-subtitle {
+  color: var(--bocc-avatar-subtitle-color);
+  font-size: var(--bocc-avatar-subtitle-font-size);
+  font-weight: var(--bocc-avatar-subtitle-font-weight);
+  line-height: var(--bocc-avatar-subtitle-line-height);
+  letter-spacing: var(--bocc-avatar-subtitle-letter-spacing);
+}
+
+/* Status variants */
+:host(.bocc-status-disponible) .bocc-avatar-status { background-color: var(--bocc-avatar-status-disponible); }
+:host(.bocc-status-ocupado) .bocc-avatar-status { background-color: var(--bocc-avatar-status-ocupado); }
+:host(.bocc-status-no-disponible) .bocc-avatar-status { background-color: var(--bocc-avatar-status-no-disponible); }
+:host(.bocc-status-desconectado) .bocc-avatar-status { background-color: var(--bocc-avatar-status-desconectado); }
+:host(.bocc-status-none) .bocc-avatar-status { display: none; }
+
+/* Size variants */
+:host(.bocc-size-32) {
+  .bocc-avatar-photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 46px; /* For image mode */
+  }
+  .bocc-avatar-photo.is-initials, .bocc-avatar-photo.is-none {
+    border-radius: 36px; /* From Figma analysis */
+  }
+  .bocc-avatar-initials { font-size: 14px; }
+  .bocc-avatar-status {
+    bottom: 2px;
+    right: 2px;
+  }
+}
+
+:host(.bocc-size-24) {
+  .bocc-avatar-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 46px;
+  }
+  .bocc-avatar-photo.is-initials, .bocc-avatar-photo.is-none {
+    border-radius: 36px;
+  }
+  .bocc-avatar-initials { font-size: 10px; }
+  .bocc-avatar-status {
+    bottom: 0px; /* Adjusted to fit 24x24 border accurately based on geometry */
+    right: 0px;
+  }
+}
+
+:host(.bocc-size-16) {
+  .bocc-avatar-photo {
+    width: 16px;
+    height: 16px;
+    border-radius: 46px;
+  }
+  .bocc-avatar-photo.is-initials, .bocc-avatar-photo.is-none {
+    border-radius: 36px;
+  }
+  .bocc-avatar-initials { font-size: 7px; }
+  .bocc-avatar-status {
+    bottom: -1px;
+    right: -1px;
+  }
+}

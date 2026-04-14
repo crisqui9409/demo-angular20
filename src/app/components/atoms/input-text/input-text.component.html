@@ -1,38 +1,9 @@
 <div class="input-form">
   <div class="label-row">
     <label
-      #inputLabel
       class="input-label"
       [attr.for]="id()"
     >{{ title() }}</label>
-
-    <!-- Tooltip trigger icon – only rendered when label overflows -->
-    @if (isTitleOverflowing()) {
-      <button
-        type="button"
-        class="tooltip-trigger"
-        aria-label="More information"
-        (mouseenter)="showTooltip()"
-        (mouseleave)="hideTooltip()"
-        (click)="toggleTooltip()"
-        (keydown.enter)="toggleTooltip()"
-        (keydown.space)="toggleTooltip()"
-      >
-        <img [src]="imageTooltip" alt="info" width="16" height="16" />
-
-        <!-- Tooltip balloon -->
-        @if (isTooltipVisible()) {
-          <div
-            #tooltipMessage
-            class="tooltip-balloon"
-            [class.tooltip-balloon--two-lines]="isTwoLines()"
-            role="tooltip"
-          >
-            {{ helpText() }}
-          </div>
-        }
-      </button>
-    }
   </div>
   <div
     class="input-container"

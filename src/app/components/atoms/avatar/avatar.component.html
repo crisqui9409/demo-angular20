@@ -1,0 +1,31 @@
+<div class="bocc-avatars">
+  <!-- Avatar graphic / placeholder / initials wrapper -->
+  <div class="bocc-avatar-photo" [class.is-image]="imageMode() === 'image'" [class.is-initials]="imageMode() === 'initials'" [class.is-placeholder]="imageMode() === 'placeholder'" [class.is-none]="imageMode() === 'none'">
+    @if (imageMode() === 'image' && imageUrl()) {
+      <img [src]="imageUrl()" alt="Avatar" class="bocc-avatar-img" />
+    } @else if (imageMode() === 'initials') {
+      <span class="bocc-avatar-initials">{{ initialsText() }}</span>
+    } @else if (imageMode() === 'placeholder' || imageMode() === 'none') {
+      <svg class="bocc-avatar-placeholder" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 8C9.65685 8 11 6.65685 11 5C11 3.34315 9.65685 2 8 2C6.34315 2 5 3.34315 5 5C5 6.65685 6.34315 8 8 8Z" fill="currentColor"/>
+        <path d="M4.00488 12.5C4.00488 10.5 5.50488 9 8.00488 9C10.5049 9 12.0049 10.5 12.0049 12.5V14H4.00488V12.5Z" fill="currentColor"/>
+      </svg>
+    }
+  </div>
+
+  <!-- Status indicator -->
+  @if (status() !== 'none') {
+    <div class="bocc-avatar-status"></div>
+  }
+</div>
+
+@if (showContent()) {
+  <div class="bocc-avatar-content">
+    @if (showSubtitle()) {
+      <div class="bocc-avatar-subtitle">{{ subtitleText() }}</div>
+    }
+    @if (showTitle()) {
+      <div class="bocc-avatar-title">{{ titleText() }}</div>
+    }
+  </div>
+}
