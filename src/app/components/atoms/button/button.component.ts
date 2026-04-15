@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, EventEmitter, input, Output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { DEFAULT_CONST } from '../../../utils/global-strings';
 
 type ButtonVariant = 'btn-primary' | 'btn-secondary';
@@ -8,47 +7,54 @@ type ButtonResolvedClass = ButtonVariant | 'btn-inactive' | 'btn-inactive-primar
 @Component({
   selector: 'ui-button',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiButtonComponent {
-  private readonly isHovered = signal(false);
+  private isHovered = false;
 
-  readonly variant = input<ButtonVariant>('btn-primary');
-  readonly label = input<string>(DEFAULT_CONST.EMPTY);
-  readonly disabled = input<boolean>(false);
-  readonly showIcon = input<boolean>(false);
-  readonly enableHoverIcon = input<boolean>(false);
-  readonly iconDefault = input<string>(DEFAULT_CONST.EMPTY);
-  readonly iconOnHover = input<string>(DEFAULT_CONST.EMPTY);
-  readonly iconOnDisabled = input<string>(DEFAULT_CONST.EMPTY);
+  @Input() variant: ButtonVariant = 'btn-primary';
+  @Input() label: string = DEFAULT_CONST.EMPTY;
+  @Input() disabled = false;
+  @Input() showIcon = false;
+  @Input() enableHoverIcon = false;
+  @Input() iconDefault: string = DEFAULT_CONST.EMPTY;
+  @Input() iconOnHover: string = DEFAULT_CONST.EMPTY;
+  @Input() iconOnDisabled: string = DEFAULT_CONST.EMPTY;
 
   @Output() readonly buttonClick = new EventEmitter<void>();
 
-  readonly resolvedClass = computed<ButtonResolvedClass>(() => {
-    if (!this.disabled()) {
-      return this.variant();
+  get resolvedClass(): ButtonResolvedClass {
+    if (!this.disabled) {
+      return this.variant;
     }
 
-    return this.variant() === 'btn-primary' ? 'btn-inactive-primary' : 'btn-inactive';
-  });
+    return this.variant === 'btn-primary' ? 'btn-inactive-primary' : 'btn-inactive';
+  }
 
-  readonly resolvedIcon = computed<string>(() => {
-    if (this.disabled()) {
-      return this.iconOnDisabled() || this.iconDefault();
+  get resolvedIcon(): string {
+    if (this.disabled) {
+      return this.iconOnDisabled || this.iconDefault;
     }
 
-    if (this.enableHoverIcon() && this.isHovered() && this.iconOnHover()) {
-      return this.iconOnHover();
+    if (this.enableHoverIcon && this.isHovered && this.iconOnHover) {
+      return this.iconOnHover;
     }
 
-    return this.iconDefault();
-  });
+    return this.iconDefault;
+  }
+
+  get hasLabel(): boolean {
+    return this.label.trim().length > 0;
+  }
+
+  get iconBackgroundImage(): string {
+    return this.resolvedIcon ? `url(${this.resolvedIcon})` : 'none';
+  }
 
   onClick(): void {
-    if (this.disabled()) {
+    if (this.disabled) {
       return;
     }
 
@@ -56,18 +62,14 @@ export class UiButtonComponent {
   }
 
   onMouseEnter(): void {
-    if (!this.enableHoverIcon()) {
-      return;
+    if (this.enableHoverIcon) {
+      this.isHovered = true;
     }
-
-    this.isHovered.set(true);
   }
 
   onMouseLeave(): void {
-    if (!this.enableHoverIcon()) {
-      return;
+    if (this.enableHoverIcon) {
+      this.isHovered = false;
     }
-
-    this.isHovered.set(false);
   }
 }
