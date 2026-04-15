@@ -1,0 +1,99 @@
+@if (hasHref) {
+  <a
+    [class]="containerClass"
+    [href]="disabled ? null : href"
+    [attr.target]="target"
+    [attr.rel]="target === '_blank' ? rel : null"
+    [attr.aria-disabled]="disabled"
+    (click)="onClick()"
+  >
+    <span class="menu-item__left">
+      <span
+        class="menu-item__icon menu-item__icon--start"
+        [hidden]="!hasStartIcon"
+        [style.background-image]="'url(' + startIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+
+      <span class="menu-item__text">
+        <span class="menu-item__label">{{ label }}</span>
+        <span class="menu-item__subtitle" [hidden]="!hasSubtitle">{{ subtitle }}</span>
+      </span>
+    </span>
+
+    <span class="menu-item__right">
+      <span [class]="badgeClass" [hidden]="!hasBadge">{{ badgeText }}</span>
+
+      <span
+        class="menu-item__icon menu-item__icon--end"
+        [hidden]="!hasEndIcon"
+        [style.background-image]="'url(' + endIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+    </span>
+  </a>
+} @else if (hasRouterLink) {
+  <a
+    [class]="containerClass"
+    [routerLink]="disabled ? null : routerLink"
+    [attr.aria-disabled]="disabled"
+    (click)="onClick()"
+  >
+    <span class="menu-item__left">
+      <span
+        class="menu-item__icon menu-item__icon--start"
+        [hidden]="!hasStartIcon"
+        [style.background-image]="'url(' + startIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+
+      <span class="menu-item__text">
+        <span class="menu-item__label">{{ label }}</span>
+        <span class="menu-item__subtitle" [hidden]="!hasSubtitle">{{ subtitle }}</span>
+      </span>
+    </span>
+
+    <span class="menu-item__right">
+      <span [class]="badgeClass" [hidden]="!hasBadge">{{ badgeText }}</span>
+
+      <span
+        class="menu-item__icon menu-item__icon--end"
+        [hidden]="!hasEndIcon"
+        [style.background-image]="'url(' + endIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+    </span>
+  </a>
+} @else {
+  <button
+    type="button"
+    [class]="containerClass"
+    [disabled]="disabled"
+    (click)="onClick()"
+  >
+    <span class="menu-item__left">
+      <span
+        class="menu-item__icon menu-item__icon--start"
+        [hidden]="!hasStartIcon"
+        [style.background-image]="'url(' + startIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+
+      <span class="menu-item__text">
+        <span class="menu-item__label">{{ label }}</span>
+        <span class="menu-item__subtitle" [hidden]="!hasSubtitle">{{ subtitle }}</span>
+      </span>
+    </span>
+
+    <span class="menu-item__right">
+      <span [class]="badgeClass" [hidden]="!hasBadge">{{ badgeText }}</span>
+
+      <span
+        class="menu-item__icon menu-item__icon--end"
+        [hidden]="!hasEndIcon"
+        [style.background-image]="'url(' + endIconPath + ')'"
+        aria-hidden="true"
+      ></span>
+    </span>
+  </button>
+}

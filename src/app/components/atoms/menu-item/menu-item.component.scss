@@ -1,0 +1,143 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 16px;
+    background: #ffffff;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: left;
+    box-sizing: border-box;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+
+    &:hover:not(:disabled) {
+        background: #f8f9fb;
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba(0, 129, 255, 0.2);
+        outline-offset: 1px;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &--active {
+        background: transparent;
+    }
+
+    &--selected {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    &--disabled {
+        opacity: 0.55;
+        pointer-events: none;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    &__label {
+        color: #3f3f46;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__subtitle {
+        color: #71717a;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    &__icon {
+        display: inline-block;
+        flex-shrink: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+        &--start {
+            width: 22px;
+            height: 22px;
+        }
+
+        &--end {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 70px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+
+        &--high {
+            background-color: #f3e4e7;
+            color: #b12a2f;
+        }
+
+        &--medium {
+            background-color: #dfeaf7;
+            color: #355796;
+        }
+
+        &--low {
+            background-color: #dcefe7;
+            color: #1d8a57;
+        }
+    }
+}
