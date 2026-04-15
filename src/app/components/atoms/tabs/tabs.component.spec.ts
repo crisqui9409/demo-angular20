@@ -19,10 +19,10 @@ describe('TabsComponent', () => {
 
     fixture = TestBed.createComponent(TabsComponent);
     component = fixture.componentInstance;
-    
+
     fixture.componentRef.setInput('tabs', mockTabs);
     fixture.componentRef.setInput('activeTabId', 'tab1');
-    
+
     fixture.detectChanges();
   });
 
@@ -64,38 +64,38 @@ describe('TabsComponent', () => {
     it('should emit tabChange event when a different tab is clicked', () => {
       const tabChangeSpy = spyOn(component.tabChange, 'emit');
       const secondTab = fixture.debugElement.queryAll(By.css('.bocc-tabs-item'))[1];
-      
+
       secondTab.nativeElement.click();
-      
+
       expect(tabChangeSpy).toHaveBeenCalledWith('tab2');
     });
 
     it('should not emit tabChange event when the active tab is clicked', () => {
       const tabChangeSpy = spyOn(component.tabChange, 'emit');
       const activeTab = fixture.debugElement.query(By.css('.bocc-tabs-item.is-active'));
-      
+
       activeTab.nativeElement.click();
-      
+
       expect(tabChangeSpy).not.toHaveBeenCalled();
     });
 
     it('should handle keyboard interaction (Enter)', () => {
       const tabChangeSpy = spyOn(component.tabChange, 'emit');
       const secondTab = fixture.debugElement.queryAll(By.css('.bocc-tabs-item'))[1];
-      
+
       const event = new KeyboardEvent('keydown', { key: 'Enter' });
       secondTab.nativeElement.dispatchEvent(event);
-      
+
       expect(tabChangeSpy).toHaveBeenCalledWith('tab2');
     });
 
     it('should handle keyboard interaction (Space)', () => {
       const tabChangeSpy = spyOn(component.tabChange, 'emit');
       const thirdTab = fixture.debugElement.queryAll(By.css('.bocc-tabs-item'))[2];
-      
+
       const event = new KeyboardEvent('keydown', { key: ' ' });
       thirdTab.nativeElement.dispatchEvent(event);
-      
+
       expect(tabChangeSpy).toHaveBeenCalledWith('tab3');
     });
   });

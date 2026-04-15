@@ -1,3 +1,11 @@
+/**
+ * Navigation component that displays a list of menu options with support for icons and collapsed (hamburger) state.
+ * @author Sebastian Barreto / Contact & Business IT
+ * @version 1.0, 2026/04/14 – Migrated to Angular 20 standalone + signals
+ *
+ * @example
+ * <bocc-menu-items [items]="menuItems" [isExpanded]="true" (itemClick)="onItemClick($event)"></bocc-menu-items>
+ */
 import { Component, input, output } from '@angular/core';
 
 export interface MenuItem {
@@ -15,19 +23,14 @@ export interface MenuItem {
   styleUrl: './menu-items.component.scss',
 })
 export class MenuItemsComponent {
-  /** List of menu items to display */
   public items = input.required<MenuItem[]>();
 
-  /** ID of the currently selected item */
   public selectedId = input<string | number>();
 
-  /** Whether the menu is expanded (showing labels) or collapsed (icons only) */
   public isExpanded = input<boolean>(true);
 
-  /** Event emitted when an item is clicked */
   public itemClick = output<MenuItem>();
 
-  /** Handles the item click */
   public onItemClick(item: MenuItem): void {
     if (item.disabled) return;
     this.itemClick.emit(item);

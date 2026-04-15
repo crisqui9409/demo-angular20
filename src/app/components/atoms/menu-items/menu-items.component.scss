@@ -1,10 +1,16 @@
+$text-secondary: var(--bocc-text-secondary);
+$brand-primary: var(--bocc-brand-primary);
+$color-black: var(--class-black);
+$surface-canvas: var(--bocc-surface-canvas);
+$surface-active: var(--bocc-surface-active);
+
 .bocc-menu-items {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
   width: 100%;
   font-family: 'Poppins', sans-serif;
   transition: width 0.3s ease;
@@ -14,11 +20,11 @@
 
     .bocc-menu-item {
       justify-content: center;
-      min-width: 40px; // Match icon width
+      min-width: 2.5rem;
 
       &-content {
         gap: 0;
-        width: 23px; // Force width
+        width: 1.4375rem;
       }
     }
   }
@@ -28,12 +34,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 40px;
-  min-width: 72px;
+  min-height: 2.5rem;
+  min-width: 4.5rem;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition: all 0.2s ease;
-  color: var(--bocc-text-secondary);
+  color: $text-secondary;
   user-select: none;
   outline: none;
   border: none;
@@ -41,42 +47,41 @@
   &-content {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
   }
 
   &-icon {
-    font-size: 30px;
-    color: var(--bocc-brand-primary);
+    font-size: 1.875rem;
+    color: $brand-primary;
   }
 
   &-label {
-    color: var(--class-black);
-    font-size: 14px;
+    color: $color-black;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
   }
 
   &-arrow {
-    font-size: 12px;
+    font-size: 0.75rem;
     opacity: 0.5;
     transition: transform 0.2s ease;
   }
 
-  /* Estados */
   &:hover:not(.is-disabled) {
-    background-color: var(--bocc-surface-canvas);
-    color: var(--bocc-brand-primary);
+    background-color: $surface-canvas;
+    color: $brand-primary;
 
     .bocc-menu-item-arrow {
       opacity: 1;
-      transform: translateX(2px);
+      transform: translateX(0.125rem);
     }
   }
 
   &.is-selected {
-    background-color: var(--bocc-surface-active);
-    color: var(--bocc-brand-primary);
+    background-color: $surface-active;
+    color: $brand-primary;
     font-weight: 600;
 
     .bocc-menu-item-arrow {
@@ -91,6 +96,6 @@
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--bocc-surface-active);
+    box-shadow: 0 0 0 0.125rem $surface-active;
   }
 }

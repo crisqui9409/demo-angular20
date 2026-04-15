@@ -19,7 +19,7 @@ describe('MenuItemsComponent', () => {
 
     fixture = TestBed.createComponent(MenuItemsComponent);
     component = fixture.componentInstance;
-    
+
     fixture.componentRef.setInput('items', mockItems);
     fixture.detectChanges();
   });
@@ -71,9 +71,9 @@ describe('MenuItemsComponent', () => {
   it('should emit itemClick event when an item is clicked', () => {
     const clickSpy = spyOn(component.itemClick, 'emit');
     const firstItem = fixture.debugElement.queryAll(By.css('.bocc-menu-item'))[0];
-    
+
     firstItem.nativeElement.click();
-    
+
     expect(clickSpy).toHaveBeenCalledWith(mockItems[0]);
   });
 });

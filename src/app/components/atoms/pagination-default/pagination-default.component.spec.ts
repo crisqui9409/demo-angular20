@@ -13,11 +13,10 @@ describe('PaginationDefaultComponent', () => {
 
     fixture = TestBed.createComponent(PaginationDefaultComponent);
     component = fixture.componentInstance;
-    
-    // Set default required inputs
+
     fixture.componentRef.setInput('currentPage', 1);
     fixture.componentRef.setInput('totalPages', 15);
-    
+
     fixture.detectChanges();
   });
 
@@ -33,7 +32,6 @@ describe('PaginationDefaultComponent', () => {
 
   it('should display 3 pages at the start when on page 1', () => {
     const pageButtons = fixture.debugElement.queryAll(By.css('.bocc-pagination-number'));
-    // Pages 1, 2, 3 and the last one (15) = 4 buttons
     expect(pageButtons.length).toBe(4);
     expect(pageButtons[0].nativeElement.textContent.trim()).toBe('1');
     expect(pageButtons[1].nativeElement.textContent.trim()).toBe('2');
@@ -53,26 +51,22 @@ describe('PaginationDefaultComponent', () => {
 
     it('should emit pageChange and close dropdown when a page is selected from the menu', () => {
       const pageSpy = spyOn(component.pageChange, 'emit');
-      
-      // Open dropdown
+
       const ellipsisBtn = fixture.debugElement.query(By.css('.bocc-pagination-ellipsis'));
       ellipsisBtn.nativeElement.click();
       fixture.detectChanges();
 
-      // Select page 5 from the menu
       const dropdownItems = fixture.debugElement.queryAll(By.css('.bocc-pagination-dropdown-item'));
-      dropdownItems[1].nativeElement.click(); // Index 1 should be page 5 (4, 5, 6...)
-      
+      dropdownItems[1].nativeElement.click();
+
       expect(pageSpy).toHaveBeenCalledWith(5);
       expect(component.isEndDropdownOpen()).toBeFalse();
     });
 
     it('should close dropdown when clicking outside', () => {
-      // Open dropdown
       component.isEndDropdownOpen.set(true);
       fixture.detectChanges();
 
-      // Simulate click outside
       document.dispatchEvent(new MouseEvent('click'));
       fixture.detectChanges();
 
@@ -84,10 +78,10 @@ describe('PaginationDefaultComponent', () => {
     it('should emit previous page', () => {
       fixture.componentRef.setInput('currentPage', 5);
       fixture.detectChanges();
-      
+
       const pageSpy = spyOn(component.pageChange, 'emit');
       const prevBtn = fixture.debugElement.queryAll(By.css('.bocc-pagination-nav'))[0];
-      
+
       prevBtn.nativeElement.click();
       expect(pageSpy).toHaveBeenCalledWith(4);
     });
@@ -95,10 +89,10 @@ describe('PaginationDefaultComponent', () => {
     it('should emit next page', () => {
       fixture.componentRef.setInput('currentPage', 5);
       fixture.detectChanges();
-      
+
       const pageSpy = spyOn(component.pageChange, 'emit');
       const nextBtn = fixture.debugElement.queryAll(By.css('.bocc-pagination-nav'))[1];
-      
+
       nextBtn.nativeElement.click();
       expect(pageSpy).toHaveBeenCalledWith(6);
     });
@@ -114,8 +108,6 @@ describe('PaginationDefaultComponent', () => {
   it('should have 16px gap in the list', () => {
     const list = fixture.debugElement.query(By.css('.bocc-pagination-list')).nativeElement;
     const styles = window.getComputedStyle(list);
-    // Note: In unit tests, computed styles might not always reflect SCSS if not fully rendered, 
-    // but the test confirms the class is present.
     expect(list.classList).toContain('bocc-pagination-list');
   });
 });

@@ -13,7 +13,6 @@ describe('ChipsComponent', () => {
 
     fixture = TestBed.createComponent(ChipsComponent);
     component = fixture.componentInstance;
-    // Set required input
     fixture.componentRef.setInput('label', 'Test Chip');
     fixture.detectChanges();
   });
@@ -36,7 +35,7 @@ describe('ChipsComponent', () => {
     it('should render the correct Font Awesome icon classes', () => {
       fixture.componentRef.setInput('icon', 'user');
       fixture.detectChanges();
-      
+
       const iconElement = fixture.debugElement.query(By.css('.bocc-chip-icon')).nativeElement;
       expect(iconElement.classList).toContain('fa-solid');
       expect(iconElement.classList).toContain('fa-user');
@@ -44,7 +43,7 @@ describe('ChipsComponent', () => {
 
     it('should apply correct font-size to icon based on chip size', () => {
       fixture.componentRef.setInput('icon', 'user');
-      
+
       const sizes = [
         { size: 'xs', expected: '12px' },
         { size: 's', expected: '14px' },
@@ -62,7 +61,7 @@ describe('ChipsComponent', () => {
     it('should render the xmark icon when removable is true', () => {
       fixture.componentRef.setInput('removable', true);
       fixture.detectChanges();
-      
+
       const removeIcon = fixture.debugElement.query(By.css('.bocc-chip-remove i')).nativeElement;
       expect(removeIcon.classList).toContain('fa-solid');
       expect(removeIcon.classList).toContain('fa-xmark');
@@ -119,10 +118,10 @@ describe('ChipsComponent', () => {
     it('should stop event propagation on remove click', () => {
       fixture.componentRef.setInput('removable', true);
       fixture.detectChanges();
-      
+
       const event = new MouseEvent('click');
       spyOn(event, 'stopPropagation');
-      
+
       component.onRemove(event);
       expect(event.stopPropagation).toHaveBeenCalled();
     });

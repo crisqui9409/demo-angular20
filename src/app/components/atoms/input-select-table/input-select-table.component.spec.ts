@@ -21,14 +21,13 @@ describe('InputSelectTableComponent', () => {
 
   it('should toggle dropdown when clicking the trigger', () => {
     const trigger: HTMLElement = fixture.nativeElement.querySelector('.bocc-select-trigger');
-    
+
     // Abrir
     trigger.click();
     fixture.detectChanges();
     expect(component.isOpen()).toBeTrue();
     expect(fixture.nativeElement.querySelector('.bocc-select-options')).toBeTruthy();
 
-    // Cerrar
     trigger.click();
     fixture.detectChanges();
     expect(component.isOpen()).toBeFalse();
@@ -37,13 +36,11 @@ describe('InputSelectTableComponent', () => {
 
   it('should select an option and emit sizeChange', () => {
     spyOn(component.sizeChange, 'emit');
-    
-    // Abrir dropdown
+
     const trigger: HTMLElement = fixture.nativeElement.querySelector('.bocc-select-trigger');
     trigger.click();
     fixture.detectChanges();
 
-    // Seleccionar opción '20' (segunda en la lista)
     const options: HTMLElement[] = fixture.nativeElement.querySelectorAll('.bocc-select-option');
     options[1].click();
     fixture.detectChanges();
@@ -59,11 +56,9 @@ describe('InputSelectTableComponent', () => {
   });
 
   it('should close dropdown when clicking outside', () => {
-    // Abrir dropdown
     component.isOpen.set(true);
     fixture.detectChanges();
 
-    // Simular clic en el body
     document.dispatchEvent(new MouseEvent('click'));
     fixture.detectChanges();
 

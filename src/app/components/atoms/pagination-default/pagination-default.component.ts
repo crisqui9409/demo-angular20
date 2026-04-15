@@ -1,10 +1,18 @@
+/**
+ * Standard pagination component for navigating through data pages with ellipsis support.
+ * @author Sebastian Barreto / Contact & Business IT
+ * @version 1.0, 2026/04/14 – Migrated to Angular 20 standalone + signals
+ *
+ * @example
+ * <bocc-pagination-default [currentPage]="1" [totalPages]="15" (pageChange)="onPageChange($event)"></bocc-pagination-default>
+ */
 import { Component, computed, input, output, signal, HostListener, ElementRef } from '@angular/core';
 
 interface PageItem {
   type: 'number' | 'ellipsis';
   value?: number;
   hiddenPages?: number[];
-  isEnd?: boolean; // Para distinguir entre el primer y segundo desplegable
+  isEnd?: boolean;
 }
 
 @Component({
@@ -15,22 +23,17 @@ interface PageItem {
   styleUrl: './pagination-default.component.scss',
 })
 export class PaginationDefaultComponent {
-  /** Current active page (1-indexed) */
   public currentPage = input.required<number>();
 
-  /** Total number of pages */
   public totalPages = input.required<number>();
 
-  /** Event emitted when a page is selected */
   public pageChange = output<number>();
 
-  /** States for the dropdowns */
   public isStartDropdownOpen = signal(false);
   public isEndDropdownOpen = signal(false);
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
-  /** Computed list of page items to display */
   public pages = computed<PageItem[]>(() => {
     const current = this.currentPage();
     const total = this.totalPages();
@@ -46,17 +49,14 @@ export class PaginationDefaultComponent {
       for (let i = 1; i <= total; i++) items.push({ type: 'number', value: i });
     } else {
       if (current <= 2) {
-        // [1] [2] [3] [...] [Total]
         for (let i = 1; i <= 3; i++) items.push({ type: 'number', value: i });
         items.push({ type: 'ellipsis', hiddenPages: range(4, total - 1), isEnd: true });
         items.push({ type: 'number', value: total });
       } else if (current >= total - 1) {
-        // [1] [...] [Total-2] [Total-1] [Total]
         items.push({ type: 'number', value: 1 });
         items.push({ type: 'ellipsis', hiddenPages: range(2, total - 3), isEnd: false });
         for (let i = total - 2; i <= total; i++) items.push({ type: 'number', value: i });
       } else {
-        // [1] [...] [Current] [...] [Total]
         items.push({ type: 'number', value: 1 });
         items.push({ type: 'ellipsis', hiddenPages: range(2, current - 1), isEnd: false });
         items.push({ type: 'number', value: current });
