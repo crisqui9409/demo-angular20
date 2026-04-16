@@ -4,7 +4,8 @@
   <div class="bocc-custom-select" [class.is-open]="isOpen()">
     <div class="bocc-select-trigger" (click)="toggleDropdown()">
       <span class="bocc-select-text">{{ currentValue() }}</span>
-      <span class="bocc-select-arrow"></span>
+      <span class="bocc-select-arrow"
+        style="mask-image: url('assets/icoins/arrow-1.svg'); -webkit-mask-image: url('assets/icoins/arrow-1.svg');"></span>
     </div>
 
     @if (isOpen()) {

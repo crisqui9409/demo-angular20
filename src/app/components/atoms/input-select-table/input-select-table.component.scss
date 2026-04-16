@@ -73,12 +73,15 @@ $shadow-sm: var(--bocc-shadow-sm);
       right: 0.5rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 0.625rem;
-      height: 0.375rem;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23555F83' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: contain;
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: #555F83;
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
       transition: transform 0.2s ease;
+      display: inline-block;
     }
   }
 
