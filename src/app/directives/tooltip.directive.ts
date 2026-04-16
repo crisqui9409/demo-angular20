@@ -9,7 +9,8 @@ import {
   createComponent,
   EnvironmentInjector
 } from '@angular/core';
-import { TooltipComponent, TooltipOrientation } from '../components/atoms/tooltip/tooltip.component';
+import { TooltipComponent } from '../components/atoms/tooltip/tooltip.component';
+import { TooltipOrientation } from '../types/component_type';
 
 @Directive({
   selector: '[boccTooltip]',
@@ -20,7 +21,7 @@ export class TooltipDirective implements OnDestroy {
   @Input('boccTooltip') message: string = '';
 
   /** Orientation of the tooltip (top, bottom, left, right) */
-  @Input() orientation: TooltipOrientation = 'bottom';
+  @Input() orientation: TooltipOrientation = TooltipOrientation.Bottom;
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 

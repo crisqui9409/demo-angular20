@@ -182,6 +182,67 @@ body {
   margin-bottom: 1.5rem;
 }
 
+// ── Avatar Simulation Styles ───────────────────────────────────────────────
+
+.simulation-controls {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-login {
+  padding: 0.6rem 1.2rem;
+  background: #00ca82;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-logout {
+  padding: 0.6rem 1.2rem;
+  background: #555f83;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.demo-preview-box {
+  padding: 2rem;
+  border: 1.5px dashed var(--bocc-border-default);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+
+  .status-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    &--logged {
+      color: #00ca82;
+    }
+    
+    &--guest {
+      color: var(--bocc-text-support);
+    }
+  }
+}
+
 // Media Queries for smaller screens
 @media (max-width: 768px) {
   .playground-header {

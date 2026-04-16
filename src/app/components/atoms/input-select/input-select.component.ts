@@ -26,6 +26,7 @@ import {
 import { SelectCoordinatorService } from '../../../services/select-coordinator.service';
 import { DEFAULT_CONST, VAR_INPUT_FORM } from '../../../utils/global-strings';
 import { TextPipe } from '../../../pipes/text-pipe';
+import { ES_INPUT_SELECT } from '../../../utils/lang/es_component';
 
 @Component({
   selector: 'bocc-input-select',
@@ -49,9 +50,6 @@ export class InputSelectComponent implements OnInit {
   /** Disables the whole component when true. */
   readonly isDisable = input<boolean>(false);
 
-  /** Label text shown above the input when a value is selected. */
-  readonly titleName = input<string>(DEFAULT_CONST.EMPTY);
-
   /** HTML name attribute for the internal input. */
   readonly name = input<string>(DEFAULT_CONST.EMPTY);
 
@@ -74,7 +72,7 @@ export class InputSelectComponent implements OnInit {
   readonly returnToDefault = input<boolean>(false);
 
   /** Text shown before the user makes a selection. */
-  readonly placeholder = input<string>('Selecciona');
+  readonly placeholder = input<string>(ES_INPUT_SELECT.DEFAULT_OPTIONS.SELECT);
 
   /** Show a "Selecciona" dummy item at the top of the option list. */
   readonly selectOption = input<boolean>(false);
@@ -136,7 +134,7 @@ export class InputSelectComponent implements OnInit {
    * Lifecycle hook: initialization 
   */
   ngOnInit(): void {
-    this.currentlyValueInput.set(this.placeholder() || 'Selecciona');
+    this.currentlyValueInput.set(this.placeholder() || ES_INPUT_SELECT.DEFAULT_OPTIONS.SELECT);
     const idx  = this.activeOption();
     const opts = this.optionsValues();
     if (idx >= 0 && idx < opts.length) {

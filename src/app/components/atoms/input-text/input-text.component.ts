@@ -16,13 +16,15 @@ import { FormsModule } from '@angular/forms';
 import { DEFAULT_CONST, VAR_INPUT_FORM } from '../../../utils/global-strings';
 import { regularExpressions } from '../../../utils/regular-expresssions';
 import { clearTextRegx } from '../../../helpers/text-manager';
+import { TextPipe } from '../../../pipes/text-pipe';
+import { ES_INPUT_TEXT } from '../../../utils/lang/es_component';
 
 @Component({
   selector: 'bocc-input-text',
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TextPipe],
 })
 export class InputTextComponent {
 
@@ -52,7 +54,7 @@ export class InputTextComponent {
   type = input<string>('text');
 
   /** id / name attribute – also links the <label for="..."> */
-  id = input<string>('input');
+  id = input<string>(ES_INPUT_TEXT.DEFAULT_ID);
 
   /** Placeholder text. Figma: "Placeholder text" */
   placeholder = input<string>(DEFAULT_CONST.EMPTY);

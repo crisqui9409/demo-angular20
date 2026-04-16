@@ -1,15 +1,19 @@
 <header class="playground-header">
   <img src="assets/icons/logo_boc.svg" alt="BOC Logo" class="logo" />
-  <h1>{{ title() }}</h1>
+  <h1>{{ 'ES_PLAYGROUND.TITLE' | text: 'ES' }}</h1>
   <div class="controls">
-    <button (click)="toggleError()" [class.active]="simulateError()">Simular Error</button>
-    <button (click)="toggleDisabled()" [class.active]="simulateDisabled()">Simular Deshabilitado</button>
+    <button (click)="toggleError()" [class.active]="simulateError()">
+      {{ 'ES_PLAYGROUND.CONTROLS.SIMULATE_ERROR' | text: 'ES' }}
+    </button>
+    <button (click)="toggleDisabled()" [class.active]="simulateDisabled()">
+      {{ 'ES_PLAYGROUND.CONTROLS.SIMULATE_DISABLED' | text: 'ES' }}
+    </button>
   </div>
 </header>
 
 <main class="playground-content">
   <section class="demo-section">
-    <h2>1. Input Text</h2>
+    <h2>{{ 'ES_PLAYGROUND.SECTIONS.INPUT_TEXT' | text: 'ES' }}</h2>
     <div class="demo-grid">
       <div class="demo-card">
         <h3>Default State</h3>
@@ -54,7 +58,6 @@
         <bocc-input-text
           title="Número de Documento"
           placeholder="Mínimo 8 caracteres"
-          helpText="Ingresa tu cédula de ciudadanía sin puntos ni comas."
           [minLength]="8"
           [isDisable]="simulateDisabled()"
           [hasError]="simulateError()"
@@ -83,12 +86,11 @@
   </section>
 
   <section class="demo-section">
-    <h2>2. Input Select</h2>
+    <h2>{{ 'ES_PLAYGROUND.SECTIONS.INPUT_SELECT' | text: 'ES' }}</h2>
     <div class="demo-grid">
       <div class="demo-card">
         <h3>Default State</h3>
         <bocc-input-select
-          titleName="Ciudad de residencia"
           [optionsValues]="cities()"
           placeholder="Selecciona una ciudad"
           [isDisable]="simulateDisabled()"
@@ -102,7 +104,6 @@
       <div class="demo-card">
         <h3>With Initial Value</h3>
         <bocc-input-select
-          titleName="Departamento"
           [optionsValues]="['Antioquia', 'Cundinamarca', 'Valle del Cauca']"
           [activeOption]="0"
           [isDisable]="simulateDisabled()"
@@ -115,27 +116,27 @@
   </section>
 
   <section class="demo-section">
-    <h2>3. Tooltip Laboratory (Atoms & Directives)</h2>
+    <h2>{{ 'ES_PLAYGROUND.SECTIONS.TOOLTIP' | text: 'ES' }}</h2>
     <div class="demo-grid">
       <div class="demo-card">
         <h3>Trigger orientations</h3>
         <div class="test-container centered">
-          <div class="tooltip-test-item" boccTooltip="Tooltip pointing Up" orientation="top">
+          <div class="tooltip-test-item" boccTooltip="Tooltip pointing Up" [orientation]="TooltipOrientation.Top">
             <img src="assets/icons/Info.svg" alt="info" />
             <span>Hover Top</span>
           </div>
 
-          <div class="tooltip-test-item" boccTooltip="IOD: Indicador de operación de descuento" orientation="bottom">
+          <div class="tooltip-test-item" boccTooltip="IOD: Indicador de operación de descuento" [orientation]="TooltipOrientation.Bottom">
             <img src="assets/icons/Info.svg" alt="info" />
             <span>Hover Bottom (Figma)</span>
           </div>
 
-          <div class="tooltip-test-item" boccTooltip="Information to the right" orientation="right">
+          <div class="tooltip-test-item" boccTooltip="Information to the right" [orientation]="TooltipOrientation.Right">
             <img src="assets/icons/Info.svg" alt="info" />
             <span>Hover Right</span>
           </div>
 
-          <div class="tooltip-test-item" boccTooltip="Information to the left" orientation="left">
+          <div class="tooltip-test-item" boccTooltip="Information to the left" [orientation]="TooltipOrientation.Left">
             <img src="assets/icons/Info.svg" alt="info" />
             <span>Hover Left</span>
           </div>
@@ -146,7 +147,7 @@
         <h3>Design System Validation</h3>
         <p class="support-text">Verify typography (Poppins), colors (Navy 900), and shadow (Light Blue 40%).</p>
         <div class="test-container centered">
-          <button class="bocc-btn-test" boccTooltip="Functional tooltip on a button element" orientation="top">
+          <button class="bocc-btn-test" boccTooltip="Functional tooltip on a button element" [orientation]="TooltipOrientation.Top">
             Hover Button Test
           </button>
         </div>
@@ -156,64 +157,39 @@
 
   <section class="demo-section">
     <div style="display: flex; justify-content: space-between; align-items: center">
-      <h2>4. Avatar Component</h2>
+      <h2>{{ 'ES_PLAYGROUND.SECTIONS.AVATAR' | text: 'ES' }}</h2>
       <button (click)="toggleMenu()" [class.active]="isMenuExpanded()">Contraer / Expandir Menú</button>
     </div>
     <div class="demo-grid">
       <div class="demo-card">
         <h3>Dynamic User Simulation (Login/Logout)</h3>
         <p class="support-text">Demonstrates how the avatar loads user data after a login.</p>
-        <div style="margin-bottom: 16px; display: flex; gap: 8px">
-          <button
-            (click)="simulateLogin()"
-            style="
-              padding: 8px 16px;
-              background: #00ca82;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-            "
-          >
-            Simular Login
+        
+        <div class="simulation-controls">
+          <button class="btn-login" (click)="simulateLogin()">
+            {{ 'ES_PLAYGROUND.AVATAR_DEMO.LOGIN' | text: 'ES' }}
           </button>
-          <button
-            (click)="simulateLogout()"
-            style="
-              padding: 8px 16px;
-              background: #555f83;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-            "
-          >
-            Simular Logout
+          <button class="btn-logout" (click)="simulateLogout()">
+            {{ 'ES_PLAYGROUND.AVATAR_DEMO.LOGOUT' | text: 'ES' }}
           </button>
         </div>
 
-        <div
-          style="
-            padding: 20px;
-            border: 1px dashed #adbada;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-          "
-        >
+        <div class="demo-preview-box">
           @if (currentUser()) {
-          <bocc-avatar
-            [isExpanded]="isMenuExpanded()"
-            [imageUrl]="currentUser().photo"
-            [titleText]="currentUser().name"
-            [subtitleText]="currentUser().role"
-          >
-          </bocc-avatar>
-          <span style="font-size: 14px; color: #00ca82">Actualmente logueado</span>
+            <bocc-avatar
+              [isExpanded]="isMenuExpanded()"
+              [imageUrl]="currentUser().photo"
+              [titleText]="currentUser().name"
+              [subtitleText]="currentUser().role"
+            >
+            </bocc-avatar>
+            <span class="status-text status-text--logged">{{ 'ES_PLAYGROUND.AVATAR_DEMO.LOGGED_IN' | text: 'ES' }}</span>
           } @else {
-          <bocc-avatar [isExpanded]="isMenuExpanded()" titleText="Bienvenido, Invitado"> </bocc-avatar>
-          <span style="font-size: 14px; color: #555f83">Estado: Invitado</span>
+            <bocc-avatar 
+              [isExpanded]="isMenuExpanded()" 
+              [titleText]="'ES_PLAYGROUND.AVATAR_DEMO.WELCOME_GUEST' | text: 'ES'"> 
+            </bocc-avatar>
+            <span class="status-text status-text--guest">{{ 'ES_PLAYGROUND.AVATAR_DEMO.GUEST_STATE' | text: 'ES' }}</span>
           }
         </div>
       </div>
