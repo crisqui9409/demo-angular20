@@ -4,7 +4,7 @@
  * @version 1.0, 2026/04/14 – Migrated to Angular 20 standalone + signals
  *
  * @example
- * <bocc-menu-items [items]="menuItems" [isExpanded]="true" (itemClick)="onItemClick($event)"></bocc-menu-items>
+ * <bocc-menu [items]="menuItems" [isExpanded]="true" (itemClick)="onItemClick($event)"></bocc-menu>
  */
 import { Component, input, output } from '@angular/core';
 
@@ -16,13 +16,13 @@ export interface MenuItem {
 }
 
 @Component({
-  selector: 'bocc-menu-items',
+  selector: 'bocc-menu',
   standalone: true,
   imports: [],
-  templateUrl: './menu-items.component.html',
-  styleUrl: './menu-items.component.scss',
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss',
 })
-export class MenuItemsComponent {
+export class MenuComponent {
   public items = input.required<MenuItem[]>();
 
   public selectedId = input<string | number>();

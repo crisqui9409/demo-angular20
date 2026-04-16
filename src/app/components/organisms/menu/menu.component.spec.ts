@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MenuItemsComponent, MenuItem } from './menu-items.component';
+import { MenuComponent, MenuItem } from './menu.component';
 import { By } from '@angular/platform-browser';
 
-describe('MenuItemsComponent', () => {
-  let component: MenuItemsComponent;
-  let fixture: ComponentFixture<MenuItemsComponent>;
+describe('MenuComponent', () => {
+  let component: MenuComponent;
+  let fixture: ComponentFixture<MenuComponent>;
 
   const mockItems: MenuItem[] = [
     { id: 1, label: 'Inicio', icon: 'house' },
@@ -14,10 +14,10 @@ describe('MenuItemsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuItemsComponent],
+      imports: [MenuComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuItemsComponent);
+    fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('items', mockItems);
@@ -63,7 +63,7 @@ describe('MenuItemsComponent', () => {
     });
 
     it('should have is-collapsed class on the list', () => {
-      const list = fixture.debugElement.query(By.css('.bocc-menu-items'));
+      const list = fixture.debugElement.query(By.css('.bocc-menu'));
       expect(list.nativeElement.classList).toContain('is-collapsed');
     });
   });
