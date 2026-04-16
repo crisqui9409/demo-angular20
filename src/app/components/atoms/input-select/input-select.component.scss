@@ -53,6 +53,11 @@ $select-icon-size: 1.5rem;
       cursor: not-allowed;
       pointer-events: none;
       opacity: 0.8;
+
+      .bocc-select__chevron img {
+        color: var(--bocc-border-hover);
+    filter: invert(78%) sepia(9%) saturate(884%) hue-rotate(190deg) brightness(96%) contrast(93%);
+      }
     }
   }
 
