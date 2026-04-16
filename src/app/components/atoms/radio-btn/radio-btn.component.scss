@@ -1,6 +1,3 @@
-/* BOC Design System - Radio Button Atom */
-
-/* Design Tokens */
 $border-default:       var(--bocc-text-placeholder);
 $border-hover:         var(--bocc-brand-primary);
 $border-pressed:       var(--bocc-brand-secondary);
@@ -24,7 +21,6 @@ $transition:           all 0.2s ease-in-out;
   display: inline-block;
 }
 
-/* Component Layout */
 .radio-btn {
   display: inline-flex;
   align-items: center;
@@ -49,7 +45,6 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-/* Hidden Native Input */
 .radio-container input {
   position: absolute;
   opacity: 0;
@@ -58,7 +53,6 @@ $transition:           all 0.2s ease-in-out;
   width: 0;
 }
 
-/* Custom Radio UI */
 .radiomark {
   position: absolute;
   top: 0;
@@ -86,7 +80,6 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-/* Interaction States: Unchecked */
 .radio-container:not(.disabled) {
   &:hover input:not(:checked) ~ .radiomark {
     background-color: $bg-hover;
@@ -99,7 +92,6 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-/* Interaction States: Checked */
 .radio-container input:checked ~ .radiomark {
   background-color: $bg-default;
   border-color: $border-hover;
@@ -126,7 +118,6 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-/* Disabled & Validation States */
 .radio-container input:disabled ~ .radiomark {
   opacity: 0.5;
 }
@@ -135,7 +126,6 @@ $transition:           all 0.2s ease-in-out;
   border-color: $border-error;
 }
 
-/* Label Text Styling */
 .side-text {
   margin: 0;
   color: $text-color;

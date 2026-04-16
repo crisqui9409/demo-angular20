@@ -15,12 +15,10 @@ $size:                 1.5rem;
 $radius:               0.25rem;
 $transition:           all 0.2s ease-in-out;
 
-// Host
 :host {
   display: inline-block;
 }
 
-// Root container
 .checkbox-btn {
   display: inline-flex;
   align-items: center;
@@ -28,7 +26,6 @@ $transition:           all 0.2s ease-in-out;
   font-family: 'Poppins', sans-serif;
 }
 
-// Label container
 .checkbox-container {
   display: inline-block;
   position: relative;
@@ -44,7 +41,6 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-// Hidden native input
 .checkbox-container input {
   position: absolute;
   opacity: 0;
@@ -53,7 +49,6 @@ $transition:           all 0.2s ease-in-out;
   width: 0;
 }
 
-// Visual checkmark
 .checkmark {
   position: absolute;
   top: 0;
@@ -80,23 +75,19 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-// Unchecked states
 .checkbox-container:not(.disabled) {
 
-  // Hover - Exclude indeterminate to avoid style overlap
   &:hover input:not(:checked):not(:indeterminate) ~ .checkmark {
     background-color: $bg-hover;
     border-color: $border-hover;
   }
 
-  // Active (Pressed)
   input:not(:checked):not(:indeterminate):active ~ .checkmark {
     background-color: $bg-pressed;
     border-color: $border-pressed;
   }
 }
 
-// Checked states
 .checkbox-container input:checked ~ .checkmark {
   background: $checked-gradient;
   border-color: $border-hover;
@@ -118,17 +109,14 @@ $transition:           all 0.2s ease-in-out;
   }
 }
 
-// Disabled state
 .checkbox-container input:disabled ~ .checkmark {
   opacity: 0.5;
 }
 
-// Error state
 .checkbox-btn.error .checkmark {
   border-color: $border-error;
 }
 
-// Indeterminate state
 .checkbox-container input:indeterminate ~ .checkmark {
   background: $checked-gradient;
   border-color: $border-hover;
@@ -153,7 +141,6 @@ $transition:           all 0.2s ease-in-out;
   border-color: $bg-checked-pressed;
 }
 
-// Side text (Label)
 .side-text {
   margin: 0;
   color: $text-color;

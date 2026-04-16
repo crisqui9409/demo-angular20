@@ -1,9 +1,3 @@
-// -----------------------------------------------------------------------------
-// BREADCRUMB ATOM - SCSS
-// Handles the visual layout for hierarchical navigation segments.
-// -----------------------------------------------------------------------------
-
-// Tokens & Theme Variables
 $text-default:    var(--class-black);
 $brand-primary:   var(--bocc-brand-primary);
 $focus-color:     var(--bocc-border-active);
@@ -13,7 +7,6 @@ $separator-color: var(--bocc-brand-primary-hover);
   display: block;
 }
 
-// 1. Navigation Container
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -21,28 +14,26 @@ $separator-color: var(--bocc-brand-primary-hover);
   padding: 0;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  flex-wrap: wrap; // Responsive fallback
+  flex-wrap: wrap;
 }
 
-// 2. Navigation Node
 .breadcrumb-item {
   display: flex;
   align-items: center;
-  height: 3rem; // Standards: 48px height per Figma Breadcrums V2
+  height: 3rem;
   border-radius: 0.25rem;
   color: $text-default;
-  font-size: 0.75rem; // Standards: 12px
-  letter-spacing: 0.07rem; 
+  font-size: 0.75rem;
+  letter-spacing: 0.07rem;
   position: relative;
 
   &.active {
     color: $brand-primary;
-    pointer-events: none; // Current page is not interactive
+    pointer-events: none;
   }
 }
 
-// 3. Interactive Elements & Content
-.breadcrumb-link, 
+.breadcrumb-link,
 .breadcrumb-text {
   display: flex;
   align-items: center;
@@ -68,14 +59,13 @@ $separator-color: var(--bocc-brand-primary-hover);
   }
 }
 
-// 4. Decoration & Dividers
 .breadcrumb-icon {
   margin-right: 0.5rem;
   display: flex;
   align-items: center;
 
   svg, i {
-    width: 1.5rem; // Standard icon sizing
+    width: 1.5rem;
     height: 1.5rem;
   }
 }

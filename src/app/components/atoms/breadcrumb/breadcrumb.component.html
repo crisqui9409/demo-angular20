@@ -1,9 +1,7 @@
-<!-- Main navigation container for hierarchical breadcrumbs -->
 <nav aria-label="Breadcrumb">
   <ol class="breadcrumb">
     @for (item of items(); track $index; let last = $last) {
       <li class="breadcrumb-item" [class.active]="item.active" [attr.aria-current]="item.active ? 'page' : null">
-        <!-- Interactive Link Segment -->
         @if (item.path && !item.active) {
           <a [routerLink]="item.path" class="breadcrumb-link">
             @if (item.icon) {
@@ -12,7 +10,6 @@
             {{ item.label }}
           </a>
         }
-        <!-- Non-interactive / Active Segment -->
         @else {
           <span class="breadcrumb-text">
             @if (item.icon) {
@@ -22,7 +19,6 @@
           </span>
         }
 
-        <!-- Visual Separator -->
         @if (!last) {
           <span class="separator" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

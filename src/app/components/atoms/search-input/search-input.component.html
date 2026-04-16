@@ -1,4 +1,3 @@
-<!-- Search Input – BOC Design System (node 15175:19414) -->
 <div
   class="search-input"
   [class]="'status-' + status()"
@@ -6,7 +5,6 @@
   [class.is-filled]="value()"
 >
 
-  <!-- Label row: only rendered when at least one of label or hint is provided -->
   @if (label() || hint()) {
     <div class="search-input__header">
       <div class="search-input__label-group">
@@ -19,14 +17,11 @@
     </div>
   }
 
-  <!-- Input box -->
   <div class="search-input__box">
 
-    <!-- Left icon: decorative, hidden from assistive technology -->
     @if (showLeftIcon() || leftIcon()) {
       <span class="search-input__icon search-input__icon--left" aria-hidden="true">
         @if (leftIcon()) {
-          <!-- CSS mask renders the external SVG using currentColor, keeping it theme-aware -->
           <span
             class="search-input__mask"
             [style.mask-image]="'url(' + leftIcon() + ')'"
@@ -56,7 +51,6 @@
       aria-autocomplete="none"
     />
 
-    <!-- Right icon: interactive button that triggers the search action -->
     @if (showSearchIcon() || rightIcon()) {
       <button
         type="button"
@@ -84,7 +78,6 @@
 
   </div>
 
-  <!-- Feedback row: role="alert" announces changes to screen readers as they happen -->
   @if (feedbackMessage()) {
     <div class="search-input__feedback" role="alert" aria-live="polite">
       <span class="search-input__feedback-icon" aria-hidden="true">

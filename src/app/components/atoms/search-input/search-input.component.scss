@@ -1,58 +1,45 @@
-// Search Input Atom
-// Aligned with BOC Design System (Figma node 15175:19414)
-
-// All custom properties are scoped to :host to avoid conflicts with global tokens.
-// --si- prefix stands for "search input".
-
-// Search Input Tokens
 $si-font:          'Poppins', sans-serif;
-$si-label-size:    0.75rem;    // 12px
+$si-label-size:    0.75rem;
 $si-label-weight:  600;
-$si-label-spacing: 0.056rem;   // 0.9px
-$si-hint-size:     0.6875rem;  // 11px
-$si-hint-spacing:  0.044rem;   // 0.7px
-$si-input-size:    0.875rem;   // 14px
+$si-label-spacing: 0.056rem;
+$si-hint-size:     0.6875rem;
+$si-hint-spacing:  0.044rem;
+$si-input-size:    0.875rem;
 $si-input-weight:  500;
-$si-input-spacing: 0.044rem;   // 0.7px
-$si-feedback-size: 0.6875rem;  // 11px
+$si-input-spacing: 0.044rem;
+$si-feedback-size: 0.6875rem;
 
-// Structural tokens
-$si-box-height:   2.5rem;      // 40px
-$si-box-radius:   0.25rem;     // 4px
-$si-box-pad-h:    0.5rem;      // 8px
-$si-border-width: 0.0625rem;   // 1px
-$si-icon-size:    1.5rem;      // 24px
-$si-icon-sm:      1rem;        // 16px
-$si-divider-h:    1.5rem;      // 24px
+$si-box-height:   2.5rem;
+$si-box-radius:   0.25rem;
+$si-box-pad-h:    0.5rem;
+$si-border-width: 0.0625rem;
+$si-icon-size:    1.5rem;
+$si-icon-sm:      1rem;
+$si-divider-h:    1.5rem;
 
-// Color mapping from global design tokens
-$si-border-default: var(--bocc-border-hover);          // #ADBAE6
-$si-border-focus:   var(--bocc-border-active);         // #0081FF
-$si-border-hfocus:  var(--bocc-brand-primary-hover);   // #0056CB
-$si-bg:             var(--bocc-surface-main);          // #FFFFFF
-$si-bg-disabled:    var(--bocc-surface-disabled);      // #EFF2FC
-$si-text-label:     var(--bocc-text-bold);             // #4E556C
-$si-text-hint:      var(--bocc-text-placeholder);      // #ADBAE6
-$si-text-input:     var(--bocc-text-primary);          // #022047
-$si-text-ph:        var(--bocc-text-placeholder);      // #ADBAE6
-$si-icon-color:     var(--bocc-text-secondary);        // #555F83
-$si-icon-active:    var(--bocc-brand-primary);         // #0081FF
+$si-border-default: var(--bocc-border-hover);
+$si-border-focus:   var(--bocc-border-active);
+$si-border-hfocus:  var(--bocc-brand-primary-hover);
+$si-bg:             var(--bocc-surface-main);
+$si-bg-disabled:    var(--bocc-surface-disabled);
+$si-text-label:     var(--bocc-text-bold);
+$si-text-hint:      var(--bocc-text-placeholder);
+$si-text-input:     var(--bocc-text-primary);
+$si-text-ph:        var(--bocc-text-placeholder);
+$si-icon-color:     var(--bocc-text-secondary);
+$si-icon-active:    var(--bocc-brand-primary);
 
 :host {
   display:     block;
   font-family: $si-font;
 }
 
-// Root block: vertical stack that holds all parts of the component
-
 .search-input {
   display        : flex;
   flex-direction : column;
-  gap            : 0.375rem; // 6px
+  gap            : 0.375rem;
   width          : 100%;
 }
-
-// Label row: shows the label text on the left and the optional hint on the right
 
 .search-input__header {
   display         : flex;
@@ -64,7 +51,7 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
 .search-input__label-group {
   display     : flex;
   align-items : center;
-  gap         : 0.25rem; // 4px
+  gap         : 0.25rem;
 }
 
 .search-input__label {
@@ -73,10 +60,9 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   letter-spacing: $si-label-spacing;
   color:          $si-text-label;
   line-height    : 1.4;
-  cursor         : pointer; // clicking the label focuses the input via [for]
+  cursor         : pointer;
 }
 
-// Info icon sits next to the label and shows a tooltip on hover
 .search-input__info-icon {
   display     : flex;
   align-items : center;
@@ -96,8 +82,6 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   line-height    : 1.4;
 }
 
-// Input box: the visible bordered container that holds icons, prefix, and the field
-
 .search-input__box {
   display       : flex;
   align-items   : center;
@@ -106,30 +90,26 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   border:        $si-border-width $si-border-default;
   border-radius: $si-box-radius;
   padding:       0 $si-box-pad-h;
-  gap           : 0.375rem; // 6px
+  gap           : 0.375rem;
   box-sizing    : border-box;
   transition    : border-color 150ms ease, box-shadow 150ms ease;
 
-  // User is typing inside the field
   &:focus-within {
     border-color: $si-border-focus;
-    box-shadow:   0 0 0 0.1875rem rgba(0, 129, 255, 0.15); // 3px ring
+    box-shadow:   0 0 0 0.1875rem rgba(0, 129, 255, 0.15);
 
     &:hover {
       border-color: $si-border-hfocus;
     }
   }
 
-  // Mouse is over the box but the field is not focused
   &:hover:not(:focus-within) {
     border-color: $si-border-hfocus;
   }
 }
 
-// Native input: the actual text field inside the box
-
 .search-input__field {
-  flex           : 1;          // takes all available horizontal space
+  flex           : 1;
   border         : none;
   outline        : none;
   background     : transparent;
@@ -139,7 +119,7 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   letter-spacing: $si-input-spacing;
   color:          $si-text-input;
   height         : 100%;
-  min-width      : 0;          // prevents the field from overflowing a narrow flex container
+  min-width      : 0;
 
   &::placeholder {
     color:       $si-text-ph;
@@ -152,13 +132,11 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   }
 }
 
-// Icons: shared styles for both left and right icon slots
-
 .search-input__icon {
   display         : flex;
   align-items     : center;
   justify-content : center;
-  flex-shrink     : 0; // fixed size, does not shrink with the flex container
+  flex-shrink     : 0;
   color:           $si-icon-color;
 
   svg, .search-input__mask {
@@ -166,12 +144,10 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
     height: $si-icon-size;
   }
 
-  // Left icon is visual only, the user cannot click it
   &--left {
     pointer-events : none;
   }
 
-  // Right icon is a button that triggers the search action
   &--right {
     background : none;
     border     : none;
@@ -184,7 +160,7 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
     }
 
     &:active:not(:disabled) {
-      transform : scale(0.9); // short press feedback
+      transform : scale(0.9);
     }
 
     &:disabled {
@@ -194,9 +170,6 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   }
 }
 
-// CSS mask technique: loads an external SVG file and fills it with currentColor.
-// This lets us style the icon color the same way as an inline SVG.
-// Both classes share the same properties; size is set by each parent context.
 .search-input__mask,
 .search-input__mask--sm {
   background-color : currentColor;
@@ -206,13 +179,11 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   display          : block;
 }
 
-// Prefix + divider: optional text shown before the field, separated by a vertical line
-
 .search-input__prefix {
   display     : flex;
   align-items : center;
-  gap         : 0.375rem; // 6px
-  flex-shrink : 0; // fixed width so the prefix never collapses
+  gap         : 0.375rem;
+  flex-shrink : 0;
 }
 
 .search-input__prefix-text {
@@ -223,16 +194,13 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
 }
 
 .search-input__divider {
-  width:      0.0625rem; // 1px
+  width:      0.0625rem;
   height:     $si-divider-h;
   background: var(--bocc-border-subtle);
 }
 
-// Status modifiers: change border and feedback color based on validation result
-
 .search-input {
 
-  // When the field has text, keep a neutral border even while the user is typing
   &.is-filled .search-input__box {
     border-color: $si-border-default;
 
@@ -242,7 +210,7 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
 
   &.status-success {
     .search-input__box {
-      border-color : var(--bocc-status-success); // #00CA82
+      border-color : var(--bocc-status-success);
       &:focus-within { box-shadow: 0 0 0 0.1875rem rgba(0, 202, 130, 0.15); }
       &:hover { border-color: var(--bocc-status-success); }
     }
@@ -251,7 +219,7 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
 
   &.status-warning {
     .search-input__box {
-      border-color : var(--bocc-status-warning); // #FFAA31
+      border-color : var(--bocc-status-warning);
       &:focus-within { box-shadow: 0 0 0 0.1875rem rgba(255, 170, 49, 0.15); }
       &:hover { border-color: var(--bocc-status-warning); }
     }
@@ -260,14 +228,13 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
 
   &.status-error {
     .search-input__box {
-      border-color : var(--bocc-status-error); // #E24C4C
+      border-color : var(--bocc-status-error);
       &:focus-within { box-shadow: 0 0 0 0.1875rem rgba(226, 76, 76, 0.12); }
       &:hover { border-color: var(--bocc-status-error); }
     }
     .search-input__feedback { color: var(--bocc-status-error-strong); }
   }
 
-  // Disabled state: one rule blocks all clicks and hover effects at the component level
   &.is-disabled {
     pointer-events : none;
 
@@ -285,13 +252,11 @@ $si-icon-active:    var(--bocc-brand-primary);         // #0081FF
   }
 }
 
-// Feedback row: small message shown below the box when validation runs
-
 .search-input__feedback {
   display     : flex;
   align-items : center;
-  gap         : 0.25rem; // 4px
-  color       : var(--bocc-text-secondary); // default color, overridden by each status above
+  gap         : 0.25rem;
+  color       : var(--bocc-text-secondary);
 }
 
 .search-input__feedback-icon {
