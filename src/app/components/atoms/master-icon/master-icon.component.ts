@@ -1,3 +1,11 @@
+/**
+ * Component to display a local SVG icon with customizable size and color theme.
+ * @author Sebastian Barreto / Contact & Business IT
+ * @version 1.0, 2026/04/15 – Initial creation
+ *
+ * @example
+ * <bocc-master-icon name="burger" size="24px" color="brand"></bocc-master-icon>
+ */
 import { Component, computed, input } from '@angular/core';
 
 @Component({
@@ -8,15 +16,11 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './master-icon.component.scss',
 })
 export class MasterIconComponent {
-  /** Name of the icon file in assets/icoins/ (without .svg extension) */
   public name = input.required<string>();
 
-  /** Size of the icon (e.g., '24px', '1rem') */
   public size = input<string>('24px');
 
-  /** Color theme of the icon */
   public color = input<'default' | 'brand' | 'disable'>('default');
 
-  /** Computed path to the SVG asset */
   public iconPath = computed(() => `assets/icoins/${this.name()}.svg`);
 }

@@ -13,6 +13,8 @@ describe('MasterIconComponent', () => {
 
     fixture = TestBed.createComponent(MasterIconComponent);
     component = fixture.componentInstance;
+    // Set mandatory icon name for creation
+    fixture.componentRef.setInput('name', 'burger');
     fixture.detectChanges();
   });
 
@@ -20,39 +22,38 @@ describe('MasterIconComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the correct Font Awesome icon', () => {
-    fixture.componentRef.setInput('icon', 'star');
+  it('should generate the correct icon path', () => {
+    fixture.componentRef.setInput('name', 'calendar');
     fixture.detectChanges();
-
+    
+    expect(component.iconPath()).toBe('assets/icoins/calendar.svg');
+    
     const iconElement = fixture.debugElement.query(By.css('.bocc-master-icon')).nativeElement;
-    expect(iconElement.classList).toContain('fa-solid');
-    expect(iconElement.classList).toContain('fa-star');
+    // Check that mask-image or the custom property includes the correct path
+    expect(iconElement.style.getPropertyValue('--icon-path')).toContain('assets/icoins/calendar.svg');
   });
 
-  it('should apply the correct font-size', () => {
-    fixture.componentRef.setInput('icon', 'home');
-    fixture.componentRef.setInput('size', '32px');
+  it('should apply the correct size', () => {
+    const customSize = '48px';
+    fixture.componentRef.setInput('size', customSize);
     fixture.detectChanges();
 
     const iconElement = fixture.debugElement.query(By.css('.bocc-master-icon')).nativeElement;
-    expect(iconElement.style.fontSize).toBe('32px');
+    expect(iconElement.style.width).toBe(customSize);
+    expect(iconElement.style.height).toBe(customSize);
   });
 
-  it('should apply the correct color', () => {
-    fixture.componentRef.setInput('icon', 'bell');
-    fixture.componentRef.setInput('color', 'red');
+  it('should apply the correct color theme class', () => {
+    fixture.componentRef.setInput('color', 'brand');
     fixture.detectChanges();
 
     const iconElement = fixture.debugElement.query(By.css('.bocc-master-icon')).nativeElement;
-    expect(iconElement.style.color).toBe('red');
+    expect(iconElement.classList).toContain('bocc-master-icon--brand');
   });
 
-  it('should use default size if not provided', () => {
-    fixture.componentRef.setInput('icon', 'info');
-    // size is not set, so it should default to '16px' as per component definition
+  it('should change path when name changes', () => {
+    fixture.componentRef.setInput('name', 'close');
     fixture.detectChanges();
-
-    const iconElement = fixture.debugElement.query(By.css('.bocc-master-icon')).nativeElement;
-    expect(iconElement.style.fontSize).toBe('16px');
+    expect(component.iconPath()).toContain('close.svg');
   });
 });
