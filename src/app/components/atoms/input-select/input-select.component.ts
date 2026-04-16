@@ -25,11 +25,12 @@ import {
 
 import { SelectCoordinatorService } from '../../../services/select-coordinator.service';
 import { DEFAULT_CONST, VAR_INPUT_FORM } from '../../../utils/global-strings';
+import { TextPipe } from '../../../pipes/text-pipe';
 
 @Component({
   selector: 'bocc-input-select',
   standalone: true,
-  imports: [],
+  imports: [TextPipe],
   templateUrl: './input-select.component.html',
   styleUrl: './input-select.component.scss',
 })
