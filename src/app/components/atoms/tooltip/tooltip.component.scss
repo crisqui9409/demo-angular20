@@ -1,0 +1,148 @@
+@use '../../../../style/variables/colors.scss';
+@use '../../../../style/tools/breakpoints.scss' as *;
+
+$bg-color: var(--bocc-text-primary);
+$text-color: #DFE5F9;
+$border-radius: 0.5rem;
+$padding-v: 0.75rem;
+$padding-h: 1rem;
+$shadow: 0 0.25rem 0.25rem rgba(173, 186, 230, 0.4);
+$font-family: 'Poppins', sans-serif;
+$font-size: 12px;
+$font-weight: 500;
+$line-height: 18px;
+$arrow-edge: 0.625rem;
+$arrow-base: 0.5rem;
+
+@include for-desktop-mid {
+  :host {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+    width: 15rem;
+    filter: drop-shadow($shadow);
+
+    &.is-visible {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .tooltip-bubble {
+    background: $bg-color;
+    color: $text-color;
+    border-radius: $border-radius;
+    padding: $padding-v $padding-h;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    flex-shrink: 0;
+  }
+
+  :host(.orientation-bottom) {
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+    animation: tooltipFadeInBottom 200ms ease-out forwards;
+
+    .tooltip-arrow {
+      border-width: 0 $arrow-edge $arrow-base $arrow-edge;
+      border-color: transparent transparent $bg-color transparent;
+      margin-bottom: -0.0625rem;
+    }
+  }
+
+  :host(.orientation-top) {
+    transform: translate(-50%, -100%);
+    flex-direction: column;
+    animation: tooltipFadeInTop 200ms ease-out forwards;
+
+    .tooltip-arrow {
+      border-width: $arrow-base $arrow-edge 0 $arrow-edge;
+      border-color: $bg-color transparent transparent transparent;
+      margin-top: -0.0625rem;
+    }
+  }
+
+  :host(.orientation-right) {
+    transform: translateY(-50%);
+    flex-direction: row-reverse;
+    align-items: center;
+    animation: tooltipFadeInRight 200ms ease-out forwards;
+
+    .tooltip-arrow {
+      border-width: $arrow-edge $arrow-base $arrow-edge 0;
+      border-color: transparent $bg-color transparent transparent;
+      margin-right: -0.0625rem;
+    }
+  }
+
+  :host(.orientation-left) {
+    transform: translate(-100%, -50%);
+    flex-direction: row;
+    align-items: center;
+    animation: tooltipFadeInLeft 200ms ease-out forwards;
+
+    .tooltip-arrow {
+      border-width: $arrow-edge 0 $arrow-edge $arrow-base;
+      border-color: transparent transparent transparent $bg-color;
+      margin-left: -0.0625rem;
+    }
+  }
+
+  @keyframes tooltipFadeInBottom {
+    from { 
+      opacity: 0; 
+      transform: translate(-50%, 0.5rem) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translate(-50%, 0) scale(1); 
+    }
+  }
+
+  @keyframes tooltipFadeInTop {
+    from { 
+      opacity: 0; 
+      transform: translate(-50%, calc(-100% - 0.5rem)) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translate(-50%, -100%) scale(1); 
+    }
+  }
+
+  @keyframes tooltipFadeInRight {
+    from { 
+      opacity: 0; 
+      transform: translate(0.5rem, -50%) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translate(0, -50%) scale(1); 
+    }
+  }
+
+  @keyframes tooltipFadeInLeft {
+    from { 
+      opacity: 0; 
+      transform: translate(calc(-100% - 0.5rem), -50%) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translate(-100%, -50%) scale(1); 
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="input-form">
+  <div class="label-row">
+    <label class="input-label" [attr.for]="id()">{{ title() }}</label>
+  </div>
+  <div
+    class="input-container"
+    [class.is-focused]="isFocused()"
+    [class.is-error]="showError()"
+    [class.is-disabled]="isDisable()"
+    [class.is-filled]="valueInput()"
+    [class.has-icon-left]="iconLeft()"
+    [class.has-icon-right]="iconRight() || type() === 'pswrd'"
+  >
+    @if (iconLeft()) {
+      <div class="input-icon-left" [class.is-disabled]="isDisable()">
+        <img [src]="iconLeft()" alt="" aria-hidden="true" />
+      </div>
+    }
+    <input
+      class="input-text"
+      [attr.maxlength]="maxLength()"
+      [attr.minlength]="minLength()"
+      [disabled]="isDisable()"
+      [attr.type]="effectiveType()"
+      [attr.id]="id()"
+      [attr.name]="id()"
+      [attr.placeholder]="placeholder()"
+      [required]="isRequired()"
+      [attr.pattern]="pattern().source"
+      [attr.autocomplete]="autocomplete()"
+      [attr.inputmode]="inputmode()"
+      [ngModel]="valueInput()"
+      (ngModelChange)="valueInput.set($event)"
+      (input)="onInput($event)"
+      (focus)="onFocus($event)"
+      (blur)="onBlur($event)"
+      (paste)="onPaste($event)"
+      (drop)="onDrop($event)"
+      (wheel)="onWheel($event)"
+      (copy)="onCopy($event)"
+      (cut)="onCut($event)"
+      (keypress)="onkeypress()"
+      (keydown)="onKeydown()"
+      aria-autocomplete="none"
+    />
+    @if (iconRight() && type() !== 'pswrd') {
+      <div class="input-icon-right" [class.is-disabled]="isDisable()">
+        <img [src]="iconRight()" alt="" aria-hidden="true" />
+      </div>
+    }
+    @if (type() === 'pswrd') {
+      <button
+        type="button"
+        class="pswrd-toggle"
+        [class.is-disabled]="isDisable()"
+        (click)="togglePswrdVisibility()"
+        [attr.aria-label]="'ES_INPUT_TEXT.PSW_TOGGLE_LABEL' | text: 'ES'"
+      >
+        <img [src]="showPswrd() ? icon_OpenEye : icon_CloseEye" alt="" />
+      </button>
+    }
+  </div>
+
+  @if (showError() && errorMessage()) {
+    <div class="error-row" role="alert" aria-live="polite">
+      <img [src]="icon_Error" [attr.alt]="'ES_INPUT_TEXT.ERROR_ALT' | text: 'ES'" class="error-icon" width="14" height="14" aria-hidden="true" />
+      <span class="error-message">{{ errorMessage() }}</span>
+    </div>
+  }
+</div>

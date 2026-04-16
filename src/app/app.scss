@@ -1,40 +1,258 @@
-@use "../style/tools/breakpoints.scss" as *;
 
-.container {
-    position: relative;
+
+:root {
+  --playground-bg: #F8FAFF;
+  --playground-header-bg: #FFFFFF;
+  --playground-card-bg: #FFFFFF;
+  --playground-text: #022047;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--playground-bg);
+  font-family: 'Poppins', sans-serif;
+  color: var(--playground-text);
+}
+
+.playground-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background: var(--playground-header-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+
+  .logo {
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--bocc-brand-primary);
+  }
+
+  .controls {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+    gap: 1rem;
 
-.background {
-    position: absolute;
-    top: 265px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -2;
-    pointer-events: none;
-    overflow: hidden;
+    button {
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--bocc-border-default);
+      background: white;
+      color: var(--bocc-text-support);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
 
-    @include for-mobile {
-        top: 205px;
+      &:hover {
+        border-color: var(--bocc-border-hover);
+        background: #F0F4FF;
+      }
+
+      &.active {
+        background: var(--bocc-brand-primary);
+        border-color: var(--bocc-brand-primary);
+        color: white;
+      }
     }
+  }
 }
 
-.background__svg {
-    position: absolute;
-    top: 0;
-    left: 0;
+.playground-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.demo-section {
+  margin-bottom: 4rem;
+
+  h2 {
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--bocc-border-default);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    color: var(--bocc-text-bold);
+  }
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.demo-card {
+  background: var(--playground-card-bg);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(2, 32, 71, 0.03);
+  border: 1px solid rgba(223, 229, 249, 0.5);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--bocc-text-secondary);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+}
+
+// ── Tooltip Laboratory Styles ───────────────────────────────────────────────
+
+.test-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  
+  &.centered {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
     width: 100%;
-    height: 100%;
-    display: block;
+  }
 }
 
-.background__svg rect {
-    fill: var(--class-sky-blue);
+.tooltip-test-item {
+  display: flex;
+  flex-direction: column; // Stack icon and text for better vertical centering test
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: help;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s;
+  width: 140px;
+  height: 100px;
+  border: 1px dashed var(--bocc-border-default);
+
+  &:hover {
+    background: #F0F4FF;
+    border-color: var(--bocc-brand-primary);
+    transform: scale(1.02);
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bocc-text-primary);
+  }
 }
 
-.background__svg path {
-    fill: var(--class-white);
+.bocc-btn-test {
+  padding: 10px 20px;
+  background: var(--bocc-brand-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 129, 255, 0.2);
+  
+  &:hover {
+    background: var(--bocc-brand-primary-hover);
+    transform: translateY(-1px);
+  }
+}
+
+.support-text {
+  font-size: 0.85rem;
+  color: var(--bocc-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+// ── Avatar Simulation Styles ───────────────────────────────────────────────
+
+.simulation-controls {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-login {
+  padding: 0.6rem 1.2rem;
+  background: #00ca82;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-logout {
+  padding: 0.6rem 1.2rem;
+  background: #555f83;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.demo-preview-box {
+  padding: 2rem;
+  border: 1.5px dashed var(--bocc-border-default);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+
+  .status-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    
+    &--logged {
+      color: #00ca82;
+    }
+    
+    &--guest {
+      color: var(--bocc-text-support);
+    }
+  }
+}
+
+// Media Queries for smaller screens
+@media (max-width: 768px) {
+  .playground-header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
 }

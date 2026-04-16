@@ -1,0 +1,254 @@
+@use '../../../../style/variables/colors.scss';
+@use '../../../../style/tools/breakpoints.scss' as *;
+
+$select-font-family: 'Poppins', sans-serif;
+$select-label-size: 12px;
+$select-label-weight: 600;
+$select-label-spacing: 0.056rem;
+$select-text-size: 14px;
+$select-text-weight: 500;
+$select-text-spacing: 0.044rem;
+$select-helper-size: 11px;
+$select-helper-spacing: 0.044rem;
+
+$select-height: 2.5rem;
+$select-radius: 0.25rem;
+$select-pad-h: 0.5rem;
+$select-pad-v: 0.5rem;
+$select-border-width: 0.0625rem;
+$select-option-h: 2.5rem;
+$select-max-visible: 4;
+$select-max-height: calc(#{$select-option-h} * #{$select-max-visible});
+$select-icon-size: 1.5rem;
+
+@include for-desktop-mid {
+
+  :host {
+    display: block;
+    font-family: $select-font-family;
+    position: relative;
+  }
+
+  .bocc-select {
+    position: relative;
+    width: 100%;
+
+    &--open .bocc-select__chevron {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    &--open .bocc-select__trigger {
+      border-color: var(--bocc-border-active);
+      box-shadow: 0 0 0 0.1875rem rgba(0, 129, 255, 0.15);
+    }
+
+    &--error .bocc-select__trigger {
+      border-color: var(--bocc-status-error);
+      box-shadow: 0 0 0 0.1875rem rgba(226, 76, 76, 0.12);
+    }
+
+    &--disabled .bocc-select__trigger {
+      background: var(--bocc-surface-disabled);
+      border-color: var(--bocc-border-disabled);
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.8;
+
+      .bocc-select__chevron img {
+        color: var(--bocc-border-hover);
+    filter: invert(78%) sepia(9%) saturate(884%) hue-rotate(190deg) brightness(96%) contrast(93%);
+      }
+    }
+  }
+
+  .bocc-select__trigger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    height: $select-height;
+    padding: $select-pad-v 2.75rem $select-pad-v $select-pad-h;
+    box-sizing: border-box;
+
+    border: $select-border-width solid var(--bocc-border-default);
+    border-radius: $select-radius;
+    background: var(--bocc-surface-input);
+    cursor: pointer;
+    outline: none;
+
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+
+    &:hover {
+      border-color: var(--bocc-border-hover);
+    }
+
+    &:focus-visible {
+      border-color: var(--bocc-border-active);
+      box-shadow: 0 0 0 0.1875rem rgba(0, 129, 255, 0.15);
+      outline: none;
+    }
+  }
+
+  .bocc-select__label {
+    font-family: $select-font-family;
+    font-size: $select-label-size;
+    font-weight: $select-label-weight;
+    letter-spacing: $select-label-spacing;
+    color: var(--bocc-brand-primary);
+    line-height: 1.2;
+    margin-bottom: 0.0625rem;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+
+    &--disabled {
+      color: var(--bocc-text-disabled);
+    }
+  }
+
+  .bocc-select__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: $select-font-family;
+    font-size: $select-text-size;
+    font-weight: $select-text-weight;
+    letter-spacing: $select-text-spacing;
+    color: var(--bocc-text-primary);
+    padding: 0;
+    cursor: pointer;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+
+    &--placeholder {
+      color: var(--bocc-text-placeholder);
+    }
+
+    &--disabled,
+    &:disabled {
+      color: var(--bocc-text-disabled);
+      cursor: not-allowed;
+    }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var(--bocc-surface-input) inset;
+      -webkit-text-fill-color: var(--bocc-text-primary);
+    }
+  }
+
+  .bocc-select__chevron {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: var(--bocc-text-support);
+    pointer-events: none;
+    transition: transform 200ms ease;
+    width: $select-icon-size;
+    height: $select-icon-size;
+
+    ::ng-deep svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .bocc-select__dropdown {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: var(--bocc-surface-input);
+    border: $select-border-width solid var(--bocc-border-active);
+    border-radius: $select-radius;
+    box-shadow: var(--bocc-shadow-md);
+    overflow: hidden;
+    animation: boccDropdownIn 140ms ease;
+
+    &--scrollable .bocc-select__list {
+      max-height: $select-max-height;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar { width: 0.25rem; }
+      &::-webkit-scrollbar-track { background: var(--bocc-surface-canvas); }
+      &::-webkit-scrollbar-thumb { background: var(--bocc-border-hover); border-radius: 0.25rem; }
+    }
+  }
+
+  @keyframes boccDropdownIn {
+    from { opacity: 0; transform: translateY(-0.375rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .bocc-select__list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+
+  .bocc-select__option {
+    display: flex;
+    align-items: center;
+    height: $select-option-h;
+    padding: 0 $select-pad-h;
+    font-family: $select-font-family;
+    font-size: $select-text-size;
+    font-weight: $select-text-weight;
+    letter-spacing: $select-text-spacing;
+    color: var(--bocc-text-primary);
+    outline: none;
+    transition: background 120ms ease, color 120ms ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--bocc-surface-active);
+      color: var(--bocc-brand-primary);
+    }
+
+    &--selected {
+      background: var(--bocc-surface-active);
+      color: var(--bocc-brand-primary);
+      font-weight: 600;
+    }
+
+    &--placeholder {
+      color: var(--bocc-text-placeholder);
+      font-weight: 400;
+    }
+  }
+
+  .bocc-select__error-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .bocc-select__error-icon {
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .bocc-select__error-message {
+    font-family: $select-font-family;
+    font-size: $select-helper-size;
+    font-weight: 400;
+    letter-spacing: $select-helper-spacing;
+    color: var(--bocc-text-secondary);
+    line-height: 1.4;
+  }
+
+
+}
+
