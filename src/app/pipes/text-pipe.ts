@@ -10,7 +10,7 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
 import { TranslationMap } from '../interfaces/interface_pipe';
-import { ES_AVATAR, ES_INPUT_SELECT, ES_INPUT_TEXT, ES_PLAYGROUND } from '../utils/lang/es_component';
+import { ES_AVATAR, ES_INPUT_SELECT, ES_INPUT_TEXT } from '../utils/lang/es_component';
 import { SupportedLanguages } from '../types/global_type';
 
 @Pipe({
@@ -23,8 +23,7 @@ export class TextPipe implements PipeTransform {
     'ES': {
       ES_INPUT_SELECT, 
       ES_AVATAR,
-      ES_INPUT_TEXT,
-      ES_PLAYGROUND
+      ES_INPUT_TEXT
     },
   };
 
