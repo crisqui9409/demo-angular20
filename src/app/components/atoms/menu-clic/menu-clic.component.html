@@ -5,8 +5,8 @@
   (click)="handleClick()"
   type="button"
 >
-  <span class="menu-clic__label">{{ label() }}</span>
-
+  <span class="menu-clic__label body-sm-semibold">{{ label() }}</span>
+  <!-- TODO: Agregar icono de chevron -->
   @if (showChevron()) {
     <span class="menu-clic__chevron" aria-hidden="true">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

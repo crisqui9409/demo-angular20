@@ -8,11 +8,11 @@
   @if (label() || hint()) {
     <div class="search-input__header">
       <div class="search-input__label-group">
-        <label class="search-input__label" [for]="label()">{{ label() }}</label>
+        <label class="search-input__label label-semibold" [for]="label()">{{ label() }}</label>
       </div>
 
       @if (hint()) {
-        <span class="search-input__hint">{{ hint() }}</span>
+        <span class="search-input__hint caption-regular">{{ hint() }}</span>
       }
     </div>
   }
@@ -33,13 +33,13 @@
 
     @if (prefix()) {
       <div class="search-input__prefix">
-        <span class="search-input__prefix-text">{{ prefix() }}</span>
+        <span class="search-input__prefix-text body-sm-medium">{{ prefix() }}</span>
         <span class="search-input__divider" aria-hidden="true"></span>
       </div>
     }
 
     <input
-      class="search-input__field"
+      class="search-input__field body-sm-medium"
       type="text"
       [id]="label()"
       [placeholder]="placeholder()"
@@ -94,7 +94,7 @@
           </svg>
         }
       </span>
-      <span class="search-input__feedback-text">{{ feedbackMessage() }}</span>
+      <span class="search-input__feedback-text caption-regular">{{ feedbackMessage() }}</span>
     </div>
   }
 

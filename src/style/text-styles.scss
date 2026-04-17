@@ -12,10 +12,12 @@ $sz-cp: 0.625rem;  $lh-cp: 0.9375rem;
 // Typography font-family tokens
 $f-light:    'poppins-light', sans-serif;
 $f-regular:  'poppins-regular', sans-serif;
+$f-medium:   'poppins-medium', sans-serif;
 $f-semibold: 'poppins-semibold', sans-serif;
 $f-bold:     'poppins-bold', sans-serif;
 $f-extrabold:'poppins-extrabold', sans-serif;
 $f-italic:   'poppins-italic', sans-serif;
+$f-mi:       'poppins-medium-italic', sans-serif;
 $f-si:       'poppins-semibold-italic', sans-serif;
 $f-bi:       'poppins-bold-italic', sans-serif;
 
@@ -33,70 +35,80 @@ $f-bi:       'poppins-bold-italic', sans-serif;
   h1, h2, h3, h4, h5 {
     &.light           { font-family: $f-light; }
     &.regular         { font-family: $f-regular; }
+    &.medium          { font-family: $f-medium; }
     &.bold            { font-family: $f-bold; }
     &.extrabold       { font-family: $f-extrabold; }
     &.italic          { font-family: $f-italic; }
+    &.medium-italic   { font-family: $f-mi; }
     &.semibold-italic { font-family: $f-si; }
     &.bold-italic     { font-family: $f-bi; }
   }
 
   // Paragraph styles (Standard body text)
-  .p-light, .p-regular, .p-semibold, .p-bold,
-  .p-extrabold, .p-italic, .p-semibold-italic, .p-bold-italic {
+  .p-light, .p-regular, .p-medium, .p-semibold, .p-bold,
+  .p-extrabold, .p-italic, .p-medium-italic, .p-semibold-italic, .p-bold-italic {
     font-size: $sz-p;
     line-height: $lh-p;
   }
   .p-light           { font-family: $f-light; }
   .p-regular         { font-family: $f-regular; }
+  .p-medium          { font-family: $f-medium; }
   .p-semibold        { font-family: $f-semibold; }
   .p-bold            { font-family: $f-bold; }
   .p-extrabold       { font-family: $f-extrabold; }
   .p-italic          { font-family: $f-italic; }
+  .p-medium-italic   { font-family: $f-mi; }
   .p-semibold-italic { font-family: $f-si; }
   .p-bold-italic     { font-family: $f-bi; }
 
   // Body SM styles (Small body text)
-  .body-sm-light, .body-sm-regular, .body-sm-semibold, .body-sm-bold,
-  .body-sm-extrabold, .body-sm-italic, .body-sm-semibold-italic, .body-sm-bold-italic {
+  .body-sm-light, .body-sm-regular, .body-sm-medium, .body-sm-semibold, .body-sm-bold,
+  .body-sm-extrabold, .body-sm-italic, .body-sm-medium-italic, .body-sm-semibold-italic, .body-sm-bold-italic {
     font-size: $sz-sm;
     line-height: $lh-sm;
   }
   .body-sm-light           { font-family: $f-light; }
   .body-sm-regular         { font-family: $f-regular; }
+  .body-sm-medium          { font-family: $f-medium; }
   .body-sm-semibold        { font-family: $f-semibold; }
   .body-sm-bold            { font-family: $f-bold; }
   .body-sm-extrabold       { font-family: $f-extrabold; }
   .body-sm-italic          { font-family: $f-italic; }
+  .body-sm-medium-italic   { font-family: $f-mi; }
   .body-sm-semibold-italic { font-family: $f-si; }
   .body-sm-bold-italic     { font-family: $f-bi; }
 
   // Label styles
-  .label-light, .label-regular, .label-semibold, .label-bold,
-  .label-extrabold, .label-italic, .label-semibold-italic, .label-bold-italic {
+  .label-light, .label-regular, .label-medium, .label-semibold, .label-bold,
+  .label-extrabold, .label-italic, .label-medium-italic, .label-semibold-italic, .label-bold-italic {
     font-size: $sz-lb;
     line-height: $lh-lb;
   }
   .label-light           { font-family: $f-light; }
   .label-regular         { font-family: $f-regular; }
+  .label-medium          { font-family: $f-medium; }
   .label-semibold        { font-family: $f-semibold; }
   .label-bold            { font-family: $f-bold; }
   .label-extrabold       { font-family: $f-extrabold; }
   .label-italic          { font-family: $f-italic; }
+  .label-medium-italic   { font-family: $f-mi; }
   .label-semibold-italic { font-family: $f-si; }
   .label-bold-italic     { font-family: $f-bi; }
 
   // Caption styles
-  .caption-light, .caption-regular, .caption-semibold, .caption-bold,
-  .caption-extrabold, .caption-italic, .caption-semibold-italic, .caption-bold-italic {
+  .caption-light, .caption-regular, .caption-medium, .caption-semibold, .caption-bold,
+  .caption-extrabold, .caption-italic, .caption-medium-italic, .caption-semibold-italic, .caption-bold-italic {
     font-size: $sz-cp;
     line-height: $lh-cp;
   }
   .caption-light           { font-family: $f-light; }
   .caption-regular         { font-family: $f-regular; }
+  .caption-medium          { font-family: $f-medium; }
   .caption-semibold        { font-family: $f-semibold; }
   .caption-bold            { font-family: $f-bold; }
   .caption-extrabold       { font-family: $f-extrabold; }
   .caption-italic          { font-family: $f-italic; }
+  .caption-medium-italic   { font-family: $f-mi; }
   .caption-semibold-italic { font-family: $f-si; }
   .caption-bold-italic     { font-family: $f-bi; }
 

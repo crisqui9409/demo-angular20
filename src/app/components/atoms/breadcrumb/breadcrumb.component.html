@@ -3,7 +3,7 @@
     @for (item of items(); track $index; let last = $last) {
       <li class="breadcrumb-item" [class.active]="item.active" [attr.aria-current]="item.active ? 'page' : null">
         @if (item.path && !item.active) {
-          <a [routerLink]="item.path" class="breadcrumb-link">
+          <a [routerLink]="item.path" class="breadcrumb-link label-medium">
             @if (item.icon) {
               <span class="breadcrumb-icon" [innerHTML]="item.icon" aria-hidden="true"></span>
             }
@@ -11,7 +11,7 @@
           </a>
         }
         @else {
-          <span class="breadcrumb-text">
+          <span class="breadcrumb-text label-medium">
             @if (item.icon) {
               <span class="breadcrumb-icon" [innerHTML]="item.icon" aria-hidden="true"></span>
             }
