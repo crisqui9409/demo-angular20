@@ -87,7 +87,7 @@ $si-icon-active:    var(--bocc-brand-primary);
   align-items   : center;
   height:        $si-box-height;
   background:    $si-bg;
-  border:        $si-border-width $si-border-default;
+  border:        $si-border-width solid $si-border-default;
   border-radius: $si-box-radius;
   padding:       0 $si-box-pad-h;
   gap           : 0.375rem;

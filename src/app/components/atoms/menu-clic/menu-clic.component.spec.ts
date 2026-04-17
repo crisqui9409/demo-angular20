@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MenuItemComponent } from './menu-item.component';
+import { MenuClicComponent } from './menu-clic.component';
 
-describe('MenuItemComponent', () => {
-  let component: MenuItemComponent;
-  let fixture: ComponentFixture<MenuItemComponent>;
+describe('MenuClicComponent', () => {
+  let component: MenuClicComponent;
+  let fixture: ComponentFixture<MenuClicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuItemComponent]
+      imports: [MenuClicComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuItemComponent);
+    fixture = TestBed.createComponent(MenuClicComponent);
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('label', 'Cambiar prioridad');
@@ -28,18 +28,18 @@ describe('MenuItemComponent', () => {
    * Data Binding & Logic
    */
   it('should render the provided label text accurately', () => {
-    const text = fixture.nativeElement.querySelector('.menu-item__label').textContent.trim();
+    const text = fixture.nativeElement.querySelector('.menu-clic__label').textContent.trim();
     expect(text).toBe('Cambiar prioridad');
   });
 
   it('should toggle trailing chevron visibility based on showChevron input', () => {
     fixture.componentRef.setInput('showChevron', false);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.menu-item__chevron')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.menu-clic__chevron')).toBeNull();
 
     fixture.componentRef.setInput('showChevron', true);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.menu-item__chevron')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.menu-clic__chevron')).toBeTruthy();
   });
 
   /**
@@ -49,7 +49,7 @@ describe('MenuItemComponent', () => {
     const spy = jasmine.createSpy('itemClick');
     component.itemClick.subscribe(spy);
 
-    fixture.nativeElement.querySelector('.menu-item').click();
+    fixture.nativeElement.querySelector('.menu-clic').click();
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -68,7 +68,7 @@ describe('MenuItemComponent', () => {
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
     
-    const btn = fixture.nativeElement.querySelector('.menu-item');
+    const btn = fixture.nativeElement.querySelector('.menu-clic');
     expect(btn.disabled).toBeTrue();
   });
 });

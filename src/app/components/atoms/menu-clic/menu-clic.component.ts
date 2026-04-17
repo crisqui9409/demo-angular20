@@ -1,22 +1,22 @@
 import { Component, input, output } from '@angular/core';
 
 /**
- * MenuItemComponent
+ * MenuClicComponent
  *
  * An atomic UI component for dropdown and contextual menu items.
  * Adheres to the BOC Design System, supporting hover states, disabled states,
  * and optional directional anchors (chevrons).
  *
  * @example
- * <bocc-menu-item label="Cambiar prioridad" (itemClick)="onAction()" />
+ * <bocc-menu-clic label="Cambiar prioridad" (itemClick)="onAction()" />
  */
 @Component({
-  selector: 'bocc-menu-item',
+  selector: 'bocc-menu-clic',
   standalone: true,
-  templateUrl: './menu-item.component.html',
-  styleUrl: './menu-item.component.scss',
+  templateUrl: './menu-clic.component.html',
+  styleUrl: './menu-clic.component.scss',
 })
-export class MenuItemComponent {
+export class MenuClicComponent {
   /** The localized text string to display. */
   label = input<string>('');
 
