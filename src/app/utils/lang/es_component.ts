@@ -45,7 +45,8 @@ export const ES_AVATAR = {
     DEFAULT_OPTIONS: {
         NAME: 'Nombre',
         POSITION_COMPANY: 'Cargo',
-        ALT: 'Avatar'
+        ALT: 'Avatar',
+        SRC: 'assets/icons/avatar-placeholder.svg'
     },
     IMAGE_ALT: 'Avatar'
 }

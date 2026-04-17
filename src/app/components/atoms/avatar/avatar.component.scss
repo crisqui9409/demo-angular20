@@ -1,18 +1,9 @@
 @use '../../../../style/variables/colors.scss';
 @use '../../../../style/tools/breakpoints.scss' as *;
 
-$title-font-size: 0.875rem;
-$title-font-weight: 500;
-$title-line-height: 1.3125rem;
-$title-letter-spacing: 0.04375rem;
-
-$subtitle-font-size: 0.875rem;
-$subtitle-font-weight: 400;
-$subtitle-line-height: 1rem;
-$subtitle-letter-spacing: 0.04375rem;
-
 $avatar-gap: 0.5rem;
 $avatar-photo-size: 2rem;
+$avatar-photo-size-small: 1.75rem;
 $avatar-radius: 2.875rem;
 
 $title-color: var(--class-black); 
@@ -21,12 +12,20 @@ $bg-default: var(--bocc-surface-active);
 $icon-color: var(--bocc-brand-primary);
 
 @include for-desktop-mid {
-    :host {
+  :host {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
     gap: $avatar-gap;
-    font-family: "Poppins", sans-serif;
+
+    &.is-small {
+      gap: 0.375rem;
+      
+      .bocc-avatar-photo {
+        width: $avatar-photo-size-small;
+        height: $avatar-photo-size-small;
+      }
+    }
   }
 
   .bocc-avatars {
@@ -59,49 +58,33 @@ $icon-color: var(--bocc-brand-primary);
   }
 
   .bocc-avatar-placeholder {
-    color: $icon-color;
-    width: 50%;
-    height: 50%;
+    width: 60%; // Slightly larger for better visibility
+    height: 60%;
+    object-fit: contain;
+    display: block;
   }
 
   .bocc-avatar-content {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    justify-content: center;
+    gap: 1px; // Tiny gap for better separation
+    height: $avatar-photo-size; // Match photo height to ensure vertical centering logic works
   }
 
   .bocc-avatar-title {
     color: $title-color;
-    font-size: $title-font-size;
-    font-weight: $title-font-weight;
-    line-height: $title-line-height;
-    letter-spacing: $title-letter-spacing;
+    font-family: 'poppins-medium', sans-serif;
+    font-size: 14px;
+    line-height: normal; // Let it be natural or set a specific one
+    letter-spacing: 0.04375rem;
   }
 
   .bocc-avatar-subtitle {
     color: $subtitle-color;
-    font-size: $subtitle-font-size;
-    font-weight: $subtitle-font-weight;
-    line-height: $subtitle-line-height;
-    letter-spacing: $subtitle-letter-spacing;
-  }
-
-  @include for-desktop-mid {
-    :host {
-      gap: 0.375rem;
-    }
-
-    .bocc-avatar-photo {
-      width: 1.75rem;
-      height: 1.75rem;
-    }
-
-    .bocc-avatar-title {
-      font-size: 0.75rem;
-    }
-
-    .bocc-avatar-subtitle {
-      font-size: 0.75rem;
-    }
+    font-family: 'poppins-regular', sans-serif;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: 0.04375rem;
   }
 }

@@ -1,16 +1,8 @@
 @use '../../../../style/variables/colors.scss';
 
-$input-font-family: 'Poppins', sans-serif;
-$input-label-size: 0.75rem;
-$input-label-weight: 600;
-$input-label-spacing: 0.056rem;
-$input-text-size: 0.875rem;
-$input-text-weight: 500;
-$input-text-spacing: 0.044rem;
-$input-helper-size: 0.6875rem;
-$input-helper-spacing: 0.044rem;
 $input-height: 2.5rem;
 $input-radius: 0.25rem;
+
 $input-pad-h: 0.5rem;
 $input-pad-v: 0.5rem;
 $input-gap: 0.375rem;
@@ -22,7 +14,6 @@ $tooltip-radius: 0.375rem;
 
 :host {
   display: block;
-  font-family: $input-font-family;
 }
 
 .input-form {
@@ -42,10 +33,9 @@ $tooltip-radius: 0.375rem;
 }
 
 .input-label {
-  font-family: $input-font-family;
-  font-size: $input-label-size;
-  font-weight: $input-label-weight;
-  letter-spacing: $input-label-spacing;
+  font-family: 'poppins-semibold', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.056rem;
   color: var(--bocc-text-bold);             
   line-height: 1.4;
   white-space: nowrap;
@@ -93,9 +83,8 @@ $tooltip-radius: 0.375rem;
   background: var(--bocc-text-primary);          
   color: var(--bocc-text-on-brand);         
   border-radius: $tooltip-radius;
-  font-family: $input-font-family;
+  font-family: 'poppins-regular', sans-serif;
   font-size: 0.6875rem; 
-  font-weight: 400;
   line-height: 1.4;
   padding: 0.5rem 0.625rem;
   white-space: nowrap;
@@ -179,17 +168,16 @@ $tooltip-radius: 0.375rem;
   border: none;
   outline: none;
   background: transparent;
-  font-family: $input-font-family;
-  font-size: $input-text-size;
-  font-weight: $input-text-weight;
-  letter-spacing: $input-text-spacing;
+  font-family: 'poppins-medium', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.044rem;
   color: var(--bocc-text-primary);             
   line-height: 1;
   cursor: text;
 
   &::placeholder {
     color: var(--bocc-text-placeholder);       
-    font-weight: 400;
+    font-family: 'poppins-regular', sans-serif;
   }
 
   &:disabled {
@@ -229,10 +217,9 @@ $tooltip-radius: 0.375rem;
 }
 
 .error-message {
-  font-family: $input-font-family;
-  font-size: $input-helper-size;
-  font-weight: 400;
-  letter-spacing: $input-helper-spacing;
+  font-family: 'poppins-regular', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.044rem;
   color: var(--bocc-text-secondary);          
   line-height: 1.4;
 }
