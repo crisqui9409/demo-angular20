@@ -1,19 +1,41 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+// Services
 import { MyIpService } from './services/my-ip.service';
+
+// Components
 import { InputTextComponent } from './components/atoms/input-text/input-text.component';
 import { InputSelectComponent } from './components/atoms/input-select/input-select.component';
-
-import { TooltipDirective } from './directives/tooltip.directive';
 import { AvatarComponent } from './components/atoms/avatar/avatar.component';
+
+// Directives
+import { TooltipDirective } from './directives/tooltip.directive';
+
+// Types
+import { TooltipOrientation } from './types/component_type';
+
+// Pipes
+import { TextPipe } from './pipes/text-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, InputTextComponent, InputSelectComponent, TooltipDirective, AvatarComponent],
+  standalone: true,
+  imports: [
+    RouterOutlet, 
+    InputTextComponent, 
+    InputSelectComponent, 
+    TooltipDirective, 
+    AvatarComponent,
+    TextPipe
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
+  /** Reference to TooltipOrientation enum for template usage */
+  readonly TooltipOrientation = TooltipOrientation;
+
   protected readonly title = signal('BOC Design System Playground');
   private myIpService = inject(MyIpService);
 

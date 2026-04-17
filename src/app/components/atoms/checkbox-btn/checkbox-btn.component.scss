@@ -1,0 +1,157 @@
+$border-default:       var(--bocc-border-hover);
+$border-hover:         var(--bocc-brand-primary);
+$border-pressed:       var(--bocc-brand-secondary);
+$border-error:         var(--bocc-status-error);
+$border-checked-hover: var(--bocc-brand-primary-light);
+
+$bg-hover:             var(--bocc-surface-active);
+$bg-pressed:           var(--bocc-surface-subtle);
+$bg-checked-pressed:   var(--bocc-brand-secondary);
+
+$checked-gradient:     var(--bocc-gradient-primary);
+$text-color:           var(--bocc-text-secondary);
+
+$size:                 1.5rem;
+$radius:               0.25rem;
+$transition:           all 0.2s ease-in-out;
+
+:host {
+  display: inline-block;
+}
+
+.checkbox-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: $size;
+  height: $size;
+  user-select: none;
+  flex-shrink: 0;
+
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $size;
+  width: $size;
+  border-radius: $radius;
+  background-color: var(--bocc-surface-main);
+  border: 0.0625rem solid $border-default;
+  box-sizing: border-box;
+  transition: $transition;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 0.5rem;
+    top: 0.25rem;
+    width: 0.3125rem;
+    height: 0.625rem;
+    border: solid var(--bocc-text-on-brand);
+    border-width: 0 0.125rem 0.125rem 0;
+    transform: rotate(45deg);
+  }
+}
+
+.checkbox-container:not(.disabled) {
+
+  &:hover input:not(:checked):not(:indeterminate) ~ .checkmark {
+    background-color: $bg-hover;
+    border-color: $border-hover;
+  }
+
+  input:not(:checked):not(:indeterminate):active ~ .checkmark {
+    background-color: $bg-pressed;
+    border-color: $border-pressed;
+  }
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background: $checked-gradient;
+  border-color: $border-hover;
+
+  &::after {
+    display: block;
+  }
+}
+
+.checkbox-container:not(.disabled) {
+
+  &:hover input:checked ~ .checkmark {
+    border-color: $border-checked-hover;
+  }
+
+  input:checked:active ~ .checkmark {
+    background: $bg-checked-pressed;
+    border-color: $bg-checked-pressed;
+  }
+}
+
+.checkbox-container input:disabled ~ .checkmark {
+  opacity: 0.5;
+}
+
+.checkbox-btn.error .checkmark {
+  border-color: $border-error;
+}
+
+.checkbox-container input:indeterminate ~ .checkmark {
+  background: $checked-gradient;
+  border-color: $border-hover;
+
+  &::after {
+    display: block;
+    left: 0.375rem;
+    top: 0.625rem;
+    width: 0.75rem;
+    height: 0;
+    border-width: 0 0 0.125rem 0;
+    transform: none;
+  }
+}
+
+.checkbox-container:not(.disabled):hover input:indeterminate ~ .checkmark {
+  border-color: $border-checked-hover;
+}
+
+.checkbox-container input:indeterminate:active ~ .checkmark {
+  background: $bg-checked-pressed;
+  border-color: $bg-checked-pressed;
+}
+
+.side-text {
+  margin: 0;
+  color: $text-color;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04375rem;
+  cursor: pointer;
+  user-select: none;
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

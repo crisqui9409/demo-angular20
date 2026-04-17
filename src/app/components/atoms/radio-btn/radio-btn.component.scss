@@ -1,0 +1,142 @@
+$border-default:       var(--bocc-text-placeholder);
+$border-hover:         var(--bocc-brand-primary);
+$border-pressed:       var(--bocc-brand-secondary);
+$border-error:         var(--bocc-status-error);
+
+$bg-default:           var(--bocc-surface-main);
+$bg-hover:             var(--bocc-surface-active);
+$bg-pressed-unchecked: var(--bocc-surface-subtle);
+$bg-pressed-checked:   var(--bocc-surface-main);
+
+$dot-checked:          var(--bocc-gradient-primary);
+$dot-pressed:          var(--bocc-brand-secondary);
+
+$text-color:           var(--bocc-text-secondary);
+
+$size:                 1.5rem;
+$dot-size:             0.75rem;
+$transition:           all 0.2s ease-in-out;
+
+:host {
+  display: inline-block;
+}
+
+.radio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.radio-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  width: $size;
+  height: $size;
+  user-select: none;
+  flex-shrink: 0;
+
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radiomark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $bg-default;
+  border: 1px solid $border-default;
+  box-sizing: border-box;
+  transition: $transition;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: 50%;
+    background: $dot-checked;
+    transition: $transition;
+  }
+}
+
+.radio-container:not(.disabled) {
+  &:hover input:not(:checked) ~ .radiomark {
+    background-color: $bg-hover;
+    border-color: $border-hover;
+  }
+
+  input:not(:checked):active ~ .radiomark {
+    background-color: $bg-pressed-unchecked;
+    border-color: $border-pressed;
+  }
+}
+
+.radio-container input:checked ~ .radiomark {
+  background-color: $bg-default;
+  border-color: $border-hover;
+
+  &::after {
+    display: block;
+    background: $dot-checked;
+  }
+}
+
+.radio-container:not(.disabled) {
+  &:hover input:checked ~ .radiomark {
+    background-color: $bg-hover;
+    border-color: $border-hover;
+  }
+
+  input:checked:active ~ .radiomark {
+    background-color: $bg-pressed-checked;
+    border-color: $border-pressed;
+
+    &::after {
+      background: $dot-pressed;
+    }
+  }
+}
+
+.radio-container input:disabled ~ .radiomark {
+  opacity: 0.5;
+}
+
+.radio-btn.error .radiomark {
+  border-color: $border-error;
+}
+
+.side-text {
+  margin: 0;
+  color: $text-color;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04375rem;
+  cursor: pointer;
+  user-select: none;
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

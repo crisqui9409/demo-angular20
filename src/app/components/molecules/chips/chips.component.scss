@@ -1,0 +1,128 @@
+$border-hover: var(--bocc-border-hover);
+$surface-main: var(--bocc-surface-main);
+$text-secondary: var(--bocc-text-secondary);
+$brand-primary: var(--bocc-brand-primary);
+$surface-active: var(--bocc-surface-active);
+$text-disabled: var(--bocc-text-disabled);
+$border-disabled: var(--bocc-border-disabled);
+$surface-disabled: var(--bocc-surface-disabled);
+
+.bocc-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6.25rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  gap: 0.5rem;
+  user-select: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+  border-radius: var(--Border-Radius-4xl, 3.5rem);
+  border: 0.0625rem solid $border-hover;
+  background: $surface-main;
+
+  color: $text-secondary;
+  cursor: default;
+
+  &--xs {
+    font-size: 0.625rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    padding: var(--Spacing-4, 0.25rem) var(--Spacing-8, 0.5rem);
+
+    .bocc-chip-icon {
+      font-size: 0.75rem;
+    }
+
+  }
+
+  &--s {
+    font-size: 0.75rem;
+    min-height: 2rem;
+    max-height: 2rem;
+    padding: var(--Spacing-4, 0.25rem) var(--Spacing-8, 0.5rem);
+
+    .bocc-chip-icon {
+      font-size: 1rem;
+    }
+
+  }
+
+  &--m {
+    font-size: 0.875rem;
+    min-height: 2.5rem;
+    max-height: 2.5rem;
+    padding: var(--Spacing-4, 0.25rem) var(--Spacing-8, 0.5rem);
+
+    .bocc-chip-icon {
+      font-size: 1.5rem;
+    }
+
+  }
+
+  &:not(.is-disabled):hover {
+    border: 0.0625rem solid $brand-primary;
+    background: $surface-main;
+  }
+
+  &.is-selected {
+    border: 0.0625rem solid $brand-primary;
+    background: $surface-active;
+
+    box-shadow: 0 0.125rem 0.125rem 0 rgba(173, 186, 230, 0.40);
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: $text-disabled;
+
+    border: 0.0625rem solid $border-disabled;
+    background: $surface-disabled;
+
+    .bocc-chip-icon {
+      color: $text-disabled;
+    }
+  }
+
+  .bocc-chip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.25rem 0.25rem 0;
+    color: $brand-primary;
+  }
+
+  .bocc-chip-label {
+    white-space: nowrap;
+  }
+
+  .bocc-chip-remove-icon {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .bocc-chip-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 0.25rem;
+    cursor: pointer;
+    color: inherit;
+    transition: transform 0.2s;
+    font-size: 0.75rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      transform: scale(1.1);
+    }
+  }
+}

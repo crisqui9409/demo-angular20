@@ -1,0 +1,197 @@
+$text-secondary: var(--bocc-text-secondary);
+$surface-canvas: var(--bocc-surface-canvas);
+$brand-primary: var(--bocc-brand-primary);
+$text-on-brand: var(--bocc-text-on-brand);
+$text-link: var(--bocc-text-link);
+$gradient-primary: var(--bocc-gradient-primary);
+$brand-primary-hover: var(--bocc-brand-primary-hover);
+$surface-main: var(--bocc-surface-main);
+$border-hover: var(--bocc-border-hover);
+$text-placeholder: var(--bocc-text-placeholder);
+$border-disabled: var(--bocc-border-disabled);
+$shadow-md: var(--bocc-shadow-md);
+$border-default: var(--bocc-border-default);
+
+.bocc-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0;
+    border-radius: 0.25rem;
+    border: none;
+    background: transparent;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem;
+    letter-spacing: 0.0525rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: $text-secondary;
+
+    &:hover:not(:disabled):not(.is-active) {
+      background: $surface-canvas;
+      color: $brand-primary;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    &.is-active {
+      color: $text-on-brand;
+      cursor: default;
+      border-radius: var(--Border-Radius-sm, 0.25rem);
+      border: 0.0625rem solid $text-link;
+      background: $gradient-primary;
+    }
+  }
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.3125rem;
+    color: $text-link;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem;
+    letter-spacing: 0.0525rem;
+    min-width: auto;
+
+    i {
+      font-size: 0.75rem;
+    }
+
+    &:hover:not(:disabled) {
+      background: $surface-canvas;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &-dropdown {
+    position: relative;
+
+    &.is-open {
+      .bocc-pagination-ellipsis {
+        border-color: $brand-primary-hover;
+      }
+
+      .bocc-pagination-ellipsis-arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 3.75rem;
+    height: 2rem;
+    min-width: 3.5rem;
+    max-width: 4rem;
+    min-height: 2rem;
+    padding: 0 0.25rem 0 0.75rem;
+    background-color: $surface-main;
+    border-radius: var(--Border-Radius-sm, 0.25rem);
+    border: 0.0625rem solid $border-hover;
+    background: $surface-main;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: var(--Spacing-1, 0.5rem);
+
+    &-text {
+      color: $text-placeholder;
+
+      font-family: Poppins;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.3125rem;
+      letter-spacing: 0.04375rem;
+    }
+
+    &-arrow {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: #555F83;
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+      transition: transform 0.2s ease;
+      color: $text-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover {
+      border-color: $brand-primary-hover;
+    }
+  }
+
+  &-dropdown-menu {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 4rem;
+    max-height: 12.5rem;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0.5rem 0;
+    background-color: $surface-main;
+    border: 0.0625rem solid $border-disabled;
+    border-radius: 0.5rem;
+    box-shadow: $shadow-md;
+    z-index: 100;
+    list-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $border-default;
+      border-radius: 0.625rem;
+    }
+  }
+
+  &-dropdown-item {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $surface-canvas;
+      color: $brand-primary;
+    }
+  }
+}

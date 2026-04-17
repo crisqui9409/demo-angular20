@@ -1,0 +1,66 @@
+$text-color:      var(--bocc-text-secondary);
+$hover-bg:        var(--bocc-surface-active);
+$disabled-text:   var(--bocc-text-disabled);
+
+:host {
+  display: block;
+}
+
+.menu-clic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 2.8125rem;
+  padding: 0 1rem;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3125rem;
+  color: $text-color;
+  text-align: left;
+
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover:not(:disabled) {
+    background-color: $hover-bg;
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid var(--bocc-border-active);
+    outline-offset: -0.125rem;
+  }
+
+  &--disabled,
+  &:disabled {
+    color: $disabled-text;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.menu-clic__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-clic__chevron {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  color: $text-color;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}

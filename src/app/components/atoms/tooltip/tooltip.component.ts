@@ -11,8 +11,8 @@
  * ─────────────────────────────────────────────────────────────────
  */
 import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
-
-export type TooltipOrientation = 'top' | 'bottom' | 'left' | 'right';
+import { TooltipOrientation } from '../../../types/component_type';
+import { DEFAULT_CONST } from '../../../utils/global-strings';
 
 @Component({
   selector: 'bocc-tooltip',
@@ -30,10 +30,10 @@ export type TooltipOrientation = 'top' | 'bottom' | 'left' | 'right';
 })
 export class TooltipComponent {
   /** Text message to display */
-  readonly message = input<string>('');
+  readonly message = input<string>(DEFAULT_CONST.EMPTY);
 
   /** Position of the tooltip relative to the trigger */
-  readonly orientation = input<TooltipOrientation>('bottom');
+  readonly orientation = input<TooltipOrientation>(TooltipOrientation.Bottom);
 
   /** X Coordinate for fixed positioning */
   readonly x = signal<number>(0);

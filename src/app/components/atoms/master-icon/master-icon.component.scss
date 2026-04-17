@@ -1,0 +1,30 @@
+$text-primary: var(--bocc-text-primary);
+$brand-primary: var(--bocc-brand-primary);
+$text-disabled: var(--bocc-text-disabled);
+
+.bocc-master-icon {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon-path);
+  mask-image: var(--icon-path);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  background-clip: border-box;
+
+  &--default {
+    background-color: $text-primary;
+  }
+
+  &--brand {
+    background-color: $brand-primary;
+  }
+
+  &--disable {
+    background-color: $text-disabled;
+  }
+}

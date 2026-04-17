@@ -11,3 +11,9 @@
 // Avatar component types
 export type AvatarImageMode = 'none' | 'placeholder' | 'initials' | 'image';
 export type AvatarStatus = 'none' | 'disponible' | 'ocupado' | 'no-disponible' | 'desconectado';
+export enum TooltipOrientation {
+  Top = 'top',
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
+}

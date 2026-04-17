@@ -1,0 +1,131 @@
+$text-secondary: var(--bocc-text-secondary);
+$brand-primary-hover: var(--bocc-brand-primary-hover);
+$surface-main: var(--bocc-surface-main);
+$border-hover: var(--bocc-border-hover);
+$surface-active: var(--bocc-surface-active);
+$color-black: var(--class-black);
+$shadow-sm: var(--bocc-shadow-sm);
+
+.bocc-input-select-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  color: $text-secondary;
+  position: relative;
+  user-select: none;
+
+  .bocc-input-select-label {
+    font-weight: 600;
+    line-height: 1.125rem;
+    letter-spacing: 0.0525rem;
+  }
+
+  .bocc-custom-select {
+    position: relative;
+    height: 2.5rem;
+    min-width: 4rem;
+    max-width: 4.5rem;
+
+    .bocc-select-text {
+      font-family: Poppins;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.3125rem;
+      letter-spacing: 0.04375rem;
+    }
+
+    &.is-open {
+      .bocc-select-trigger {
+        border-color: $brand-primary-hover;
+        background-color: $surface-main;
+      }
+
+      .bocc-select-arrow {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  .bocc-select-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0 1.75rem 0 0.75rem;
+    background-color: $surface-main;
+    border: 0.0625rem solid $border-hover;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 400;
+    color: $text-secondary;
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: $brand-primary-hover;
+    }
+
+    .bocc-select-arrow {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: #555F83;
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+  }
+
+  .bocc-select-options {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    width: 100%;
+    min-width: 4rem;
+    margin: 0;
+    padding: 0.5rem 0;
+    background-color: $surface-main;
+    border: 0.0625rem solid $border-hover;
+    border-radius: 0.25rem;
+    box-shadow: $shadow-sm;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    font-family: Poppins;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3125rem;
+    letter-spacing: 0.04375rem;
+  }
+
+  .bocc-select-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 400;
+    color: $text-secondary;
+
+    &:hover,
+    &.is-selected {
+      background-color: $surface-active;
+      color: $color-black;
+
+    }
+  }
+}

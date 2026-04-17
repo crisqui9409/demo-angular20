@@ -1,59 +1,107 @@
 @font-face {
-    font-family: "jost-bold";
-    src: url("/fonts/Jost/static/Jost-Bold.woff2");
-    font-display: swap;
-}
-
-@font-face {
-  font-family: 'jost-semibold';
-  src: url('/fonts/Jost/static/Jost-SemiBold.woff2');
+  font-family: 'poppins-thin';
+  src: url('/fonts/Poppins/Poppins-Thin.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jost-medium';
-  src: url('/fonts/Jost/static/Jost-Medium.woff2');
+  font-family: 'poppins-thin-italic';
+  src: url('/fonts/Poppins/Poppins-ThinItalic.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jost-regular';
-  src: url('/fonts/Jost/static/Jost-Regular.woff2');
+  font-family: 'poppins-extralight';
+  src: url('/fonts/Poppins/Poppins-ExtraLight.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-medium';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.woff2');
+  font-family: 'poppins-extralight-italic';
+  src: url('/fonts/Poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-italic';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Italic.woff2');
+  font-family: 'poppins-light';
+  src: url('/fonts/Poppins/Poppins-Light.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-ultralight';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-ExtraLight.woff2');
+  font-family: 'poppins-light-italic';
+  src: url('/fonts/Poppins/Poppins-LightItalic.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-regular';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.woff2');
+  font-family: 'poppins-regular';
+  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-bold';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Bold.woff2');
+  font-family: 'poppins-italic';
+  src: url('/fonts/Poppins/Poppins-Italic.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'jakarta-semibold';
-  src: url('/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.woff2');
+  font-family: 'poppins-medium';
+  src: url('/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-medium-italic';
+  src: url('/fonts/Poppins/Poppins-MediumItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-semibold';
+  src: url('/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-semibold-italic';
+  src: url('/fonts/Poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-bold';
+  src: url('/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-bold-italic';
+  src: url('/fonts/Poppins/Poppins-BoldItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-extrabold';
+  src: url('/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-extrabold-italic';
+  src: url('/fonts/Poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-black';
+  src: url('/fonts/Poppins/Poppins-Black.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins-black-italic';
+  src: url('/fonts/Poppins/Poppins-BlackItalic.ttf') format('truetype');
   font-display: swap;
 }

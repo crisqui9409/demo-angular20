@@ -1,0 +1,101 @@
+$text-secondary: var(--bocc-text-secondary);
+$brand-primary: var(--bocc-brand-primary);
+$color-black: var(--class-black);
+$surface-canvas: var(--bocc-surface-canvas);
+$surface-active: var(--bocc-surface-active);
+
+.bocc-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  transition: width 0.3s ease;
+
+  &.is-collapsed {
+    width: fit-content;
+
+    .bocc-menu-item {
+      justify-content: center;
+      min-width: 2.5rem;
+
+      &-content {
+        gap: 0;
+        width: 1.4375rem;
+      }
+    }
+  }
+}
+
+.bocc-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 2.5rem;
+  min-width: 4.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  color: $text-secondary;
+  user-select: none;
+  outline: none;
+  border: none;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &-icon {
+    font-size: 1.875rem;
+    color: $brand-primary;
+  }
+
+  &-label {
+    color: $color-black;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  &-arrow {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover:not(.is-disabled) {
+    background-color: $surface-canvas;
+    color: $brand-primary;
+
+    .bocc-menu-item-arrow {
+      opacity: 1;
+      transform: translateX(0.125rem);
+    }
+  }
+
+  &.is-selected {
+    background-color: $surface-active;
+    color: $brand-primary;
+    font-weight: 600;
+
+    .bocc-menu-item-arrow {
+      opacity: 1;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 0.125rem $surface-active;
+  }
+}

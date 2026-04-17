@@ -1,7 +1,7 @@
 <div class="bocc-avatars">
   <div class="bocc-avatar-photo" [class.is-image]="!!imageUrl()" [class.is-placeholder]="!imageUrl()">
     @if (imageUrl()) {
-      <img [src]="imageUrl()" alt="Avatar" class="bocc-avatar-img" />
+      <img [src]="imageUrl()" [attr.alt]="'ES_AVATAR.IMAGE_ALT' | text: 'ES'" class="bocc-avatar-img" />
     } @else {
       <svg class="bocc-avatar-placeholder" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

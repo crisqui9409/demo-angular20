@@ -1,0 +1,73 @@
+$text-secondary: var(--bocc-text-secondary);
+$text-link: var(--bocc-text-link);
+$border-active: var(--bocc-border-active);
+$surface-active: var(--bocc-surface-active);
+
+.bocc-tabs {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  justify-items: center;
+
+
+  &-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.75rem;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    position: relative;
+    color: $text-secondary;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem;
+    letter-spacing: 0.05625rem;
+    transition: all 0.2s ease;
+    user-select: none;
+    padding: var(--Spacing-8, 0.5rem) 0.75rem;
+    outline: none;
+
+    &:hover:not(.is-active) {
+      color: $text-link;
+    }
+
+    &.is-active {
+      color: $text-link;
+      text-align: center;
+
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.125rem;
+      letter-spacing: 0.05625rem;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0 0 var(--Border-Radius-sm, 0.25rem) var(--Border-Radius-sm, 0.25rem);
+      border-right: 0.0625rem solid $border-active;
+      border-bottom: 0.0625rem solid $border-active;
+      border-left: 0.0625rem solid $border-active;
+
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 0.125rem $surface-active;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &-icon {
+    font-size: 1rem;
+  }
+
+  &-label {
+    white-space: nowrap;
+  }
+}

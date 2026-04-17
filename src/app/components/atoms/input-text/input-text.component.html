@@ -54,7 +54,7 @@
         class="pswrd-toggle"
         [class.is-disabled]="isDisable()"
         (click)="togglePswrdVisibility()"
-        aria-label="Mostrar u ocultar contraseña"
+        [attr.aria-label]="'ES_INPUT_TEXT.PSW_TOGGLE_LABEL' | text: 'ES'"
       >
         <img [src]="showPswrd() ? icon_OpenEye : icon_CloseEye" alt="" />
       </button>
@@ -63,7 +63,7 @@
 
   @if (showError() && errorMessage()) {
     <div class="error-row" role="alert" aria-live="polite">
-      <img [src]="icon_Error" alt="error" class="error-icon" width="14" height="14" aria-hidden="true" />
+      <img [src]="icon_Error" [attr.alt]="'ES_INPUT_TEXT.ERROR_ALT' | text: 'ES'" class="error-icon" width="14" height="14" aria-hidden="true" />
       <span class="error-message">{{ errorMessage() }}</span>
     </div>
   }

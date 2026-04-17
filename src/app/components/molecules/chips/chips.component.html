@@ -1,0 +1,19 @@
+<div [class]="'bocc-chip bocc-chip--' + size()" [class.is-removable]="removable()" [class.is-selected]="selected()"
+  [class.is-disabled]="disabled()">
+
+  @if (icon()) {
+  <bocc-master-icon class="bocc-chip-icon" [name]="icon()!"
+    [size]="size() === 'xs' ? '0.75rem' : size() === 's' ? '1rem' : '1.5rem'"
+    [color]="disabled() ? 'disable' : 'brand'">
+  </bocc-master-icon>
+  }
+
+  <span class="bocc-chip-label">{{ label() }}</span>
+
+  @if (removable()) {
+  <button type="button" class="bocc-chip-remove" (click)="onRemove($event)" [disabled]="disabled()" aria-label="Remove">
+    <bocc-master-icon class="bocc-chip-remove-icon" name="close"
+      [color]="disabled() ? 'disable' : 'default'"></bocc-master-icon>
+  </button>
+  }
+</div>

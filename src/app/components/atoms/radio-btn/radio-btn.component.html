@@ -1,0 +1,19 @@
+<div class="radio-btn" [class.error]="error()">
+  <label [for]="name() + '-' + value()" class="radio-container" [class.disabled]="disabled()">
+    <input
+      type="radio"
+      [id]="name() + '-' + value()"
+      [name]="name()"
+
+      [value]="value()"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      (change)="onChange($event)"
+    />
+    <span class="radiomark"></span>
+  </label>
+ 
+  @if (showSideText()) {
+    <p class="side-text" [class.disabled]="disabled()">{{ sideText() }}</p>
+  }
+</div>
