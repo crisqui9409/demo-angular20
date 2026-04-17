@@ -1,4 +1,5 @@
 import { Component, input, model, output } from '@angular/core';
+import { MasterIconComponent } from '../../atoms/master-icon/master-icon.component';
 
 /** Drives border color and feedback text. Maps directly to CSS status modifier classes. */
 export type SearchInputStatus = 'default' | 'success' | 'warning' | 'error';
@@ -6,16 +7,16 @@ export type SearchInputStatus = 'default' | 'success' | 'warning' | 'error';
 /**
  * Atomic search input aligned with the BOC Design System.
  *
- * Supports two-way value binding, custom icons via URL paths,
+ * Supports two-way value binding, dynamic icons via bocc-master-icon names,
  * four validation states, and a disabled mode.
  *
  * @example
- * <bocc-search-input label="Convenio" [(value)]="term" [showSearchIcon]="true" />
+ * <bocc-search-input label="Convenio" [(value)]="term" leftIconName="filter" />
  */
 @Component({
   selector: 'bocc-search-input',
   standalone: true,
-  imports: [],
+  imports: [MasterIconComponent],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss',
 })
@@ -30,12 +31,11 @@ export class SearchInputComponent {
   /** Validation message rendered below the input box. Visibility is tied to this value being non-empty. */
   feedbackMessage = input<string>('');
 
-  // Icons
-  // Pass a URL to override the built-in inline SVG; set the corresponding show flag to render it.
+  // Icons — pass a name from assets/icoins/ to render via bocc-master-icon.
 
-  /** Renders a decorative icon on the left side (non-interactive). */
-  showLeftIcon = input<boolean>(false);
-  leftIcon = input<string>('');
+  /** Icon name from assets/icoins/ to display on the left side (non-interactive).
+   *  Leave empty to hide the icon. */
+  leftIconName = input<string>('');
 
   /** Renders a clickable search button on the right side. */
   showSearchIcon = input<boolean>(true);

@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { MasterIconComponent } from '../master-icon/master-icon.component';
 
 /**
  * MenuClicComponent
@@ -13,6 +14,7 @@ import { Component, input, output } from '@angular/core';
 @Component({
   selector: 'bocc-menu-clic',
   standalone: true,
+  imports: [MasterIconComponent],
   templateUrl: './menu-clic.component.html',
   styleUrl: './menu-clic.component.scss',
 })
