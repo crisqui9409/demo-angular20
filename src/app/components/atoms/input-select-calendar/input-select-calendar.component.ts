@@ -1,5 +1,5 @@
 /**
- * UiInputSelectCalendarComponent – Angular 20 Standalone
+ * InputSelectCalendarComponent – Angular 20 Standalone
  * ─────────────────────────────────────────────────────────────────
  * Reusable calendar input component.
  * Supports both single-date selection and date-range selection.
@@ -13,11 +13,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
   HostListener,
-  Input,
-  Output,
   ViewChild,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
 } from '@angular/core';
 import { DEFAULT_CONST } from '../../../utils/global-strings';
 
@@ -67,22 +69,28 @@ export class InputSelectCalendarComponent {
   // ── Inputs ───────────────────────────────────────────────────────────────
 
   /** Label displayed above the calendar trigger field. */
-  @Input() label: string = 'Fecha';
+  readonly label = input<string>('Fecha');
 
   /** Placeholder shown when no date has been selected yet. */
-  @Input() placeholder: string = 'DD/MM/AAAA';
+  readonly placeholder = input<string>('DD/MM/AAAA');
 
   /** Determines whether the component works in single or range mode. */
-  @Input() mode: CalendarSelectionMode = 'single';
+  readonly mode = input<CalendarSelectionMode>('single');
 
   /** Disables the trigger and all user interaction when true. */
-  @Input() disabled = false;
+  readonly disabled = input<boolean>(false);
 
   /**
    * Optional minimum selectable date.
    * When defined, any date before this value is disabled.
    */
-  @Input() minDate: Date | null = null;
+  readonly minDate = input<Date | null>(null);
+
+  /**
+   * Optional date used to define the initial visible month and year.
+   * When provided, the calendar opens on this month/year.
+   */
+  readonly initialViewDate = input<Date | null>(null);
 
   // ── Outputs ──────────────────────────────────────────────────────────────
 
@@ -91,7 +99,7 @@ export class InputSelectCalendarComponent {
    * - In single mode: emits a Date or null
    * - In range mode: emits an object with startDate and endDate or null
    */
-  @Output() readonly valueChange = new EventEmitter<Date | CalendarValue | null>();
+  readonly valueChange = output<Date | CalendarValue | null>();
 
   // ── Static display data ──────────────────────────────────────────────────
 
@@ -117,65 +125,86 @@ export class InputSelectCalendarComponent {
   // ── Internal UI state ────────────────────────────────────────────────────
 
   /** Controls visibility of the calendar dropdown panel. */
-  isOpen = false;
+  readonly isOpen = signal(false);
 
   /** Currently displayed month in the calendar view. */
-  currentMonth = new Date().getMonth();
+  readonly currentMonth = signal(new Date().getMonth());
 
   /** Currently displayed year in the calendar view. */
-  currentYear = new Date().getFullYear();
+  readonly currentYear = signal(new Date().getFullYear());
 
   /** First selected date in single mode or range mode. */
-  selectedStartDate: Date | null = null;
+  readonly selectedStartDate = signal<Date | null>(null);
 
   /** Second selected date when the component is in range mode. */
-  selectedEndDate: Date | null = null;
+  readonly selectedEndDate = signal<Date | null>(null);
 
   /**
    * Temporary hovered date used to preview the range
    * before the user confirms the second date.
    */
-  hoverDate: Date | null = null;
+  readonly hoverDate = signal<Date | null>(null);
+
+  constructor() {
+    effect(() => {
+      const initialViewDate = this.initialViewDate();
+      const minDate = this.minDate();
+
+      const baseDate = initialViewDate ?? minDate ?? new Date();
+      const normalizedDate = this.startOfDay(baseDate);
+
+      this.currentMonth.set(normalizedDate.getMonth());
+      this.currentYear.set(normalizedDate.getFullYear());
+    });
+  }
 
   // ── Derived state ────────────────────────────────────────────────────────
 
   /**
    * Generates the list of selectable years for the year dropdown.
-   * Uses minDate year when available, otherwise starts five years in the past.
+   * Uses initialViewDate first, then minDate, otherwise starts from current year - 5.
    */
-  get years(): number[] {
-    const currentYear = new Date().getFullYear();
-    const baseYear = this.minDate ? this.minDate.getFullYear() : currentYear - 5;
+  readonly years = computed(() => {
+    const initialViewDate = this.initialViewDate();
+    const minDate = this.minDate();
+    const fallbackDate = this.startOfDay(new Date());
 
-    return Array.from({ length: 11 }, (_, index) => baseYear + index);
-  }
+    const baseDate = initialViewDate ?? minDate ?? fallbackDate;
+    const startYear = baseDate.getFullYear() - 5;
+
+    return Array.from({ length: 11 }, (_, index) => startYear + index);
+  });
 
   /**
    * Builds the 6-week calendar grid for the current month and year.
    */
-  get days(): CalendarDay[] {
-    return this.buildCalendarDays(this.currentYear, this.currentMonth);
-  }
+  readonly days = computed(() => {
+    return this.buildCalendarDays(this.currentYear(), this.currentMonth());
+  });
 
   /**
    * Formats the value shown in the trigger field.
    * Supports single-date and range display formats.
    */
-  get displayValue(): string {
-    if (this.mode === 'single') {
-      return this.selectedStartDate ? this.formatDate(this.selectedStartDate) : DEFAULT_CONST.EMPTY;
+  readonly displayValue = computed(() => {
+    const mode = this.mode();
+    const selectedStartDate = this.selectedStartDate();
+    const selectedEndDate = this.selectedEndDate();
+
+    if (mode === 'single') {
+      return selectedStartDate ? this.formatDate(selectedStartDate) : DEFAULT_CONST.EMPTY;
     }
 
-    if (this.selectedStartDate && this.selectedEndDate) {
-      return `${this.formatDate(this.selectedStartDate)} - ${this.formatDate(this.selectedEndDate)}`;
+    if (selectedStartDate && selectedEndDate) {
+      return `${this.formatDate(selectedStartDate)} - ${this.formatDate(selectedEndDate)}`;
     }
 
-    if (this.selectedStartDate) {
-      return `${this.formatDate(this.selectedStartDate)} -`;
+    if (selectedStartDate) {
+      return `${this.formatDate(selectedStartDate)} -`;
     }
 
     return DEFAULT_CONST.EMPTY;
-  }
+  });
 
   // ── Trigger and panel interactions ───────────────────────────────────────
 
@@ -184,19 +213,19 @@ export class InputSelectCalendarComponent {
    * Does nothing when the component is disabled.
    */
   toggleCalendar(): void {
-    if (this.disabled) {
+    if (this.disabled()) {
       return;
     }
 
-    this.isOpen = !this.isOpen;
+    this.isOpen.update((currentValue) => !currentValue);
   }
 
   /**
    * Closes the calendar panel and clears temporary hover preview state.
    */
   closeCalendar(): void {
-    this.isOpen = false;
-    this.hoverDate = null;
+    this.isOpen.set(false);
+    this.hoverDate.set(null);
   }
 
   // ── Header interactions ──────────────────────────────────────────────────
@@ -206,7 +235,7 @@ export class InputSelectCalendarComponent {
    */
   onMonthChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    this.currentMonth = Number(target.value);
+    this.currentMonth.set(Number(target.value));
   }
 
   /**
@@ -214,7 +243,7 @@ export class InputSelectCalendarComponent {
    */
   onYearChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    this.currentYear = Number(target.value);
+    this.currentYear.set(Number(target.value));
   }
 
   /**
@@ -222,13 +251,13 @@ export class InputSelectCalendarComponent {
    * Adjusts the year when moving back from January.
    */
   onPreviousMonth(): void {
-    if (this.currentMonth === 0) {
-      this.currentMonth = 11;
-      this.currentYear -= 1;
+    if (this.currentMonth() === 0) {
+      this.currentMonth.set(11);
+      this.currentYear.update((year) => year - 1);
       return;
     }
 
-    this.currentMonth -= 1;
+    this.currentMonth.update((month) => month - 1);
   }
 
   /**
@@ -236,13 +265,13 @@ export class InputSelectCalendarComponent {
    * Adjusts the year when moving forward from December.
    */
   onNextMonth(): void {
-    if (this.currentMonth === 11) {
-      this.currentMonth = 0;
-      this.currentYear += 1;
+    if (this.currentMonth() === 11) {
+      this.currentMonth.set(0);
+      this.currentYear.update((year) => year + 1);
       return;
     }
 
-    this.currentMonth += 1;
+    this.currentMonth.update((month) => month + 1);
   }
 
   // ── Day interactions ─────────────────────────────────────────────────────
@@ -252,18 +281,18 @@ export class InputSelectCalendarComponent {
    * Only active in range mode after the first date has been selected.
    */
   onDayHover(day: CalendarDay): void {
-    if (this.mode !== 'range' || day.disabled || !this.selectedStartDate || this.selectedEndDate) {
+    if (this.mode() !== 'range' || day.disabled || !this.selectedStartDate() || this.selectedEndDate()) {
       return;
     }
 
-    this.hoverDate = day.date;
+    this.hoverDate.set(day.date);
   }
 
   /**
    * Clears the temporary hover state used for range preview.
    */
   onDayLeave(): void {
-    this.hoverDate = null;
+    this.hoverDate.set(null);
   }
 
   /**
@@ -276,30 +305,32 @@ export class InputSelectCalendarComponent {
       return;
     }
 
-    if (this.mode === 'single') {
-      this.selectedStartDate = this.cloneDate(day.date);
-      this.selectedEndDate = null;
+    if (this.mode() === 'single') {
+      this.selectedStartDate.set(this.cloneDate(day.date));
+      this.selectedEndDate.set(null);
       this.emitValue();
       this.closeCalendar();
       return;
     }
 
-    if (!this.selectedStartDate || (this.selectedStartDate && this.selectedEndDate)) {
-      this.selectedStartDate = this.cloneDate(day.date);
-      this.selectedEndDate = null;
-      this.hoverDate = null;
+    if (!this.selectedStartDate() || (this.selectedStartDate() && this.selectedEndDate())) {
+      this.selectedStartDate.set(this.cloneDate(day.date));
+      this.selectedEndDate.set(null);
+      this.hoverDate.set(null);
       this.emitValue();
       return;
     }
 
-    if (this.isBefore(day.date, this.selectedStartDate)) {
-      this.selectedEndDate = this.cloneDate(this.selectedStartDate);
-      this.selectedStartDate = this.cloneDate(day.date);
+    const selectedStartDate = this.selectedStartDate();
+
+    if (selectedStartDate && this.isBefore(day.date, selectedStartDate)) {
+      this.selectedEndDate.set(this.cloneDate(selectedStartDate));
+      this.selectedStartDate.set(this.cloneDate(day.date));
       this.emitValue();
       return;
     }
 
-    this.selectedEndDate = this.cloneDate(day.date);
+    this.selectedEndDate.set(this.cloneDate(day.date));
     this.emitValue();
     this.closeCalendar();
   }
@@ -308,9 +339,9 @@ export class InputSelectCalendarComponent {
    * Clears the current selection and emits a null value.
    */
   clearSelection(): void {
-    this.selectedStartDate = null;
-    this.selectedEndDate = null;
-    this.hoverDate = null;
+    this.selectedStartDate.set(null);
+    this.selectedEndDate.set(null);
+    this.hoverDate.set(null);
     this.emitValue();
   }
 
@@ -365,7 +396,7 @@ export class InputSelectCalendarComponent {
    */
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.isOpen || !this.calendarWrapper) {
+    if (!this.isOpen() || !this.calendarWrapper) {
       return;
     }
 
@@ -384,19 +415,22 @@ export class InputSelectCalendarComponent {
    * Output format depends on the current selection mode.
    */
   private emitValue(): void {
-    if (!this.selectedStartDate && !this.selectedEndDate) {
+    const selectedStartDate = this.selectedStartDate();
+    const selectedEndDate = this.selectedEndDate();
+
+    if (!selectedStartDate && !selectedEndDate) {
       this.valueChange.emit(null);
       return;
     }
 
-    if (this.mode === 'single') {
-      this.valueChange.emit(this.selectedStartDate ? this.cloneDate(this.selectedStartDate) : null);
+    if (this.mode() === 'single') {
+      this.valueChange.emit(selectedStartDate ? this.cloneDate(selectedStartDate) : null);
       return;
     }
 
     this.valueChange.emit({
-      startDate: this.selectedStartDate ? this.cloneDate(this.selectedStartDate) : null,
-      endDate: this.selectedEndDate ? this.cloneDate(this.selectedEndDate) : null,
+      startDate: selectedStartDate ? this.cloneDate(selectedStartDate) : null,
+      endDate: selectedEndDate ? this.cloneDate(selectedEndDate) : null,
     });
   }
 
@@ -418,25 +452,26 @@ export class InputSelectCalendarComponent {
       const normalizedDate = this.startOfDay(currentDate);
       const monthOffset = this.getMonthOffset(normalizedDate, year, month);
 
+      const selectedStartDate = this.selectedStartDate();
+      const selectedEndDate = this.selectedEndDate();
+      const hoverDate = this.hoverDate();
+      const mode = this.mode();
+
       const effectiveRangeEnd =
-        this.mode === 'range' && this.selectedStartDate && !this.selectedEndDate && this.hoverDate
-          ? this.hoverDate
-          : this.selectedEndDate;
+        mode === 'range' && selectedStartDate && !selectedEndDate && hoverDate ? hoverDate : selectedEndDate;
 
       const isSelectedSingle =
-        this.mode === 'single' && this.selectedStartDate && this.isSameDate(normalizedDate, this.selectedStartDate);
+        mode === 'single' && selectedStartDate && this.isSameDate(normalizedDate, selectedStartDate);
 
-      const isRangeStart =
-        this.mode === 'range' && this.selectedStartDate && this.isSameDate(normalizedDate, this.selectedStartDate);
+      const isRangeStart = mode === 'range' && selectedStartDate && this.isSameDate(normalizedDate, selectedStartDate);
 
-      const isRangeEnd =
-        this.mode === 'range' && effectiveRangeEnd && this.isSameDate(normalizedDate, effectiveRangeEnd);
+      const isRangeEnd = mode === 'range' && effectiveRangeEnd && this.isSameDate(normalizedDate, effectiveRangeEnd);
 
       const isInRange =
-        this.mode === 'range' &&
-        this.selectedStartDate &&
+        mode === 'range' &&
+        selectedStartDate &&
         effectiveRangeEnd &&
-        this.isDateBetween(normalizedDate, this.selectedStartDate, effectiveRangeEnd);
+        this.isDateBetween(normalizedDate, selectedStartDate, effectiveRangeEnd);
 
       return {
         date: normalizedDate,
@@ -545,12 +580,16 @@ export class InputSelectCalendarComponent {
    * Also respects minDate when provided.
    */
   private isDateDisabled(date: Date): boolean {
-    if (this.mode === 'range' && this.selectedStartDate && !this.selectedEndDate) {
-      return this.isBefore(date, this.selectedStartDate);
+    const selectedStartDate = this.selectedStartDate();
+    const selectedEndDate = this.selectedEndDate();
+    const minDate = this.minDate();
+
+    if (this.mode() === 'range' && selectedStartDate && !selectedEndDate) {
+      return this.isBefore(date, selectedStartDate);
     }
 
-    if (this.minDate) {
-      return this.isBefore(date, this.minDate);
+    if (minDate) {
+      return this.isBefore(date, minDate);
     }
 
     return false;

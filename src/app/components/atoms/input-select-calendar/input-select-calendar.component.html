@@ -1,16 +1,16 @@
 <div class="calendar-field" #calendarWrapper>
 
-	<label class="calendar-field__label">{{ label }}</label>
+	<label class="calendar-field__label">{{ label() }}</label>
 
-	<button type="button" class="calendar-field__trigger" [disabled]="disabled" (click)="toggleCalendar()">
-		<span class="calendar-field__value" [class.calendar-field__value--placeholder]="!displayValue">
-			{{ displayValue || placeholder }}
+	<button type="button" class="calendar-field__trigger" [disabled]="disabled()" (click)="toggleCalendar()">
+		<span class="calendar-field__value" [class.calendar-field__value--placeholder]="!displayValue()">
+			{{ displayValue() || placeholder() }}
 		</span>
 
 		<span class="calendar-field__icon" aria-hidden="true">📅</span>
 	</button>
 
-	@if (isOpen) {
+	@if (isOpen()) {
 	<div class="calendar" role="dialog" aria-modal="false">
 
 		<div class="calendar__header">
@@ -21,14 +21,14 @@
 
 			<div class="calendar__selectors">
 
-				<select class="calendar__select" [value]="currentMonth" (change)="onMonthChange($event)">
+				<select class="calendar__select" [value]="currentMonth()" (change)="onMonthChange($event)">
 					@for (monthName of monthNames; track monthName; let monthIndex = $index) {
 					<option [value]="monthIndex">{{ monthName }}</option>
 					}
 				</select>
 
-				<select class="calendar__select" [value]="currentYear" (change)="onYearChange($event)">
-					@for (year of years; track year) {
+				<select class="calendar__select" [value]="currentYear()" (change)="onYearChange($event)">
+					@for (year of years(); track year) {
 					<option [value]="year">{{ year }}</option>
 					}
 				</select>
@@ -48,7 +48,7 @@
 		</div>
 
 		<div class="calendar__grid">
-			@for (day of days; track trackByDay($index, day)) {
+			@for (day of days(); track trackByDay($index, day)) {
 			<button type="button" [class]="getDayButtonClass(day)" [disabled]="day.disabled" (click)="onDaySelect(day)"
 				(mouseenter)="onDayHover(day)" (mouseleave)="onDayLeave()">
 				{{ day.dayNumber }}
