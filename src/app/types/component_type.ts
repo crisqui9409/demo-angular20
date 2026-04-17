@@ -16,3 +16,14 @@ export enum TooltipOrientation {
   Left = 'left',
   Right = 'right',
 }
+
+// Master-icon component types
+export type MasterIconColor =
+  | 'default'
+  | 'brand'
+  | 'disable'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+  | (string & {});

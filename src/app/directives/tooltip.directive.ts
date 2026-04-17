@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { TooltipComponent } from '../components/atoms/tooltip/tooltip.component';
 import { TooltipOrientation } from '../types/component_type';
+import { DEFAULT_CONST } from '../utils/global-strings';
 
 @Directive({
   selector: '[boccTooltip]',
@@ -18,10 +19,10 @@ import { TooltipOrientation } from '../types/component_type';
 })
 export class TooltipDirective implements OnDestroy {
   /** Tooltip message text */
-  @Input('boccTooltip') message: string = '';
+  @Input('boccTooltip') message: string = DEFAULT_CONST.EMPTY;
 
   /** Orientation of the tooltip (top, bottom, left, right) */
-  @Input() orientation: TooltipOrientation = TooltipOrientation.Bottom;
+  @Input() orientation: TooltipOrientation | string = TooltipOrientation.Bottom;
 
   private componentRef: ComponentRef<TooltipComponent> | null = null;
 
@@ -51,14 +52,6 @@ export class TooltipDirective implements OnDestroy {
     this.hideTooltip();
   }
 
-  @HostListener('window:scroll')
-  @HostListener('window:resize')
-  onWindowChange(): void {
-    if (this.componentRef) {
-      this.updatePosition();
-    }
-  }
-
   private showTooltip(): void {
     if (!this.componentRef) {
       // 1. Create the component dynamically at the root level
@@ -66,9 +59,10 @@ export class TooltipDirective implements OnDestroy {
         environmentInjector: this.injector
       });
 
-      // 2. Pass inputs
+      // 2. Pass inputs - Notice we now pass the anchorElement
       this.componentRef.setInput('message', this.message);
       this.componentRef.setInput('orientation', this.orientation);
+      this.componentRef.setInput('anchorElement', this.elementRef.nativeElement);
       this.componentRef.setInput('isVisible', true);
 
       // 3. Attach to application (for change detection to work)
@@ -77,54 +71,7 @@ export class TooltipDirective implements OnDestroy {
       // 4. Append to body
       const domElem = (this.componentRef.hostView as any).rootNodes[0] as HTMLElement;
       document.body.appendChild(domElem);
-
-      // 5. Calculate and set initial position
-      this.updatePosition();
     }
-  }
-
-  private updatePosition(): void {
-    if (!this.componentRef) return;
-
-    // FIND CORE ELEMENT: Target the icon specifically within the container
-    const host = this.elementRef.nativeElement as HTMLElement;
-    const iconChild = host.querySelector('img, svg, i');
-    const targetElement = iconChild || host;
-    
-    // getBoundingClientRect is relative to viewport
-    const rect = targetElement.getBoundingClientRect();
-    
-    // We use ABSOLUTE positioning relative to document.body
-    // So we must add window scroll to the viewport-relative rect
-    const scrollX = window.scrollX || document.documentElement.scrollLeft;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-    let x = 0;
-    let y = 0;
-
-    // Anchor points based on orientation (0px gap relative to the edge)
-    switch (this.orientation) {
-      case 'top':
-        x = rect.left + rect.width / 2 + scrollX;
-        y = rect.top + scrollY;
-        break;
-      case 'bottom':
-        x = rect.left + rect.width / 2 + scrollX;
-        y = rect.bottom + scrollY;
-        break;
-      case 'left':
-        x = rect.left + scrollX;
-        y = rect.top + rect.height / 2 + scrollY;
-        break;
-      case 'right':
-        x = rect.right + scrollX;
-        y = rect.top + rect.height / 2 + scrollY;
-        break;
-    }
-
-    // Update signals in the component
-    this.componentRef.instance.x.set(x);
-    this.componentRef.instance.y.set(y);
   }
 
   private hideTooltip(): void {
@@ -140,3 +87,4 @@ export class TooltipDirective implements OnDestroy {
     this.hideTooltip();
   }
 }
+

@@ -28,3 +28,9 @@ export const ES_AVATAR = {
     },
     IMAGE_ALT: 'Avatar'
 }
+
+export const ES_TOOLTIP_INFO = {
+    DEFAULT_ICON: 'Info',
+    ICON_SRC: 'assets/icons/Info.svg',
+    DEFAULT_SIZE: '20px'
+}

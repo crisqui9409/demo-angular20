@@ -30,12 +30,42 @@ describe('PaginationDefaultComponent', () => {
     expect(navTexts[1].nativeElement.textContent).toContain('Siguiente');
   });
 
-  it('should display 3 pages at the start when on page 1', () => {
+  it('should display all pages when totalPages <= 5', () => {
+    fixture.componentRef.setInput('totalPages', 4);
+    fixture.detectChanges();
     const pageButtons = fixture.debugElement.queryAll(By.css('.bocc-pagination-number'));
     expect(pageButtons.length).toBe(4);
+    expect(pageButtons[3].nativeElement.textContent.trim()).toBe('4');
+  });
+
+  it('should display end ellipsis when on page 1 of many', () => {
+    fixture.componentRef.setInput('currentPage', 1);
+    fixture.componentRef.setInput('totalPages', 15);
+    fixture.detectChanges();
+    const pageButtons = fixture.debugElement.queryAll(By.css('.bocc-pagination-number'));
+    expect(pageButtons.length).toBe(4); // 1, 2, 3 ... 15
+    expect(fixture.debugElement.query(By.css('.bocc-pagination-ellipsis'))).toBeTruthy();
+  });
+
+  it('should display start ellipsis when near the end', () => {
+    fixture.componentRef.setInput('currentPage', 15);
+    fixture.componentRef.setInput('totalPages', 15);
+    fixture.detectChanges();
+    const pageButtons = fixture.debugElement.queryAll(By.css('.bocc-pagination-number'));
+    expect(pageButtons.length).toBe(4); // 1 ... 13, 14, 15
     expect(pageButtons[0].nativeElement.textContent.trim()).toBe('1');
-    expect(pageButtons[1].nativeElement.textContent.trim()).toBe('2');
-    expect(pageButtons[2].nativeElement.textContent.trim()).toBe('3');
+    expect(pageButtons[1].nativeElement.textContent.trim()).toBe('13');
+    expect(fixture.debugElement.query(By.css('.bocc-pagination-ellipsis'))).toBeTruthy();
+  });
+
+  it('should display both start and end ellipsis when in the middle', () => {
+    fixture.componentRef.setInput('currentPage', 7);
+    fixture.componentRef.setInput('totalPages', 15);
+    fixture.detectChanges();
+    const pageButtons = fixture.debugElement.queryAll(By.css('.bocc-pagination-number'));
+    expect(pageButtons.length).toBe(3); // 1 ... 7 ... 15
+    const ellipsis = fixture.debugElement.queryAll(By.css('.bocc-pagination-ellipsis'));
+    expect(ellipsis.length).toBe(2);
   });
 
   describe('Dropdown functionality', () => {

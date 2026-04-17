@@ -1,1 +1,87 @@
+<h1 style="padding: 20px; background: #f0f0f0; border-bottom: 2px solid #ccc">BOC Design System Playground</h1>
+<p style="padding: 0 20px; color: #666">Si ves este mensaje, la aplicación ha cargado correctamente.</p>
+
+<div style="padding: 20px; display: flex; gap: 40px; flex-wrap: wrap; border: 2px solid red; margin: 20px">
+  <div>
+    <p>Bottom (Default):</p>
+    <bocc-tooltip-info message="Este es un tooltip de información básico."></bocc-tooltip-info>
+  </div>
+
+  <div>
+    <p>Right:</p>
+    <bocc-tooltip-info message="Ayuda contextual a la derecha." orientation="right"> </bocc-tooltip-info>
+  </div>
+
+  <div>
+    <p>Top:</p>
+    <bocc-tooltip-info message="Explicación detallada en la parte superior." orientation="top"> </bocc-tooltip-info>
+  </div>
+</div>
+
+<div
+  style="
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #666;
+    margin: 40px 20px;
+    border-radius: 8px;
+    background: #fafafa;
+  "
+>
+  <div style="text-align: center">
+    <p style="margin-bottom: 15px; font-weight: bold">Centro del Viewport (Bottom):</p>
+    <div style="display: flex; justify-content: center">
+      <bocc-tooltip-info message="Este tooltip está centrado y debería aparecer abajo por defecto."></bocc-tooltip-info>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
+
+<div style="padding: 20px; border-top: 1px solid #eee; margin-top: 40px">
+  <h2>Master Icon Verification</h2>
+
+  <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px">
+    <div style="text-align: center">
+      <p style="font-size: 12px">Default (24px)</p>
+      <bocc-master-icon name="burger"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Brand (32px)</p>
+      <bocc-master-icon name="icon-search" size="32px" color="brand"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Success (48px)</p>
+      <bocc-master-icon name="calendar" size="48px" color="success"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Warning</p>
+      <bocc-master-icon name="Warning" color="warning"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Error</p>
+      <bocc-master-icon name="block-stop" color="error"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Info</p>
+      <bocc-master-icon name="chevron-down" color="info"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">Custom (Navy)</p>
+      <bocc-master-icon name="Warning" color="navy"></bocc-master-icon>
+    </div>
+
+    <div style="text-align: center">
+      <p style="font-size: 12px">No Mask (Multi-color)</p>
+      <bocc-master-icon name="logo_boc" [useMask]="false" size="100px"></bocc-master-icon>
+    </div>
+  </div>
+</div>

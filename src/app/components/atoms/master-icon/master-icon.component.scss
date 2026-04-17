@@ -1,6 +1,10 @@
 $text-primary: var(--bocc-text-primary);
 $brand-primary: var(--bocc-brand-primary);
 $text-disabled: var(--bocc-text-disabled);
+$status-success: var(--bocc-status-success);
+$status-error: var(--bocc-status-error);
+$status-warning: var(--bocc-status-warning);
+$status-info: var(--bocc-status-info);
 
 .bocc-master-icon {
   display: inline-block;
@@ -26,5 +30,26 @@ $text-disabled: var(--bocc-text-disabled);
 
   &--disable {
     background-color: $text-disabled;
+  }
+  &--success {
+    background-color: $status-success;
+  }
+  &--warning {
+    background-color: $status-warning;
+  }
+  &--error {
+    background-color: $status-error;
+  }
+  &--info {
+    background-color: $status-info;
+  }
+  &--no-mask {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background-color: transparent !important;
+    background-image: var(--icon-path);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }

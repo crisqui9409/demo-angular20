@@ -1,0 +1,24 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-info-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  outline: none;
+
+  .info-icon {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+    cursor: help;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
