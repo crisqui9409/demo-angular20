@@ -1,0 +1,72 @@
+$bg-disabled:       var(--bocc-text-disabled);
+$bg-text-disabled:  var(--bocc-surface-disabled);
+
+
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  height: auto;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  background: var(--bocc-brand-primary);
+  color: var(--class-white);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 129, 255, 0.2);
+
+  &:hover:not(:disabled) {
+    background: var(--bocc-brand-primary-hover);
+    transform: translateY(-0.0625rem);
+  }
+}
+
+.btn-secondary {
+  background: var(--class-white);
+  color: var(--bocc-brand-primary);
+  border: 0.0625rem solid var(--bocc-brand-primary);
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 129, 255, 0.05);
+  }
+}
+
+.btn-inactive-primary,
+.btn-inactive {
+  background: $bg-text-disabled;
+  color: $bg-disabled;
+  box-shadow: none;
+}
+
+.btn-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

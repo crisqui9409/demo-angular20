@@ -1,0 +1,119 @@
+$bg-white:    var(--class-white);
+$border-gray: var(--bocc-surface-disabled);
+$txt-gray: var(--bocc-text-bold);
+$sub-txt-gray: var(--bocc-text-secondary);
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.875rem 1rem;
+  background: $bg-white;
+  border: none;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: $border-gray;
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid rgba(0, 129, 255, 0.2);
+    outline-offset: 0.0625rem;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &--active {
+    background: transparent;
+  }
+
+  &--selected {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &--disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  &__label {
+    color: $txt-gray;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__subtitle {
+    color: $sub-txt-gray;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    display: inline-block;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    &--start {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
+
+    &--end {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}

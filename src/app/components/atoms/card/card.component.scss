@@ -1,0 +1,51 @@
+$bg-white:    var(--class-white);
+$border-gray: var(--bocc-surface-disabled);
+
+:host {
+  display: block;
+}
+
+.card {
+  display: block;
+  width: 100%;
+
+  
+  background: $bg-white;
+
+  border: 0.0625rem solid $border-gray;
+
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+
+  &--full-height {
+    height: 100%;
+  }
+
+  &--padding-none {
+    padding: 0;
+  }
+
+  &--padding-sm {
+    padding: 0.75rem;
+  }
+
+  &--padding-md {
+    padding: 1rem;
+  }
+
+  &--padding-lg {
+    padding: 1.5rem;
+  }
+
+  &--radius-sm {
+    border-radius: 0.5rem;
+  }
+
+  &--radius-md {
+    border-radius: 0.75rem;
+  }
+
+  &--radius-lg {
+    border-radius: 1rem;
+  }
+}
