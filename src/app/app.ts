@@ -6,7 +6,7 @@ import { MasterIconComponent } from './components/atoms/master-icon/master-icon.
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TooltipInfoComponent, MasterIconComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

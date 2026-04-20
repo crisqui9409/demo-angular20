@@ -6,6 +6,9 @@
  *
  * @author  : Cristian Quintana / Contact & Business IT
  * @version : 1.0 – 2026/04/17
+ *
+ * @example
+ * <bocc-tooltip-info message="Más información aquí" orientation="right"></bocc-tooltip-info>
  * ─────────────────────────────────────────────────────────────────
  */
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';

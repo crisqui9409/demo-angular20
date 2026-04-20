@@ -3,8 +3,12 @@
  * @author Sebastian Barreto / Contact & Business IT
  * @version 1.0, 2026/04/15 – Initial creation
  *
+ * @author Cristian Quintana / Contact & Business IT
+ * @version 1.1, 2026/04/20 – Add color input
+ *
  * @example
- * <bocc-master-icon name="burger" size="24px" color="brand"></bocc-master-icon>
+ * <bocc-master-icon name="logo_boc" [useMask]="false" size="100px"></bocc-master-icon>
+ * <bocc-master-icon name="icon-search" size="32px" color="brand"></bocc-master-icon>
  */
 import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 import { MasterIconColor } from '../../../types/component_type';

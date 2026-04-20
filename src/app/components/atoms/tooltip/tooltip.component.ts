@@ -1,3 +1,13 @@
+/**
+ * Component to display a floating tooltip message.
+ * Supports collision detection and dynamic orientation.
+ *
+ * @author  : Cristian Quintana / Contact & Business IT
+ * @version : 1.0 – 2026/04/17
+ *
+ * @example
+ * <bocc-tooltip message="Ayuda" orientation="top" [isVisible]="true"></bocc-tooltip>
+ */
 import { 
   Component, 
   input, 
