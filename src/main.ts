@@ -6,7 +6,7 @@ async function filterAvailableRemotes(remotes: Record<string, string>) {
 
   for (const [key, url] of Object.entries(remotes)) {
     try {
-      await import(/* @vire-ignore */ url);
+      await import(/* @vite-ignore */ url);
       available[key] = url;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {

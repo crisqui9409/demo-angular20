@@ -1,11 +1,14 @@
 /**
  * AvatarComponent – Angular 20 Standalone
  * ─────────────────────────────────────────────────────────────────
- * Avatar atom. Displays a user's profile image or a placeholder,
- * and an expandable profile panel with role and name.
+ * Component to display a user profile image with a title and subtitle.
+ * Supports expanded and collapsed states.
  *
  * @author  : Cristian Quintana / Contact & Business IT
- * @version : 1.1 – 2026/04/15
+ * @version : 1.0 – 2026/04/17
+ *
+ * @example
+ * <bocc-avatar image="assets/img/avatar.png" titleText="Juan Perez" subtitleText="Admin"></bocc-avatar>
  * ─────────────────────────────────────────────────────────────────
  */
 import { Component, input } from '@angular/core';

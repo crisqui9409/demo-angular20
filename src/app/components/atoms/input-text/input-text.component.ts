@@ -3,6 +3,8 @@
  * @author Cristian Quintana / Contact & Business IT
  * @version 2.0, 2026/04/13 – Migrated to Angular 20 standalone + signals
  *
+ * @example
+ * <bocc-input-text title="Nombre" placeholder="Ingrese nombre" [(valueInput)]="user.name"></bocc-input-text>
  */
 import {
   Component,

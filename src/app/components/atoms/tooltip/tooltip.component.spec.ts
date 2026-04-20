@@ -22,10 +22,11 @@ describe('TooltipComponent', () => {
   it('should have default values', () => {
     expect(component.message()).toBe('');
     expect(component.orientation()).toBe('bottom');
-    expect(component.x()).toBe(0);
-    expect(component.y()).toBe(0);
+    expect(component.x()).toBeNull();
+    expect(component.y()).toBeNull();
     expect(component.isVisible()).toBeFalse();
   });
+
 
   describe('Visibility', () => {
     it('should show the tooltip when isVisible is true', () => {
@@ -86,6 +87,59 @@ describe('TooltipComponent', () => {
       const hostElement: HTMLElement = fixture.nativeElement;
       expect(hostElement.style.left).toBe('150px');
       expect(hostElement.style.top).toBe('200px');
+    });
+  });
+
+  describe('Collision Detection and Auto-positioning', () => {
+    let anchor: HTMLElement;
+
+    beforeEach(() => {
+      anchor = document.createElement('div');
+      anchor.style.position = 'absolute';
+      anchor.style.width = '20px';
+      anchor.style.height = '20px';
+      document.body.appendChild(anchor);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(anchor);
+    });
+
+    it('should flip from bottom to top when hitting the bottom of the viewport', () => {
+      // Position anchor at the bottom of the screen
+      const viewportHeight = window.innerHeight;
+      anchor.style.top = (viewportHeight - 30) + 'px';
+      anchor.style.left = '500px';
+
+      fixture.componentRef.setInput('anchorElement', anchor);
+      fixture.componentRef.setInput('orientation', 'bottom');
+      fixture.componentRef.setInput('isVisible', true);
+      
+      // We need to trigger the calculation manually or wait for effect
+      fixture.detectChanges();
+
+      const hostElement: HTMLElement = fixture.nativeElement;
+      expect(hostElement.classList.contains('orientation-top')).toBeTrue();
+    });
+
+    it('should shift horizontally and calculate arrowShift when near left edge', () => {
+      // Position anchor at the left edge
+      anchor.style.top = '500px';
+      anchor.style.left = '10px';
+
+      fixture.componentRef.setInput('anchorElement', anchor);
+      fixture.componentRef.setInput('orientation', 'bottom');
+      fixture.componentRef.setInput('isVisible', true);
+      
+      fixture.detectChanges();
+
+      const hostElement: HTMLElement = fixture.nativeElement;
+      
+      // Tooltip is 240px wide. Center is at 10 + 10 = 20px.
+      // Left edge would be 20 - 120 = -100px.
+      // Shift should be at least 100 + 16 (padding) = 116px.
+      expect(component.arrowShiftX()).toBeLessThan(0); // It shifted right, so arrow must shift left relative to bubble
+      expect(hostElement.style.getPropertyValue('--tooltip-arrow-shift-x')).toBeTruthy();
     });
   });
 });

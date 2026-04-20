@@ -1,5 +1,6 @@
 <div class="bocc-master-icon" 
-     [class]="'bocc-master-icon--' + color()" 
+     [class.bocc-master-icon--no-mask]="!useMask()"
+     [class]="colorClass()"
      [style.width]="size()" 
      [style.height]="size()"
      [style.--icon-path]="'url(' + iconPath() + ')'" 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TooltipInfoComponent } from './components/molecules/tooltip-info/tooltip-info.component';
+import { MasterIconComponent } from './components/atoms/master-icon/master-icon.component';
 
 @Component({
   selector: 'app-root',
