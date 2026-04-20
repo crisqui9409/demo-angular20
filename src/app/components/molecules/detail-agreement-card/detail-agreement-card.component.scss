@@ -1,0 +1,132 @@
+$surface-canvas: var(--bocc-surface-canvas);
+$border-default: var(--bocc-border-default);
+$border-subtle: var(--bocc-border-subtle);
+$text-secondary: var(--bocc-text-secondary);
+$text-tertiary: var(--bocc-text-tertiary);
+$brand-secondary: var(--bocc-brand-secondary);
+$shadow-sm: var(--bocc-shadow-sm);
+
+.agreement-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $surface-canvas;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  width: 22.5rem;
+
+  &__element {
+    border-bottom: 0.063rem solid $border-default;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s ease;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    &.is-expanded {
+      // styles for expanded element if needed
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+    height: 2rem;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      flex: 1;
+    }
+
+    &--toggle {
+      cursor: pointer;
+      justify-content: space-between;
+      user-select: none;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $text-secondary;
+      margin: 0;
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    color: $brand-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__arrow {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #555f83; // User specific color
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.is-rotated {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 0.625rem;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    label {
+      font-size: 0.75rem;
+      color: $text-secondary;
+      font-weight: 400;
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: $text-tertiary;
+      font-weight: 400;
+      word-break: break-word;
+    }
+
+    &--full {
+      grid-column: span 2;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

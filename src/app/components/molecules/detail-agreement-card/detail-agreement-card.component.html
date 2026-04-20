@@ -1,0 +1,80 @@
+<div class="agreement-card">
+  <div class="agreement-card__element">
+    <div class="agreement-card__title">
+      <bocc-master-icon class="agreement-card__icon" name="notebook" size="2rem" color="default"></bocc-master-icon>
+      <h3>Información general</h3>
+    </div>
+    <div class="agreement-card__body">
+      <div class="agreement-card__item">
+        <label>Zona</label>
+        <span>{{ zone() }}</span>
+      </div>
+      <div class="agreement-card__item">
+        <label>Canal</label>
+        <span>{{ channel() }}</span>
+      </div>
+      <div class="agreement-card__item">
+        <label>Segmento</label>
+        <span>{{ segment() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="agreement-card__element">
+    <div class="agreement-card__title">
+      <bocc-master-icon class="agreement-card__icon" name="credit-card" size="2rem" color="default"></bocc-master-icon>
+      <h3>Tipo de cartera</h3>
+    </div>
+    <div class="agreement-card__body">
+      <div class="agreement-card__item">
+        <label>Tipo Libranza</label>
+        <span>{{ payrollLoanType() }}</span>
+      </div>
+      <div class="agreement-card__item">
+        <label>Estado Cartera</label>
+        <span>{{ portfolioStatus() }}</span>
+      </div>
+      <div class="agreement-card__item">
+        <label>Cierre</label>
+        <span>{{ closing() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="agreement-card__element" [class.is-expanded]="isExpanded()">
+    <div class="agreement-card__title agreement-card__title--toggle" (click)="toggleExpanded()">
+      <div class="agreement-card__title-content">
+        <bocc-master-icon class="agreement-card__icon" name="user-card_id" size="2rem" color="default"></bocc-master-icon>
+        <h3>Datos de cliente</h3>
+      </div>
+      <bocc-master-icon 
+        class="agreement-card__arrow" 
+        [class.is-rotated]="isExpanded()"
+        name="arrow-1" 
+        size="1.5rem" 
+        color="default">
+      </bocc-master-icon>
+    </div>
+    
+    @if (isExpanded()) {
+      <div class="agreement-card__body">
+        <div class="agreement-card__item">
+          <label>Número cliente</label>
+          <span>{{ customerIdentification() }}</span>
+        </div>
+        <div class="agreement-card__item">
+          <label>Número de crédito</label>
+          <span>{{ creditNumber() }}</span>
+        </div>
+        <div class="agreement-card__item agreement-card__item--full">
+          <label>Nombre del cliente</label>
+          <span>{{ customerName() }}</span>
+        </div>
+        <div class="agreement-card__item agreement-card__item--full">
+          <label>NIT Convenio</label>
+          <span>{{ agreementNit() }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>
