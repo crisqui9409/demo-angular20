@@ -25,12 +25,12 @@ describe('MasterIconComponent', () => {
   it('should generate the correct icon path', () => {
     fixture.componentRef.setInput('name', 'calendar');
     fixture.detectChanges();
-    
-    expect(component.iconPath()).toBe('assets/icoins/calendar.svg');
-    
+
+    expect(component.iconPath()).toBe('assets/icons/calendar.svg');
+
     const iconElement = fixture.debugElement.query(By.css('.bocc-master-icon')).nativeElement;
     // Check that mask-image or the custom property includes the correct path
-    expect(iconElement.style.getPropertyValue('--icon-path')).toContain('assets/icoins/calendar.svg');
+    expect(iconElement.style.getPropertyValue('--icon-path')).toContain('assets/icons/calendar.svg');
   });
 
   it('should apply the correct size', () => {

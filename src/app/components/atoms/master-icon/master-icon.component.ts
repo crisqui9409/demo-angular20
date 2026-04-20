@@ -22,5 +22,5 @@ export class MasterIconComponent {
 
   public color = input<'default' | 'brand' | 'disable'>('default');
 
-  public iconPath = computed(() => `assets/icoins/${this.name()}.svg`);
+  public iconPath = computed(() => `assets/icons/${this.name()}.svg`);
 }
