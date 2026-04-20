@@ -17,3 +17,9 @@ export enum TooltipOrientation {
   Left = 'left',
   Right = 'right',
 }
+
+// Button component types
+/** Supported visual variants for the button. */
+export type ButtonVariant = 'btn-primary' | 'btn-secondary' | 'btn-gradient-blue';
+/** Final CSS class applied to the root button depending on current state. */
+export type ButtonResolvedClass = ButtonVariant | 'btn-inactive' | 'btn-inactive-primary';

@@ -1,10 +1,14 @@
 $bg-disabled:       var(--bocc-text-disabled);
 $bg-text-disabled:  var(--bocc-surface-disabled);
+$border-gradient-btn: var(--bocc-border-hover);
+$bg-gradient-btn: var(--bocc-gradient-primary);
+$text-color-gradient: var(--bocc-text-on-brand);
 
 
 :host {
   display: inline-block;
   width: 100%;
+  text-align: center;
 }
 
 button {
@@ -69,4 +73,16 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.btn-gradient-blue {
+  height: 2.5rem;
+  width: auto;
+  border: 1px solid $border-gradient-btn;
+  background: $bg-gradient-btn;
+  font-family: 'poppins-light', sans-serif;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.04375rem;
+  color: $text-color-gradient;
 }

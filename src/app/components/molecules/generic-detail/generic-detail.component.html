@@ -2,12 +2,13 @@
     <div [class]="'bocc-generic-detail-content'">
         <bocc-master-icon [name]="'document-edit'" [size]="'72px'" [color]="'brand'"></bocc-master-icon>
         @if (hasSelected()) {
-            <p [class]="'bocc-title'">{{numberRows()}}{{'ES_GENERIC_DETAIL.SELECTED.TITLE' | text:'ES'}}</p>
-            <p [class]="'bocc-desc'">{{'ES_GENERIC_DETAIL.SELECTED.DESC' | text:'ES'}}</p>
-            <!-- TODO add button -->
+        <p [class]="'bocc-title'">{{numberRows()}}{{'ES_GENERIC_DETAIL.SELECTED.TITLE' | text:'ES'}}</p>
+        <p [class]="'bocc-desc'">{{'ES_GENERIC_DETAIL.SELECTED.DESC' | text:'ES'}}</p>
+        <bocc-button [variant]="'btn-gradient-blue'" [label]="'Gestión Masiva'" [showIcon]="true"
+            [iconDefault]="'assets/icons/gestion.svg'" (buttonClick)="onButtonClick()"></bocc-button>
         } @else {
-            <p [class]="'bocc-title'">{{'ES_GENERIC_DETAIL.EMPTY.TITLE' | text:'ES'}}</p>
-            <p [class]="'bocc-desc'">{{'ES_GENERIC_DETAIL.EMPTY.DESC' | text:'ES'}}</p>
+        <p [class]="'bocc-title'">{{'ES_GENERIC_DETAIL.EMPTY.TITLE' | text:'ES'}}</p>
+        <p [class]="'bocc-desc'">{{'ES_GENERIC_DETAIL.EMPTY.DESC' | text:'ES'}}</p>
         }
     </div>
 </div>
