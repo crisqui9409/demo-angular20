@@ -79,7 +79,7 @@ export class DropdownComponent {
    */
   public onSearchInput(value: string): void {
     this.searchTerm.set(value);
-    
+
     // Clear selection if the user modifies the input manually and it no longer matches the selection
     if (value !== this.selectedValue()) {
       this.selectedValue.set(null);

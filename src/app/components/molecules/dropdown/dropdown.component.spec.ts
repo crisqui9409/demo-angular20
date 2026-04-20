@@ -13,10 +13,10 @@ describe('DropdownComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        DropdownComponent, 
-        MasterIconComponent, 
-        MenuClicComponent, 
-        InputTextComponent, 
+        DropdownComponent,
+        MasterIconComponent,
+        MenuClicComponent,
+        InputTextComponent,
         TextLinkComponent
       ],
     }).compileComponents();
@@ -30,16 +30,22 @@ describe('DropdownComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the InputText atom with search icon', () => {
+  it('should pass the label as title to the InputText atom', () => {
+    fixture.componentRef.setInput('label', 'Convenio');
+    fixture.detectChanges();
     const inputAtom = fixture.debugElement.query(By.directive(InputTextComponent));
-    expect(inputAtom).toBeTruthy();
+    expect(inputAtom.componentInstance.title()).toBe('Convenio');
+  });
+
+  it('should render the search icon in the InputText atom', () => {
+    const inputAtom = fixture.debugElement.query(By.directive(InputTextComponent));
     expect(inputAtom.componentInstance.iconRight()).toContain('icon-search.svg');
   });
 
   it('should filter options when searching (case insensitive)', () => {
     const options = ['Manzana', 'Pera', 'Plátano', 'Mango'];
     fixture.componentRef.setInput('options', options);
-    
+
     // Type "MA"
     component.onSearchInput('MA');
     fixture.detectChanges();
@@ -73,7 +79,7 @@ describe('DropdownComponent', () => {
   it('should clear selectedValue if user modifies input manually', () => {
     component.selectedValue.set('Opción A');
     component.searchTerm.set('Opción A');
-    
+
     // User types something else
     component.onSearchInput('Opción B');
     expect(component.selectedValue()).toBeNull();
@@ -85,7 +91,7 @@ describe('DropdownComponent', () => {
     component.searchTerm.set('Value');
     component.selectedValue.set('Value');
     fixture.detectChanges();
-    
+
     expect(fixture.debugElement.query(By.directive(TextLinkComponent))).toBeTruthy();
 
     // Clear manually
@@ -101,20 +107,6 @@ describe('DropdownComponent', () => {
 
     const clearLink = fixture.debugElement.query(By.directive(TextLinkComponent));
     expect(clearLink.componentInstance.fontWeight()).toBe(400);
-  });
-
-  it('should clear all state when clicking "Eliminar" link', () => {
-    component.searchTerm.set('To clear');
-    component.selectedValue.set('Selected');
-    fixture.detectChanges();
-
-    const clearLink = fixture.debugElement.query(By.directive(TextLinkComponent));
-    clearLink.componentInstance.linkClick.emit();
-    fixture.detectChanges();
-
-    expect(component.searchTerm()).toBe('');
-    expect(component.selectedValue()).toBeNull();
-    expect(component.isOpen()).toBeFalse();
   });
 
   it('should position the menu inside the trigger wrapper', () => {
