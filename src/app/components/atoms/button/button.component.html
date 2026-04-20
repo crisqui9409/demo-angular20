@@ -1,0 +1,7 @@
+<button type="button" [class]="resolvedClass()" [disabled]="disabled()" (click)="onClick()"
+	(mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+	<div class="btn-icon" [hidden]="!showIcon()" [style.background-image]="iconBackgroundImage()" aria-hidden="true">
+	</div>
+
+	<span [hidden]="!hasLabel()">{{ label() }}</span>
+</button>

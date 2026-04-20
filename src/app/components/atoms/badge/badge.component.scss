@@ -1,0 +1,41 @@
+$bg-color-red :var(--bocc-status-error);
+$bg-color-blue :var(--bocc-status-info);
+$bg-color-green :var(--bocc-status-success);
+$bg-red-font :var(--bocc-status-error-bg);
+$bg-blue-font :var(--bocc-status-info-bg);
+$bg-green-font :var(--bocc-status-success-bg);
+
+:host {
+  display: inline-flex;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  box-sizing: border-box;
+
+  &--high {
+    background-color: $bg-red-font;
+    color: $bg-color-red;
+  }
+
+  &--medium {
+    background-color: $bg-blue-font;
+    color: $bg-color-blue;
+  }
+
+  &--low {
+    background-color: $bg-green-font;
+    color: $bg-color-green;
+  }
+}
