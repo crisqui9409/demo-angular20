@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TabsComponent, TabItem } from './tabs.component';
+import { TabsComponent } from './tabs.component';
+import { TabItem } from '../../../interfaces/TabItem';
 import { By } from '@angular/platform-browser';
 import { MasterIconComponent } from '../../atoms/master-icon/master-icon.component';
 

@@ -31,7 +31,7 @@ describe('AvatarComponent', () => {
   it('should render placeholder svg when imageUrl is null', () => {
     fixture.componentRef.setInput('imageUrl', null);
     fixture.detectChanges();
-    const svg = fixture.debugElement.query(By.css('svg.bocc-avatar-placeholder'));
+    const svg = fixture.debugElement.query(By.css('.bocc-avatar-placeholder'));
     expect(svg).toBeTruthy();
   });
 

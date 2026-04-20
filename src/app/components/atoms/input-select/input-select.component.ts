@@ -8,6 +8,9 @@
  * 
  * @author  : Cristian Quintana / Contact & Business IT
  * @version : 1.2 – 2026/04/15 
+ * 
+ * @example
+ * <bocc-input-select [optionsValues]="['Ahorros', 'Corriente']" [(activeOption)]="selectedIdx"></bocc-input-select>
  * ─────────────────────────────────────────────────────────────────
  */
 import {

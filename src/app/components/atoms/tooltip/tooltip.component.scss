@@ -45,6 +45,7 @@ $arrow-base: 0.5rem;
     height: 0;
     border-style: solid;
     flex-shrink: 0;
+    transform: translate(var(--tooltip-arrow-shift-x, 0), var(--tooltip-arrow-shift-y, 0));
   }
 
   :host(.orientation-bottom) {
