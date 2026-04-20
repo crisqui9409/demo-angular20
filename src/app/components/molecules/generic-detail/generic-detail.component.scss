@@ -1,0 +1,41 @@
+@use '../../../../style/variables/colors.scss';
+
+$bkg-color: var(--bocc-surface-main);
+$title-color: var(--bocc-text-secondary);
+$desc-color: var(--bocc-text-desc);
+
+.bocc-generic-detail {
+    background-color: $bkg-color;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1.5rem;
+        gap: 1.5rem;
+    }
+}
+
+.bocc {
+    &-title {
+        color: $title-color;
+        font-family: 'poppins-semibold', sans-serif;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: 0.04375rem;
+    }
+
+    &-desc {
+        color: $desc-color;
+        font-family: 'poppins-regular', sans-serif;
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: 0.04375rem;
+    }
+}

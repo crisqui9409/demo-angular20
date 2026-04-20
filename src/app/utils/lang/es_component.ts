@@ -34,3 +34,14 @@ export const ES_TOOLTIP_INFO = {
     ICON_SRC: 'assets/icons/Info.svg',
     DEFAULT_SIZE: '20px'
 }
+
+export const ES_GENERIC_DETAIL = {
+  EMPTY: {
+    TITLE: 'Aún no has seleccionado nada',
+    DESC: 'Haz clic en una fila o en un ícono de edición para ver el detalle completo y administrar la asignación.',
+  },
+  SELECTED: {
+    TITLE: ' filas seleccionadas',
+    DESC: '¿Deseas gestionar masivamente?',
+  }
+}

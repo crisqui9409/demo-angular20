@@ -10,12 +10,7 @@
  */
 import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { DEFAULT_CONST } from '../../../utils/global-strings';
-
-/** Supported visual variants for the button. */
-type ButtonVariant = 'btn-primary' | 'btn-secondary';
-
-/** Final CSS class applied to the root button depending on current state. */
-type ButtonResolvedClass = ButtonVariant | 'btn-inactive' | 'btn-inactive-primary';
+import { ButtonResolvedClass, ButtonVariant } from '../../../types/component_type';
 
 @Component({
   selector: 'bocc-button',
