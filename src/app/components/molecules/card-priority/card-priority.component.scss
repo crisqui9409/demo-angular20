@@ -1,0 +1,13 @@
+$surface-main: var(--bocc-surface-main);
+$shadow-md: var(--bocc-shadow-md);
+
+.priority-list {
+  background-color: $surface-main;
+  border-radius: 0.25rem;
+  box-shadow: $shadow-md;
+  width: 100%;
+  max-width: 17.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

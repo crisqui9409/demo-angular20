@@ -1,0 +1,9 @@
+<div class="priority-list">
+  @for (option of options(); track option) {
+    <bocc-menu-clic 
+      [label]="option" 
+      [showChevron]="false" 
+      (itemClick)="onSelect(option)">
+    </bocc-menu-clic>
+  }
+</div>
