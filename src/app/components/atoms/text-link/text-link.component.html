@@ -1,18 +1,18 @@
 @if (hasHref()) {
-<a [class]="linkClass()" [href]="disabled() ? null : href()" [attr.target]="target()"
+<a [class]="linkClass()" [href]="disabled() ? null : href()" [attr.target]="target()" [style.font-weight]="fontWeight()"
   [attr.rel]="target() === '_blank' ? rel() : null" [attr.aria-disabled]="disabled()" (click)="onClick()">
   {{ label() }}
 </a>
 }
 
 @else if (hasRouterLink()) {
-<a [class]="linkClass()" [routerLink]="disabled() ? null : routerLink()" [attr.aria-disabled]="disabled()" (click)="onClick()">
+<a [class]="linkClass()" [routerLink]="disabled() ? null : routerLink()" [attr.aria-disabled]="disabled()" [style.font-weight]="fontWeight()" (click)="onClick()">
   {{ label() }}
 </a>
 }
 
 @else {
-<button type="button" [class]="linkClass()" [disabled]="disabled()" (click)="onClick()">
+<button type="button" [class]="linkClass()" [disabled]="disabled()" [style.font-weight]="fontWeight()" (click)="onClick()">
   {{ label() }}
 </button>
 }

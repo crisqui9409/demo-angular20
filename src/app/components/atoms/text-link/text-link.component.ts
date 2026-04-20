@@ -29,6 +29,9 @@ export class TextLinkComponent {
   /** Text displayed inside the link. */
   readonly label = input<string>(DEFAULT_CONST.EMPTY);
 
+  /** Font weight for the link text. Default is 600. */
+  readonly fontWeight = input<number | string>(600);
+
   // ── Inputs: navigation ───────────────────────────────────────────────────
 
   /** External navigation URL. */

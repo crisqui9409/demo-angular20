@@ -1,10 +1,7 @@
-import { Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MenuClicComponent } from '../../atoms/menu-clic/menu-clic.component';
-
 /**
- * Component to display and select priority options.
- * Implementation using MenuClic atom as per design requirements.
+ * Component to display and select priority options using the MenuClic atom.
+ * @author Sebastian Barreto / Contact & Business IT
+ * @version 1.0, 2026/04/20 – Initial creation
  *
  * @example
  * <bocc-card-priority 
@@ -12,6 +9,10 @@ import { MenuClicComponent } from '../../atoms/menu-clic/menu-clic.component';
  *  (prioritySelected)="handlePrioritySelected($event)">
  * </bocc-card-priority>
  */
+import { Component, input, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MenuClicComponent } from '../../atoms/menu-clic/menu-clic.component';
+
 @Component({
   selector: 'bocc-card-priority',
   standalone: true,

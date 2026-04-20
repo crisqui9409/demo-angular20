@@ -1,0 +1,35 @@
+<div class="dropdown" [class.is-disabled]="disabled()" [class.is-open]="isOpen()">
+  <div class="dropdown__trigger-wrapper">
+    <bocc-input-text 
+      class="dropdown__input" 
+      [placeholder]="placeholder() || label()" 
+      [(valueInput)]="searchTerm"
+      [iconRight]="'assets/icons/icon-search.svg'"
+      [isDisable]="disabled()"
+      (handleInput)="onSearchInput($event)"
+      (click)="toggleDropdown()">
+    </bocc-input-text>
+
+    @if (isOpen() && filteredOptions().length > 0) {
+      <div class="dropdown__menu">
+        <div class="dropdown__options">
+          @for (option of filteredOptions(); track option) {
+            <bocc-menu-clic [label]="option" [showChevron]="false" (itemClick)="handleOptionClick(option)">
+            </bocc-menu-clic>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (showClear() && (searchTerm() || selectedValue())) {
+    <div class="dropdown__actions">
+      <bocc-text-link 
+        label="Eliminar" 
+        variant="danger" 
+        [fontWeight]="400"
+        (linkClick)="clearSearch()">
+      </bocc-text-link>
+    </div>
+  }
+</div>

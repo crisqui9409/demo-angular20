@@ -1,87 +1,64 @@
-<div
-  class="search-input"
-  [class]="'status-' + status()"
-  [class.is-disabled]="disabled()"
-  [class.is-filled]="value()"
->
+<div class="search-input" [class]="'status-' + status()" [class.is-disabled]="disabled()" [class.is-filled]="value()">
 
   @if (label() || hint()) {
-    <div class="search-input__header">
-      <div class="search-input__label-group">
-        <label class="search-input__label label-semibold" [for]="label()">{{ label() }}</label>
-      </div>
-
-      @if (hint()) {
-        <span class="search-input__hint caption-regular">{{ hint() }}</span>
-      }
+  <div class="search-input__header">
+    <div class="search-input__label-group">
+      <label class="search-input__label label-semibold" [for]="label()">{{ label() }}</label>
     </div>
+
+    @if (hint()) {
+    <span class="search-input__hint caption-regular">{{ hint() }}</span>
+    }
+  </div>
   }
 
   <div class="search-input__box">
 
     @if (leftIconName()) {
-      <span class="search-input__icon search-input__icon--left" aria-hidden="true">
-        <bocc-master-icon [name]="leftIconName()" size="20px" color="default" />
-      </span>
+    <span class="search-input__icon search-input__icon--left" aria-hidden="true">
+      <bocc-master-icon [name]="leftIconName()" size="20px" color="default" />
+    </span>
     }
 
     @if (prefix()) {
-      <div class="search-input__prefix">
-        <span class="search-input__prefix-text body-sm-medium">{{ prefix() }}</span>
-        <span class="search-input__divider" aria-hidden="true"></span>
-      </div>
+    <div class="search-input__prefix">
+      <span class="search-input__prefix-text body-sm-medium">{{ prefix() }}</span>
+      <span class="search-input__divider" aria-hidden="true"></span>
+    </div>
     }
 
-    <input
-      class="search-input__field body-sm-medium"
-      type="text"
-      [id]="label()"
-      [placeholder]="placeholder()"
-      [disabled]="disabled()"
-      [value]="value()"
-      (input)="onInput($event)"
-      (keydown.enter)="onSearch()"
-      autocomplete="off"
-      aria-autocomplete="none"
-    />
+    <input class="search-input__field body-sm-medium" type="text" [id]="label()" [placeholder]="placeholder()"
+      [disabled]="disabled()" [value]="value()" (input)="onInput($event)" (keydown.enter)="onSearch()"
+      autocomplete="off" aria-autocomplete="none" />
 
     @if (showSearchIcon() || rightIcon()) {
-      <button
-        type="button"
-        class="search-input__icon search-input__icon--right"
-        (click)="onSearch()"
-        [disabled]="disabled()"
-        aria-label="Buscar"
-      >
-        @if (rightIcon()) {
-          <span
-            class="search-input__mask"
-            [style.mask-image]="'url(' + rightIcon() + ')'"
-            [style.-webkit-mask-image]="'url(' + rightIcon() + ')'">
-          </span>
-        } @else {
-          <bocc-master-icon name="search" size="24px" color="default" />
-        }
-      </button>
+    <button type="button" class="search-input__icon search-input__icon--right" (click)="onSearch()"
+      [disabled]="disabled()" aria-label="Buscar">
+      @if (rightIcon()) {
+      <span class="search-input__mask" [style.mask-image]="'url(' + rightIcon() + ')'"
+        [style.-webkit-mask-image]="'url(' + rightIcon() + ')'">
+      </span>
+      } @else {
+      <bocc-master-icon name="search" size="24px" color="default" />
+      }
+    </button>
     }
 
   </div>
 
   @if (feedbackMessage()) {
-    <div class="search-input__feedback" role="alert" aria-live="polite">
-      <span class="search-input__feedback-icon" aria-hidden="true">
-        @if (feedbackIcon()) {
-          <span
-            class="search-input__mask--sm"
-            [style.mask-image]="'url(' + feedbackIcon() + ')'"
-            [style.-webkit-mask-image]="'url(' + feedbackIcon() + ')'">
-          </span>
-        } @else {
-          <bocc-master-icon name="information-info" size="16px" color="default" />
-        }
+  <div class="search-input__feedback" role="alert" aria-live="polite">
+    <span class="search-input__feedback-icon" aria-hidden="true">
+      @if (feedbackIcon()) {
+      <span class="search-input__mask--sm" [style.mask-image]="'url(' + feedbackIcon() + ')'"
+        [style.-webkit-mask-image]="'url(' + feedbackIcon() + ')'">
       </span>
-      <span class="search-input__feedback-text caption-regular">{{ feedbackMessage() }}</span>
-    </div>
+      } @else {
+      <bocc-master-icon name="information-info" size="16px" color="default" />
+      }
+    </span>
+    <span class="search-input__feedback-text caption-regular">{{ feedbackMessage() }}</span>
+  </div>
   }
 
 </div>
